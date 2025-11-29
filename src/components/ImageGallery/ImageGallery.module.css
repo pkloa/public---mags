@@ -1,0 +1,48 @@
+.gallery {
+  margin-top: 40px;
+}
+
+.fullWidthContainer {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.fullWidthImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fullWidthImage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.twoColumnContainer {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.twoColumnItem {
+  flex: 1;
+  min-width: 0;
+}
+
+.twoColumnImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.twoColumnImage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
