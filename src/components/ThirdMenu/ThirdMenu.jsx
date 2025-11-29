@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import styles from './ThirdMenu.module.css'
 
 // Helper function to generate random margin (outside component to satisfy linter)
-const getRandomMargin = () => Math.floor(Math.random() * 46) + 20 // Random between 20-65px
+const getRandomMargin = () => Math.floor(Math.random() * 101) + 100 // Random between 100-200px
 
 function ThirdMenu({ items, selectedItem, onItemSelect }) {
   // Generate random margins for each item (consistent per item)

@@ -15,6 +15,7 @@ function App() {
     : []
 
   // Show content for blog directly, or for magazines when issue is selected
+  // About content is shown in navigation, not main content
   const content = selectedMenu === 'blog'
     ? getContent('blog')
     : selectedMenu && selectedSubmenu && selectedThirdMenu
