@@ -1,0 +1,32 @@
+.thirdMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 20px;
+  background-color: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.thirdMenuItem {
+  padding: 0;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  width: fit-content;
+}
+
+.thirdMenuItem:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.thirdMenuItem.active {
+  background-color: #000;
+  color: #fff;
+}
+

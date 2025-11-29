@@ -5,9 +5,13 @@ function ImageGallery({ images }) {
     return null
   }
 
-  // Group images by layout type
-  const fullWidthImages = images.filter(img => img.layout === 'full-width')
-  const twoColumnImages = images.filter(img => img.layout === 'two-column')
+  // First image is always full-width
+  const firstImage = images[0]
+  const remainingImages = images.slice(1)
+
+  // Group remaining images by layout type
+  const fullWidthImages = remainingImages.filter(img => img.layout === 'full-width')
+  const twoColumnImages = remainingImages.filter(img => img.layout === 'two-column')
 
   // Group two-column images into pairs
   const twoColumnPairs = []
@@ -17,7 +21,18 @@ function ImageGallery({ images }) {
 
   return (
     <div className={styles.gallery}>
-      {/* Render full-width images */}
+      {/* First image is always full-width */}
+      {firstImage && (
+        <div className={styles.fullWidthContainer}>
+          <img
+            src={firstImage.src}
+            alt={firstImage.alt}
+            className={styles.fullWidthImage}
+          />
+        </div>
+      )}
+      
+      {/* Render remaining full-width images */}
       {fullWidthImages.map((image, index) => (
         <div key={`full-${index}`} className={styles.fullWidthContainer}>
           <img

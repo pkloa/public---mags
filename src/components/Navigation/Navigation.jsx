@@ -2,8 +2,8 @@ import styles from './Navigation.module.css'
 import { getSubmenuItems } from '../../data/content'
 
 function Navigation({ selectedMenu, selectedSubmenu, onMenuSelect, onSubmenuSelect }) {
-  const menuItems = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3']
-  const submenuItems = selectedMenu ? getSubmenuItems(selectedMenu) : []
+  const menuItems = ['home', 'magazines', 'blog']
+  const submenuItems = selectedMenu && selectedMenu !== 'home' && selectedMenu !== 'blog' ? getSubmenuItems(selectedMenu) : []
 
   const handleMenuClick = (menuItem) => {
     onMenuSelect(menuItem)
@@ -14,8 +14,10 @@ function Navigation({ selectedMenu, selectedSubmenu, onMenuSelect, onSubmenuSele
     onSubmenuSelect(submenuItem)
   }
 
+  const showSubmenu = selectedMenu === 'magazines' && submenuItems.length > 0
+
   return (
-    <div className={styles.navigation}>
+    <div className={styles.navigation} style={{ width: showSubmenu ? '550px' : '250px' }}>
       <div className={styles.menuColumn}>
         {menuItems.map((item, index) => (
           <div
@@ -27,17 +29,19 @@ function Navigation({ selectedMenu, selectedSubmenu, onMenuSelect, onSubmenuSele
           </div>
         ))}
       </div>
-      <div className={styles.submenuColumn}>
-        {submenuItems.map((subItem, index) => (
-          <div
-            key={index}
-            className={`${styles.submenuItem} ${selectedSubmenu === subItem ? styles.active : ''}`}
-            onClick={() => handleSubmenuClick(subItem)}
-          >
-            {subItem}
-          </div>
-        ))}
-      </div>
+      {showSubmenu && (
+        <div className={styles.submenuColumn}>
+          {submenuItems.map((subItem, index) => (
+            <div
+              key={index}
+              className={`${styles.submenuItem} ${selectedSubmenu === subItem ? styles.active : ''}`}
+              onClick={() => handleSubmenuClick(subItem)}
+            >
+              {subItem}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

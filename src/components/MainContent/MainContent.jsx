@@ -23,7 +23,6 @@ function MainContent({ content }) {
 
   return (
     <div className={styles.mainContent}>
-      <h1>{content.title}</h1>
       <div className={styles.textContent}>
         {renderText()}
       </div>
