@@ -23,3 +23,23 @@
   pointer-events: none;
   transform: rotate(30deg);
 }
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .main {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .fixedSticker {
+    width: 150px;
+    bottom: 10px;
+    left: 10px;
+  }
+}

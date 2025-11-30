@@ -156,23 +156,23 @@ export const contentData = {
         images: []
       }
     },
-    'Vibe Magazine': {
-      thirdMenuItems: ['March 1999', 'March 2000', 'May 2000', 'March 2001', 'April 2001', 'June 2001', 'September 2001', 'October 2003', 'March 2004', 'July 2005'],
+    'Vibe Magazine*': {
+      thirdMenuItems: ['March 1999', 'March 2000', 'May 2000', 'March 2001', 'April 2001', 'June 2001', 'September 2001*', 'October 2003', 'March 2004', 'July 2005'],
       default: {
-        title: 'Vibe Magazine',
+        title: 'Vibe Magazine*',
         text: ['Select an issue to view content from Vibe Magazine.'],
         images: []
       },
-      'March 1999': { title: 'Vibe Magazine - March 1999', text: ['Content for Vibe Magazine March 1999.'], images: [] },
-      'March 2000': { title: 'Vibe Magazine - March 2000', text: ['Content for Vibe Magazine March 2000.'], images: [] },
-      'May 2000': { title: 'Vibe Magazine - May 2000', text: ['Content for Vibe Magazine May 2000.'], images: [] },
-      'March 2001': { title: 'Vibe Magazine - March 2001', text: ['Content for Vibe Magazine March 2001.'], images: [] },
-      'April 2001': { title: 'Vibe Magazine - April 2001', text: ['Content for Vibe Magazine April 2001.'], images: [] },
-      'June 2001': { title: 'Vibe Magazine - June 2001', text: ['Content for Vibe Magazine June 2001.'], images: [] },
-      'September 2001': { title: 'Vibe Magazine - September 2001', text: ['Content for Vibe Magazine September 2001.'], images: [] },
-      'October 2003': { title: 'Vibe Magazine - October 2003', text: ['Content for Vibe Magazine October 2003.'], images: [] },
-      'March 2004': { title: 'Vibe Magazine - March 2004', text: ['Content for Vibe Magazine March 2004.'], images: [] },
-      'July 2005': { title: 'Vibe Magazine - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
+      'March 1999': { title: 'Vibe Magazine* - March 1999', text: ['Content for Vibe Magazine March 1999.'], images: [] },
+      'March 2000': { title: 'Vibe Magazine* - March 2000', text: ['Content for Vibe Magazine March 2000.'], images: [] },
+      'May 2000': { title: 'Vibe Magazine* - May 2000', text: ['Content for Vibe Magazine May 2000.'], images: [] },
+      'March 2001': { title: 'Vibe Magazine* - March 2001', text: ['Content for Vibe Magazine March 2001.'], images: [] },
+      'April 2001': { title: 'Vibe Magazine* - April 2001', text: ['Content for Vibe Magazine April 2001.'], images: [] },
+      'June 2001': { title: 'Vibe Magazine* - June 2001', text: ['Content for Vibe Magazine June 2001.'], images: [] },
+      'September 2001*': { title: 'Vibe Magazine* - September 2001*', text: ['Content for Vibe Magazine September 2001.'], images: [] },
+      'October 2003': { title: 'Vibe Magazine* - October 2003', text: ['Content for Vibe Magazine October 2003.'], images: [] },
+      'March 2004': { title: 'Vibe Magazine* - March 2004', text: ['Content for Vibe Magazine March 2004.'], images: [] },
+      'July 2005': { title: 'Vibe Magazine* - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
     },
     'Murder Dog Magazine*': {
       thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1*', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],

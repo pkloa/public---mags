@@ -72,3 +72,18 @@
   color: #000;
 }
 
+/* Mobile styles */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 15px;
+  }
+
+  .videoPlayer {
+    max-width: 100%;
+  }
+
+  .blogItem {
+    margin-bottom: 20px;
+  }
+}
+

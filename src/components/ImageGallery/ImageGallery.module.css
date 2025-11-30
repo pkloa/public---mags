@@ -62,3 +62,26 @@
   transform: translateY(0);
 }
 
+/* Mobile styles */
+@media (max-width: 768px) {
+  .gallery {
+    margin-top: 10px;
+  }
+
+  .twoColumnContainer {
+    gap: 10px;
+  }
+
+  .fullWidthContainer {
+    margin-bottom: 10px;
+  }
+
+  .imageContainer {
+    margin: 20px 0 !important;
+  }
+
+  .randomImage {
+    width: 90% !important;
+  }
+}
+
