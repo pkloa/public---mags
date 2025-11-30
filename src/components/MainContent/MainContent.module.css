@@ -1,6 +1,6 @@
 .mainContent {
   padding: 20px;
-  max-width: 1200px;
+  max-width: 2000px;
   margin: 0 auto;
 }
 
@@ -32,5 +32,43 @@
   padding: 80px 20px;
   color: #666;
   font-size: 12px;
+}
+
+.videoContainer {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.videoPlayer {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  background-color: #000;
+}
+
+.videoCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #000;
+}
+
+.blogItem {
+  margin-bottom: 40px;
+}
+
+.blogImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.blogCaption {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #000;
 }
 

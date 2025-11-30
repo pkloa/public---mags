@@ -9,6 +9,7 @@ function App() {
   const [selectedMenu, setSelectedMenu] = useState(null)
   const [selectedSubmenu, setSelectedSubmenu] = useState(null)
   const [selectedThirdMenu, setSelectedThirdMenu] = useState(null)
+  const [showAbout, setShowAbout] = useState(false)
 
   const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog'
     ? getThirdMenuItems(selectedMenu, selectedSubmenu)
@@ -27,11 +28,16 @@ function App() {
       setSelectedMenu(null)
       setSelectedSubmenu(null)
       setSelectedThirdMenu(null)
-    } else {
+      setShowAbout(false) // Also close about
+    } else if (menu !== 'about') {
       setSelectedMenu(menu)
       setSelectedSubmenu(null)
       setSelectedThirdMenu(null)
     }
+  }
+
+  const handleAboutToggle = () => {
+    setShowAbout(!showAbout)
   }
 
   const handleSubmenuSelect = (submenu) => {
@@ -44,8 +50,10 @@ function App() {
       <Navigation 
         selectedMenu={selectedMenu}
         selectedSubmenu={selectedSubmenu}
+        showAbout={showAbout}
         onMenuSelect={handleMenuSelect}
         onSubmenuSelect={handleSubmenuSelect}
+        onAboutToggle={handleAboutToggle}
       />
       <main className={styles.main}>
         <ThirdMenu 
@@ -53,7 +61,7 @@ function App() {
           selectedItem={selectedThirdMenu}
           onItemSelect={setSelectedThirdMenu}
         />
-        <MainContent content={content} />
+        <MainContent content={content} isBlog={selectedMenu === 'blog'} />
       </main>
     </div>
   )

@@ -1,7 +1,27 @@
 .gallery {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
+.comingSoon {
+  font-size: 12px;
+  color: #000;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.imageContainer {
+  width: 100%;
+}
+
+.randomImage {
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* Keep old styles for backwards compatibility */
 .fullWidthContainer {
   width: 100%;
   margin-bottom: 20px;

@@ -1,11 +1,74 @@
+import { useMemo } from 'react'
 import styles from './ImageGallery.module.css'
 
-function ImageGallery({ images }) {
+// Generate random values for each image
+function generateRandomStyles(index) {
+  // Seeded random based on index for consistency
+  const seed = index * 137.5
+  const random = (min, max) => {
+    const x = Math.sin(seed + index) * 10000
+    const r = x - Math.floor(x)
+    return Math.floor(r * (max - min + 1)) + min
+  }
+  
+  return {
+    marginTop: random(100, 300),
+    marginBottom: random(100, 300),
+    marginLeft: random(100, 300),
+    marginRight: random(100, 300),
+    width: random(40, 75), // smaller images
+  }
+}
+
+function ImageGallery({ images, randomLayout = false }) {
+  // Generate random styles for all images once
+  const randomStyles = useMemo(() => {
+    if (!images) return []
+    return images.map((_, index) => generateRandomStyles(index))
+  }, [images])
+
   if (!images || images.length === 0) {
+    // Show "coming soon..." for magazine scans, nothing for blog
+    if (!randomLayout) {
+      return <div className={styles.comingSoon}>coming soon...</div>
+    }
     return null
   }
 
-  // First image is always full-width
+  // Random layout for blog page
+  if (randomLayout) {
+    return (
+      <div className={styles.gallery}>
+        {images.map((image, index) => {
+          const rs = randomStyles[index]
+          
+          return (
+            <div 
+              key={`img-${index}`} 
+              className={styles.imageContainer}
+              style={{
+                marginTop: `${rs.marginTop}px`,
+                marginBottom: `${rs.marginBottom}px`,
+                marginLeft: `${rs.marginLeft}px`,
+                marginRight: `${rs.marginRight}px`,
+              }}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className={styles.randomImage}
+                style={{
+                  width: `${rs.width}%`,
+                }}
+              />
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  // Original structured layout for magazine scans
   const firstImage = images[0]
   const remainingImages = images.slice(1)
 
