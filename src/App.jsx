@@ -63,6 +63,11 @@ function App() {
         />
         <MainContent content={content} isBlog={selectedMenu === 'blog'} />
       </main>
+      <img 
+        src={import.meta.env.BASE_URL + 'sticker.jpg'} 
+        alt="public---mags sticker" 
+        className={styles.fixedSticker}
+      />
     </div>
   )
 }

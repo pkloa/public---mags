@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect, useRef } from 'react'
 import styles from './ImageGallery.module.css'
 
 // Generate random values for each image
@@ -21,10 +21,33 @@ function generateRandomStyles(index) {
 }
 
 function ImageGallery({ images, randomLayout = false }) {
+  const galleryRef = useRef(null)
+
   // Generate random styles for all images once
   const randomStyles = useMemo(() => {
     if (!images) return []
     return images.map((_, index) => generateRandomStyles(index))
+  }, [images])
+
+  // Intersection Observer for fade-in effect
+  useEffect(() => {
+    if (!galleryRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const fadeElements = galleryRef.current.querySelectorAll(`.${styles.fadeIn}`)
+    fadeElements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
   }, [images])
 
   if (!images || images.length === 0) {
@@ -83,10 +106,10 @@ function ImageGallery({ images, randomLayout = false }) {
   }
 
   return (
-    <div className={styles.gallery}>
+    <div className={styles.gallery} ref={galleryRef}>
       {/* First image is always full-width */}
       {firstImage && (
-        <div className={styles.fullWidthContainer}>
+        <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
           <img
             src={firstImage.src}
             alt={firstImage.alt}
@@ -97,7 +120,7 @@ function ImageGallery({ images, randomLayout = false }) {
       
       {/* Render remaining full-width images */}
       {fullWidthImages.map((image, index) => (
-        <div key={`full-${index}`} className={styles.fullWidthContainer}>
+        <div key={`full-${index}`} className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
           <img
             src={image.src}
             alt={image.alt}
@@ -108,7 +131,7 @@ function ImageGallery({ images, randomLayout = false }) {
       
       {/* Render two-column images */}
       {twoColumnPairs.map((pair, pairIndex) => (
-        <div key={`two-col-${pairIndex}`} className={styles.twoColumnContainer}>
+        <div key={`two-col-${pairIndex}`} className={`${styles.twoColumnContainer} ${styles.fadeIn}`}>
           {pair.map((image, imgIndex) => (
             <div key={`two-col-${pairIndex}-${imgIndex}`} className={styles.twoColumnItem}>
               <img

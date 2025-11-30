@@ -174,18 +174,18 @@ export const contentData = {
       'March 2004': { title: 'Vibe Magazine - March 2004', text: ['Content for Vibe Magazine March 2004.'], images: [] },
       'July 2005': { title: 'Vibe Magazine - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
     },
-    'Murder Dog Magazine': {
-      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
+    'Murder Dog Magazine*': {
+      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1*', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
       default: {
-        title: 'Murder Dog Magazine',
+        title: 'Murder Dog Magazine*',
         text: ['Select an issue to view content from Murder Dog Magazine.'],
         images: []
       },
-      'Volume 6 Issue #5': { title: 'Murder Dog Magazine - Volume 6 Issue #5', text: ['Content for Murder Dog Magazine Volume 6 Issue #5.'], images: [] },
-      'Volume 7 Issue #1': { title: 'Murder Dog Magazine - Volume 7 Issue #1', text: ['Content for Murder Dog Magazine Volume 7 Issue #1.'], images: [] },
-      'Volume 8 Issue #5': { title: 'Murder Dog Magazine - Volume 8 Issue #5', text: ['Content for Murder Dog Magazine Volume 8 Issue #5.'], images: [] },
-      'Volume 9 Issue #1': {
-        title: 'Murder Dog Magazine - Volume 9 Issue #1',
+      'Volume 6 Issue #5': { title: 'Murder Dog Magazine* - Volume 6 Issue #5', text: ['Content for Murder Dog Magazine Volume 6 Issue #5.'], images: [] },
+      'Volume 7 Issue #1': { title: 'Murder Dog Magazine* - Volume 7 Issue #1', text: ['Content for Murder Dog Magazine Volume 7 Issue #1.'], images: [] },
+      'Volume 8 Issue #5': { title: 'Murder Dog Magazine* - Volume 8 Issue #5', text: ['Content for Murder Dog Magazine Volume 8 Issue #5.'], images: [] },
+      'Volume 9 Issue #1*': {
+        title: 'Murder Dog Magazine* - Volume 9 Issue #1*',
         text: ['Content for Murder Dog Magazine Volume 9 Issue #1.'],
         images: [
           { src: dungeonFamily01, alt: 'Dungeon Family Cover', layout: 'full-width' },
@@ -197,11 +197,11 @@ export const contentData = {
           { src: dungeonFamily07, alt: 'Dungeon Family Page 7', layout: 'two-column' }
         ]
       },
-      'Volume 9 Issue #2': { title: 'Murder Dog Magazine - Volume 9 Issue #2', text: ['Content for Murder Dog Magazine Volume 9 Issue #2.'], images: [] },
-      'Volume 10 Issue #3': { title: 'Murder Dog Magazine - Volume 10 Issue #3', text: ['Content for Murder Dog Magazine Volume 10 Issue #3.'], images: [] },
-      'Volume 11 Issue #1': { title: 'Murder Dog Magazine - Volume 11 Issue #1', text: ['Content for Murder Dog Magazine Volume 11 Issue #1.'], images: [] },
-      'Volume 12 Issue #2': { title: 'Murder Dog Magazine - Volume 12 Issue #2', text: ['Content for Murder Dog Magazine Volume 12 Issue #2.'], images: [] },
-      'Volume 20 Issue #2': { title: 'Murder Dog Magazine - Volume 20 Issue #2', text: ['Content for Murder Dog Magazine Volume 20 Issue #2.'], images: [] }
+      'Volume 9 Issue #2': { title: 'Murder Dog Magazine* - Volume 9 Issue #2', text: ['Content for Murder Dog Magazine Volume 9 Issue #2.'], images: [] },
+      'Volume 10 Issue #3': { title: 'Murder Dog Magazine* - Volume 10 Issue #3', text: ['Content for Murder Dog Magazine Volume 10 Issue #3.'], images: [] },
+      'Volume 11 Issue #1': { title: 'Murder Dog Magazine* - Volume 11 Issue #1', text: ['Content for Murder Dog Magazine Volume 11 Issue #1.'], images: [] },
+      'Volume 12 Issue #2': { title: 'Murder Dog Magazine* - Volume 12 Issue #2', text: ['Content for Murder Dog Magazine Volume 12 Issue #2.'], images: [] },
+      'Volume 20 Issue #2': { title: 'Murder Dog Magazine* - Volume 20 Issue #2', text: ['Content for Murder Dog Magazine Volume 20 Issue #2.'], images: [] }
     },
     'Blaze Magazine': {
       thirdMenuItems: ['Fall 1998', 'January 1999', 'April 1999', 'June 1999', 'September 1999', 'October 1999', 'November 1999', 'February 2000', 'April 2000', 'June 2000'],
