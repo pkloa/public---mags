@@ -62,6 +62,167 @@
   transform: translateY(0);
 }
 
+/* Clickable images */
+.clickable {
+  cursor: pointer;
+}
+
+/* Lightbox styles */
+.lightboxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: default;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.navButton:hover {
+  opacity: 1;
+}
+
+.prevButton {
+  left: 20px;
+}
+
+.nextButton {
+  right: 20px;
+}
+
+.navThumbnail {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.imageCounter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Magazine spread styles */
+.magazineContainer {
+  perspective: 2000px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spreadWrapper {
+  display: flex;
+  position: relative;
+}
+
+.pageLeft,
+.pageRight {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pageLeft {
+  transform-origin: right center;
+  z-index: 2;
+}
+
+.pageRight {
+  transform-origin: left center;
+  z-index: 2;
+}
+
+.coverPage {
+  /* Cover is centered */
+}
+
+.coverMode .spreadWrapper {
+  justify-content: center;
+}
+
+.spreadPageImage {
+  max-width: 42vw;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.coverMode .spreadPageImage {
+  max-width: 50vw;
+}
+
+.clickablePage {
+  cursor: pointer;
+}
+
+/* Mobile single image view */
+.mobileImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mobileImage {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .gallery {
@@ -77,11 +238,77 @@
   }
 
   .imageContainer {
-    margin: 20px 0 !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   .randomImage {
-    width: 90% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .closeButton {
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+  }
+
+  .lightboxImage {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  .prevButton {
+    left: 10px;
+  }
+
+  .nextButton {
+    right: 10px;
+  }
+
+  .navThumbnail {
+    width: 50px;
+  }
+
+  .imageCounter {
+    bottom: 10px;
+    font-size: 12px;
+  }
+
+  .magazineContainer {
+    perspective: 1200px;
+  }
+
+  .spreadWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .spreadPageImage {
+    max-width: 90vw;
+    max-height: 40vh;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .coverMode .spreadPageImage {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+
+  .clickablePage:hover {
+    transform: none;
+  }
+
+  .navButton {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .navThumbnail {
+    width: 35px;
   }
 }
 
