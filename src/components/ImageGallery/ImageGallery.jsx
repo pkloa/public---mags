@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useRef, useState, useCallback } from 'react'
 import styles from './ImageGallery.module.css'
 
-// Generate random values for each image
+// Generate random values for each image - full screen positioning
 function generateRandomStyles(index) {
   // Seeded random based on index for consistency
   const seed = index * 137.5
@@ -12,11 +12,8 @@ function generateRandomStyles(index) {
   }
   
   return {
-    marginTop: random(100, 300),
-    marginBottom: random(100, 300),
-    marginLeft: random(100, 300),
-    marginRight: random(100, 300),
-    width: random(40, 75), // smaller images
+    left: random(5, 60), // percentage from left (viewport)
+    width: random(25, 50), // percentage width (viewport)
   }
 }
 
@@ -168,7 +165,7 @@ function ImageGallery({ images, randomLayout = false }) {
     return null
   }
 
-  // Random layout for blog page
+  // Random layout for blog page - full screen positioning
   if (randomLayout) {
     return (
       <div className={styles.gallery}>
@@ -178,21 +175,16 @@ function ImageGallery({ images, randomLayout = false }) {
           return (
             <div 
               key={`img-${index}`} 
-              className={styles.imageContainer}
+              className={`${styles.imageContainer} ${styles.blogImageFullScreen}`}
               style={{
-                marginTop: `${rs.marginTop}px`,
-                marginBottom: `${rs.marginBottom}px`,
-                marginLeft: `${rs.marginLeft}px`,
-                marginRight: `${rs.marginRight}px`,
+                left: `${rs.left}vw`,
+                width: `${rs.width}vw`,
               }}
             >
               <img
                 src={image.src}
                 alt={image.alt}
                 className={styles.randomImage}
-                style={{
-                  width: `${rs.width}%`,
-                }}
               />
             </div>
           )
@@ -249,62 +241,106 @@ function ImageGallery({ images, randomLayout = false }) {
 
       {/* Lightbox Modal */}
       {isLightboxOpen && (
-        <div 
-          className={styles.lightboxOverlay} 
-          onClick={closeLightbox}
-        >
-          {/* Mobile: Single image view */}
+        <div className={styles.lightboxOverlay}>
+          {/* Close button */}
+          <button 
+            className={isMobile ? styles.mobileCloseButton : styles.closeButton}
+            onClick={closeLightbox}
+            aria-label="Close"
+          >
+            ×
+          </button>
+
+          {/* Mobile: Single image view with left/right tap zones */}
           {isMobile && currentImage && (
             <div 
               className={styles.mobileImageContainer}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Left tap zone - go back */}
+              <div 
+                className={styles.mobileTapZoneLeft}
+                onClick={() => {
+                  if (currentImageIndex > 0) {
+                    goToPrev()
+                  }
+                }}
+              />
+              
               <img
                 src={currentImage.src}
                 alt={currentImage.alt}
-                className={`${styles.mobileImage} ${styles.clickablePage}`}
-                onClick={goToNext}
+                className={styles.mobileImage}
+              />
+              
+              {/* Right tap zone - go forward */}
+              <div 
+                className={styles.mobileTapZoneRight}
+                onClick={() => {
+                  if (currentImageIndex < images.length - 1) {
+                    goToNext()
+                  }
+                }}
               />
             </div>
           )}
 
           {/* Desktop: Magazine spread container */}
           {!isMobile && currentSpreadImages && (
-            <div 
-              className={`${styles.magazineContainer} ${currentSpreadImages.isCover ? styles.coverMode : ''}`} 
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Current spread */}
-              <div className={styles.spreadWrapper}>
-                {/* Left page - click to go back */}
-                {!currentSpreadImages.isCover && currentSpreadImages.left && (
-                  <div 
-                    className={`${styles.pageLeft} ${styles.clickablePage}`}
-                    onClick={() => currentSpread > 0 && goToPrev()}
-                  >
-                    <img
-                      src={currentSpreadImages.left.src}
-                      alt={currentSpreadImages.left.alt}
-                      className={styles.spreadPageImage}
-                    />
-                  </div>
-                )}
-                
-                {/* Right page (or cover) - click to go forward */}
+            <>
+              {/* Full screen tap zone for cover (first page) - click anywhere to go next */}
+              {currentSpreadImages.isCover && (
                 <div 
-                  className={`${styles.pageRight} ${currentSpreadImages.isCover ? styles.coverPage : ''} ${styles.clickablePage}`}
+                  className={styles.desktopTapZoneFull}
                   onClick={() => currentSpread < totalSpreads - 1 && goToNext()}
-                >
-                  {currentSpreadImages.right && (
-                    <img
-                      src={currentSpreadImages.right.src}
-                      alt={currentSpreadImages.right.alt}
-                      className={styles.spreadPageImage}
-                    />
+                />
+              )}
+
+              {/* Full screen tap zones for two-page format */}
+              {!currentSpreadImages.isCover && (
+                <>
+                  <div 
+                    className={styles.desktopTapZoneLeft}
+                    onClick={() => currentSpread > 0 && goToPrev()}
+                  />
+                  <div 
+                    className={styles.desktopTapZoneRight}
+                    onClick={() => currentSpread < totalSpreads - 1 && goToNext()}
+                  />
+                </>
+              )}
+              
+              <div 
+                className={`${styles.magazineContainer} ${currentSpreadImages.isCover ? styles.coverMode : ''}`}
+              >
+                {/* Current spread */}
+                <div className={styles.spreadWrapper}>
+                  {/* Left page */}
+                  {!currentSpreadImages.isCover && currentSpreadImages.left && (
+                    <div className={styles.pageLeft}>
+                      <img
+                        src={currentSpreadImages.left.src}
+                        alt={currentSpreadImages.left.alt}
+                        className={styles.spreadPageImage}
+                      />
+                    </div>
                   )}
+                  
+                  {/* Right page (or cover) */}
+                  <div 
+                    className={`${styles.pageRight} ${currentSpreadImages.isCover ? styles.coverPage : ''}`}
+                  >
+                    {currentSpreadImages.right && (
+                      <img
+                        src={currentSpreadImages.right.src}
+                        alt={currentSpreadImages.right.alt}
+                        className={styles.spreadPageImage}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       )}

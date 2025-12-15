@@ -1,90 +1,138 @@
-import { useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import styles from './MainContent.module.css'
 import ImageGallery from '../ImageGallery/ImageGallery'
 
-// Generate random styles for blog items
-function generateRandomStyles(index) {
-  const seed = index * 137.5
-  const random = (min, max) => {
-    const x = Math.sin(seed + index) * 10000
-    const r = x - Math.floor(x)
-    return Math.floor(r * (max - min + 1)) + min
-  }
-  
-  return {
-    marginTop: random(100, 300),
-    marginBottom: random(100, 300),
-    marginLeft: random(100, 300),
-    marginRight: random(100, 300),
-    width: random(40, 75),
-  }
-}
-
 function MainContent({ content, isBlog = false }) {
-  // Generate random styles for video and blog items
-  const randomStyles = useMemo(() => {
-    if (!isBlog) return []
-    const itemCount = (content?.video ? 1 : 0) + (content?.blogItems?.length || 0)
-    return Array.from({ length: itemCount }, (_, i) => generateRandomStyles(i))
-  }, [isBlog, content?.video, content?.blogItems?.length])
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Combine all blog items into a single array
+  const allBlogItems = useMemo(() => {
+    if (!isBlog || !content) return []
+    
+    const items = []
+    
+    // Add main video if exists
+    if (content.video) {
+      items.push({
+        type: 'video',
+        src: content.video,
+        date: content.videoDate,
+        caption: 'crunk\nshot n edited by me'
+      })
+    }
+    
+    // Add blog items
+    if (content.blogItems) {
+      items.push(...content.blogItems)
+    }
+    
+    return items
+  }, [isBlog, content])
+
+  // Reset index when content changes
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [content])
+
+  const goToNext = useCallback(() => {
+    if (currentIndex < allBlogItems.length - 1) {
+      setCurrentIndex(currentIndex + 1)
+    }
+  }, [currentIndex, allBlogItems.length])
+
+  const goToPrev = useCallback(() => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+    }
+  }, [currentIndex])
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isBlog) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        goToNext()
+      } else if (e.key === 'ArrowLeft') {
+        goToPrev()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isBlog, goToNext, goToPrev])
 
   if (!content) {
     return null
   }
 
-  // Get style for an item by index
-  const getStyle = (index) => {
-    if (!isBlog || !randomStyles[index]) return {}
-    const rs = randomStyles[index]
-    return {
-      marginTop: `${rs.marginTop}px`,
-      marginBottom: `${rs.marginBottom}px`,
-      marginLeft: `${rs.marginLeft}px`,
-      marginRight: `${rs.marginRight}px`,
-      width: `${rs.width}%`,
-    }
-  }
+  // Blog gallery view - one item at a time
+  if (isBlog && allBlogItems.length > 0) {
+    const currentItem = allBlogItems[currentIndex]
+    const isLeftSide = currentIndex % 2 === 0
 
-  let itemIndex = 0
+    return (
+      <div className={styles.blogGallery}>
+        {/* Navigation tap zones */}
+        <div 
+          className={styles.tapZoneLeft}
+          onClick={goToPrev}
+        />
+        <div 
+          className={styles.tapZoneRight}
+          onClick={goToNext}
+        />
 
-  return (
-    <div className={styles.mainContent}>
-      {content.video && (
-        <div className={styles.videoContainer} style={isBlog ? getStyle(itemIndex++) : {}}>
-          <video 
-            className={styles.videoPlayer}
-            controls
-            playsInline
-          >
-            <source src={content.video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div className={styles.videoCaption}>
-            <span>crunk</span>
-            <span>shot n edited by me</span>
-          </div>
-        </div>
-      )}
-      {content.blogItems && content.blogItems.map((item, index) => (
-        <div key={index} className={styles.blogItem} style={isBlog ? getStyle(itemIndex++) : {}}>
-          {item.type === 'image' && (
-            <>
-              <img 
-                src={item.src} 
-                alt={item.alt} 
-                className={styles.blogImage}
-              />
-              {item.caption && (
-                <div className={styles.blogCaption}>{item.caption}</div>
-              )}
-            </>
+        {/* Current item */}
+        <div 
+          className={styles.blogItemDisplay}
+          style={{ 
+            left: isLeftSide ? '5vw' : 'auto',
+            right: isLeftSide ? 'auto' : '5vw'
+          }}
+        >
+          {currentItem.date && (
+            <div className={styles.blogDate}>{currentItem.date}</div>
+          )}
+          
+          {currentItem.type === 'image' && (
+            <img 
+              src={currentItem.src} 
+              alt={currentItem.alt || ''} 
+              className={styles.blogDisplayImage}
+            />
+          )}
+          
+          {currentItem.type === 'video' && (
+            <video 
+              className={styles.blogDisplayVideo}
+              controls
+              playsInline
+              key={currentItem.src}
+            >
+              <source src={currentItem.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
+          
+          {currentItem.caption && (
+            <div className={styles.blogCaption}>
+              {currentItem.caption.split('\n').map((line, i) => (
+                <span key={i}>{line}</span>
+              ))}
+            </div>
           )}
         </div>
-      ))}
-      <ImageGallery images={content.images} randomLayout={isBlog} />
+      </div>
+    )
+  }
+
+  // Regular content view (non-blog)
+  return (
+    <div className={styles.mainContent}>
+      <ImageGallery images={content.images} randomLayout={false} />
     </div>
   )
 }
 
 export default MainContent
-

@@ -298,12 +298,34 @@ export const contentData = {
     ],
     images: [],
     video: crunkVideo,
+    videoDate: '06.28.25',
     blogItems: [
       {
         type: 'image',
         src: oneYearImg,
         alt: '1 year of public---mags',
-        caption: '1 year of public---mags'
+        caption: '1 year of public---mags',
+        date: '08.14.25'
+      },
+      {
+        type: 'image',
+        src: '/blog/IMG_918.jpeg',
+        alt: 'Magazine scan',
+        small: true,
+        date: '10.05.25'
+      },
+      {
+        type: 'image',
+        src: '/blog/IMG_966.jpeg',
+        alt: 'Magazine scan',
+        small: true,
+        date: '12.04.25'
+      },
+      {
+        type: 'video',
+        src: '/blog/first draft.mp4',
+        date: '12.14.25',
+        caption: 'public---mags[dot]com        first draft'
       }
     ]
   }

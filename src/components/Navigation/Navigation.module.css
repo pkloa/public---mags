@@ -1,11 +1,14 @@
 .navigation {
   display: flex;
   height: 100%;
-  background-color: #ffffff;
+  background-color: transparent;
+  position: relative;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .menuColumn {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 20px 15px 20px 20px;
   overflow-y: auto;
   /* border-right: 1px solid #000; */
@@ -21,6 +24,7 @@
   user-select: none;
   display: block;
   width: fit-content;
+  pointer-events: auto;
 }
 
 .menuItem:hover {
@@ -34,7 +38,7 @@
 }
 
 .submenuColumn {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 20px 15px;
   overflow-y: auto;
   width: 300px;
@@ -49,6 +53,7 @@
   user-select: none;
   display: block;
   width: fit-content;
+  pointer-events: auto;
 }
 
 .submenuItem:hover {
@@ -98,6 +103,7 @@
   font-size: 12px;
   color: #000;
   text-decoration: none;
+  pointer-events: auto;
 }
 
 .aboutLink:hover {

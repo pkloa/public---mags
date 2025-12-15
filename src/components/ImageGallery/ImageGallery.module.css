@@ -15,10 +15,17 @@
   width: 100%;
 }
 
+.blogImageFullScreen {
+  position: relative;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  pointer-events: auto;
+}
+
 .randomImage {
   height: auto;
   display: block;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* Keep old styles for backwards compatibility */
@@ -74,7 +81,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,20 +100,14 @@
   position: absolute;
   top: 20px;
   right: 30px;
-  font-size: 40px;
-  color: white;
+  font-size: 24px;
+  color: black;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Eclose%3C/text%3E%3C/svg%3E") 20 8, pointer;
   z-index: 1001;
   line-height: 1;
   padding: 0;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.closeButton:hover {
-  opacity: 1;
 }
 
 .navButton {
@@ -161,6 +162,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .spreadWrapper {
@@ -197,7 +199,6 @@
   max-height: 85vh;
   object-fit: contain;
   display: block;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
 }
 
 .coverMode .spreadPageImage {
@@ -215,12 +216,80 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .mobileImage {
   max-width: 95vw;
-  max-height: 90vh;
+  max-height: 85vh;
   object-fit: contain;
+  pointer-events: none;
+}
+
+.mobileTapZoneLeft,
+.mobileTapZoneRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.mobileTapZoneLeft {
+  left: 0;
+}
+
+.mobileTapZoneRight {
+  right: 0;
+}
+
+/* Desktop full-screen tap zones */
+.desktopTapZoneFull,
+.desktopTapZoneLeft,
+.desktopTapZoneRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+}
+
+.desktopTapZoneFull {
+  left: 0;
+  right: 0;
+  width: 100%;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Enext%3C/text%3E%3C/svg%3E") 20 8, pointer;
+}
+
+.desktopTapZoneLeft,
+.desktopTapZoneRight {
+  width: 50%;
+}
+
+.desktopTapZoneLeft {
+  left: 0;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Eprevious%3C/text%3E%3C/svg%3E") 35 8, pointer;
+}
+
+.desktopTapZoneRight {
+  right: 0;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Enext%3C/text%3E%3C/svg%3E") 20 8, pointer;
+}
+
+.mobileCloseButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: black;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* Mobile styles */
@@ -242,6 +311,13 @@
     margin-bottom: 20px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+
+  .blogImageFullScreen {
+    left: 5vw !important;
+    width: 90vw !important;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 
   .randomImage {
@@ -289,7 +365,6 @@
   .spreadPageImage {
     max-width: 90vw;
     max-height: 40vh;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
   }
 
   .coverMode .spreadPageImage {
