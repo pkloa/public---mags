@@ -3,7 +3,6 @@ import styles from './App.module.css'
 import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
 import MainContent from './components/MainContent/MainContent'
-import MusicPlayer from './components/MusicPlayer/MusicPlayer'
 import { getContent, getThirdMenuItems } from './data/content'
 
 function App() {
@@ -69,7 +68,6 @@ function App() {
         alt="shipping label" 
         className={styles.fixedShippingLabel}
       />
-      <MusicPlayer />
     </div>
   )
 }

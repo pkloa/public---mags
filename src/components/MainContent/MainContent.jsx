@@ -37,14 +37,18 @@ function MainContent({ content, isBlog = false }) {
   const goToNext = useCallback(() => {
     if (currentIndex < allBlogItems.length - 1) {
       setCurrentIndex(currentIndex + 1)
+    } else {
+      setCurrentIndex(0) // Loop back to first
     }
   }, [currentIndex, allBlogItems.length])
 
   const goToPrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1)
+    } else {
+      setCurrentIndex(allBlogItems.length - 1) // Loop to last
     }
-  }, [currentIndex])
+  }, [currentIndex, allBlogItems.length])
 
   // Keyboard navigation
   useEffect(() => {

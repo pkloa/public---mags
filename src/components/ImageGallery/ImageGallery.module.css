@@ -195,14 +195,14 @@
 }
 
 .spreadPageImage {
-  max-width: 42vw;
-  max-height: 85vh;
+  max-width: 46vw;
+  max-height: 90vh;
   object-fit: contain;
   display: block;
 }
 
 .coverMode .spreadPageImage {
-  max-width: 50vw;
+  max-width: 55vw;
 }
 
 .clickablePage {

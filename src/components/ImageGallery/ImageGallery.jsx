@@ -37,12 +37,20 @@ function ImageGallery({ images, randomLayout = false }) {
     return images.map((_, index) => generateRandomStyles(index))
   }, [images])
 
-  // Calculate total spreads: cover (1) + pairs of remaining images
+  // Check if last image should be full-width
+  const hasFullWidthLast = useMemo(() => {
+    if (!images || images.length <= 1) return false
+    return images[images.length - 1]?.layout === 'full-width'
+  }, [images])
+
+  // Calculate total spreads: cover (1) + pairs of middle images + optional back cover (1)
   const totalSpreads = useMemo(() => {
     if (!images || images.length === 0) return 0
     if (images.length === 1) return 1
-    return 1 + Math.ceil((images.length - 1) / 2)
-  }, [images])
+    const middleCount = hasFullWidthLast ? images.length - 2 : images.length - 1
+    const middleSpreads = Math.ceil(middleCount / 2)
+    return 1 + middleSpreads + (hasFullWidthLast ? 1 : 0)
+  }, [images, hasFullWidthLast])
 
   // Get images for a spread
   const getSpreadImages = useCallback((spreadIndex) => {
@@ -51,6 +59,11 @@ function ImageGallery({ images, randomLayout = false }) {
     if (spreadIndex === 0) {
       // Cover page - single image centered
       return { left: null, right: images[0], isCover: true }
+    }
+    
+    // Check if this is the last spread and it should be full-width (back cover)
+    if (hasFullWidthLast && spreadIndex === totalSpreads - 1) {
+      return { left: null, right: images[images.length - 1], isCover: true, isBackCover: true }
     }
     
     // For spreads after cover: spread 1 = images 1,2; spread 2 = images 3,4; etc.
@@ -62,7 +75,7 @@ function ImageGallery({ images, randomLayout = false }) {
       right: images[rightIndex] || null,
       isCover: false
     }
-  }, [images])
+  }, [images, hasFullWidthLast, totalSpreads])
 
   const goToNext = useCallback(() => {
     if (isMobile) {
@@ -193,12 +206,15 @@ function ImageGallery({ images, randomLayout = false }) {
     )
   }
 
-  // Group images: first image alone, rest in pairs
+  // Group images: first image alone, last image alone if full-width, rest in pairs
   const firstImage = images[0]
-  const remainingImages = images.slice(1)
+  const lastImage = images[images.length - 1]
+  
+  // Get middle images (excluding first and optionally last)
+  const middleImages = hasFullWidthLast ? images.slice(1, -1) : images.slice(1)
   const imagePairs = []
-  for (let i = 0; i < remainingImages.length; i += 2) {
-    imagePairs.push(remainingImages.slice(i, i + 2))
+  for (let i = 0; i < middleImages.length; i += 2) {
+    imagePairs.push(middleImages.slice(i, i + 2))
   }
 
   // Structured layout for magazine scans
@@ -234,9 +250,21 @@ function ImageGallery({ images, randomLayout = false }) {
               )
             })}
             {/* If odd number, add empty div to maintain layout */}
-            {pair.length === 1 && <div className={styles.twoColumnItem}></div>}
+            {pair.length === 1 && !hasFullWidthLast && <div className={styles.twoColumnItem}></div>}
           </div>
         ))}
+
+        {/* Last image (back cover) - displayed alone if full-width */}
+        {hasFullWidthLast && lastImage && (
+          <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
+            <img
+              src={lastImage.src}
+              alt={lastImage.alt}
+              className={`${styles.fullWidthImage} ${styles.clickable}`}
+              onClick={() => openLightbox(images.length - 1)}
+            />
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}

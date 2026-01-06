@@ -169,7 +169,22 @@ export const contentData = {
       'March 2001': { title: 'Vibe Magazine* - March 2001', text: ['Content for Vibe Magazine March 2001.'], images: [] },
       'April 2001': { title: 'Vibe Magazine* - April 2001', text: ['Content for Vibe Magazine April 2001.'], images: [] },
       'June 2001': { title: 'Vibe Magazine* - June 2001', text: ['Content for Vibe Magazine June 2001.'], images: [] },
-      'September 2001*': { title: 'Vibe Magazine* - September 2001*', text: ['Content for Vibe Magazine September 2001.'], images: [] },
+      'September 2001*': { 
+        title: 'Vibe Magazine* - September 2001*', 
+        text: ['Content for Vibe Magazine September 2001.'], 
+        images: [
+          // First image (cover) - full width
+          { src: '/vibe-sept-2001/vibe sept 01-01.jpg', alt: 'Vibe September 2001 Cover', layout: 'full-width' },
+          // Middle pages - two column
+          ...Array.from({ length: 266 }, (_, i) => ({
+            src: `/vibe-sept-2001/vibe sept 01-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Vibe September 2001 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          // Last image - full width
+          { src: '/vibe-sept-2001/vibe sept 01-268.jpg', alt: 'Vibe September 2001 Back Cover', layout: 'full-width' }
+        ]
+      },
       'October 2003': { title: 'Vibe Magazine* - October 2003', text: ['Content for Vibe Magazine October 2003.'], images: [] },
       'March 2004': { title: 'Vibe Magazine* - March 2004', text: ['Content for Vibe Magazine March 2004.'], images: [] },
       'July 2005': { title: 'Vibe Magazine* - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
