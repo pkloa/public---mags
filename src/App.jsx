@@ -3,9 +3,12 @@ import styles from './App.module.css'
 import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
 import MainContent from './components/MainContent/MainContent'
+import IntroPage from './components/IntroPage/IntroPage'
 import { getContent, getThirdMenuItems } from './data/content'
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true)
+  const [introFading, setIntroFading] = useState(false)
   const [selectedMenu, setSelectedMenu] = useState(null)
   const [selectedSubmenu, setSelectedSubmenu] = useState(null)
   const [selectedThirdMenu, setSelectedThirdMenu] = useState(null)
@@ -45,8 +48,19 @@ function App() {
     setSelectedThirdMenu(null) // Reset third menu when submenu changes
   }
 
+  const handleEnter = () => {
+    setIntroFading(true)
+    setTimeout(() => {
+      setShowIntro(false)
+    }, 800)
+  }
+
   return (
-    <div className={styles.app}>
+    <>
+      {showIntro && (
+        <IntroPage onEnter={handleEnter} fading={introFading} />
+      )}
+      <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn}`}>
       <Navigation 
         selectedMenu={selectedMenu}
         selectedSubmenu={selectedSubmenu}
@@ -68,7 +82,8 @@ function App() {
         alt="shipping label" 
         className={styles.fixedShippingLabel}
       />
-    </div>
+      </div>
+    </>
   )
 }
 
