@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useRef, useState, useCallback } from 'react'
+import { useMemo, useEffect, useRef, useState, useCallback, createRef } from 'react'
 import styles from './ImageGallery.module.css'
 
 // Generate random values for each image - full screen positioning
@@ -22,6 +22,9 @@ function ImageGallery({ images, randomLayout = false }) {
   const [currentSpread, setCurrentSpread] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  
+  // Create refs for each thumbnail to scroll to on close
+  const imageRefs = useRef([])
 
   // Detect mobile
   useEffect(() => {
@@ -141,10 +144,36 @@ function ImageGallery({ images, randomLayout = false }) {
     }
   }
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
+    // Calculate which image to scroll to
+    let scrollToIndex = null
+    
+    if (isMobile && currentImageIndex !== null) {
+      scrollToIndex = currentImageIndex
+    } else if (!isMobile && currentSpread !== null) {
+      // For desktop, get the first image of the current spread
+      if (currentSpread === 0) {
+        scrollToIndex = 0
+      } else if (hasFullWidthLast && currentSpread === totalSpreads - 1) {
+        scrollToIndex = images.length - 1
+      } else {
+        scrollToIndex = (currentSpread - 1) * 2 + 1
+      }
+    }
+    
+    // Scroll to the image thumbnail
+    if (scrollToIndex !== null && imageRefs.current[scrollToIndex]) {
+      setTimeout(() => {
+        imageRefs.current[scrollToIndex].scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        })
+      }, 50)
+    }
+    
     setCurrentSpread(null)
     setCurrentImageIndex(null)
-  }
+  }, [isMobile, currentImageIndex, currentSpread, hasFullWidthLast, totalSpreads, images])
 
   const currentSpreadImages = getSpreadImages(currentSpread)
   const currentImage = currentImageIndex !== null && images ? images[currentImageIndex] : null
@@ -225,6 +254,7 @@ function ImageGallery({ images, randomLayout = false }) {
         {firstImage && (
           <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
             <img
+              ref={el => imageRefs.current[0] = el}
               src={firstImage.src}
               alt={firstImage.alt}
               className={`${styles.fullWidthImage} ${styles.clickable}`}
@@ -241,6 +271,7 @@ function ImageGallery({ images, randomLayout = false }) {
               return (
                 <div key={`img-${actualIndex}`} className={styles.twoColumnItem}>
                   <img
+                    ref={el => imageRefs.current[actualIndex] = el}
                     src={image.src}
                     alt={image.alt}
                     className={`${styles.twoColumnImage} ${styles.clickable}`}
@@ -258,6 +289,7 @@ function ImageGallery({ images, randomLayout = false }) {
         {hasFullWidthLast && lastImage && (
           <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
             <img
+              ref={el => imageRefs.current[images.length - 1] = el}
               src={lastImage.src}
               alt={lastImage.alt}
               className={`${styles.fullWidthImage} ${styles.clickable}`}
