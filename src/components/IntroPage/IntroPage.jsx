@@ -7,11 +7,13 @@ function IntroPage({ onEnter, fading }) {
       onClick={onEnter}
     >
       <div className={styles.content}>
-        <img 
-          src={import.meta.env.BASE_URL + 'vinyl-label.gif'} 
-          alt="Public Magazines" 
-          className={styles.vinylLabel}
-        />
+        <div className={styles.imageWrapper}>
+          <img 
+            src={import.meta.env.BASE_URL + 'cd—final intro.gif'} 
+            alt="Public Magazines" 
+            className={styles.vinylLabel}
+          />
+        </div>
       </div>
     </div>
   )

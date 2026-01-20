@@ -270,25 +270,64 @@ export const contentData = {
       'March 2000': { title: 'Honey Magazine - March 2000', text: ['Content for Honey Magazine March 2000.'], images: [] },
       'June 2002': { title: 'Honey Magazine - June 2002', text: ['Content for Honey Magazine June 2002.'], images: [] }
     },
-    'Trace Magazine': {
-      thirdMenuItems: ['Issue 19', 'Issue 22'],
+    'True/Trace Magazine': {
+      thirdMenuItems: ['July 1995', 'June 1996', 'June 1997', 'November 1997', 'October 1998'],
       default: {
-        title: 'Trace Magazine',
+        title: 'True/Trace Magazine',
         text: [
-          'Select an issue to view content from Trace Magazine.'
+          'Select an issue to view content from True/Trace Magazine.'
         ],
         images: []
       },
-      'Issue 19': {
-        title: 'Trace Magazine - Issue 19',
-        text: ['Content for Trace Magazine Issue 19.'],
+      'July 1995': {
+        title: 'True/Trace Magazine - July 1995',
+        text: ['Content for True/Trace Magazine July 1995.'],
         images: []
       },
-      'Issue 22': {
-        title: 'Trace Magazine - Issue 22',
-        text: [
-          'Content for Trace Magazine Issue 22.'
-        ],
+      'June 1996': {
+        title: 'True/Trace Magazine - June 1996',
+        text: ['Content for True/Trace Magazine June 1996.'],
+        images: []
+      },
+      'June 1997': {
+        title: 'True/Trace Magazine - June 1997',
+        text: ['Content for True/Trace Magazine June 1997.'],
+        images: []
+      },
+      'November 1997': {
+        title: 'True/Trace Magazine - November 1997',
+        text: ['Content for True/Trace Magazine November 1997.'],
+        images: []
+      },
+      'October 1998': {
+        title: 'True/Trace Magazine - October 1998',
+        text: ['Content for True/Trace Magazine October 1998.'],
+        images: []
+      }
+    },
+    'NME Magazine': {
+      thirdMenuItems: [],
+      default: {
+        title: 'NME Magazine',
+        text: ['Select an issue to view content from NME Magazine.'],
+        images: []
+      }
+    },
+    'Switch Magazine': {
+      thirdMenuItems: ['March 1996', 'November 1997'],
+      default: {
+        title: 'Switch Magazine',
+        text: ['Select an issue to view content from Switch Magazine.'],
+        images: []
+      },
+      'March 1996': {
+        title: 'Switch Magazine - March 1996',
+        text: ['Content for Switch Magazine March 1996.'],
+        images: []
+      },
+      'November 1997': {
+        title: 'Switch Magazine - November 1997',
+        text: ['Content for Switch Magazine November 1997.'],
         images: []
       }
     }
