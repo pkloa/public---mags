@@ -8,10 +8,13 @@ function IntroPage({ onEnter, fading }) {
     >
       <div className={styles.content}>
         <div className={styles.imageWrapper}>
-          <img 
-            src={import.meta.env.BASE_URL + 'cd—final intro.gif'} 
-            alt="Public Magazines" 
+          <video 
+            src={import.meta.env.BASE_URL + 'cd—final intro.mp4'} 
             className={styles.vinylLabel}
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </div>
       </div>
