@@ -116,6 +116,7 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .navigation {
+    position: relative;
     flex-direction: column;
     height: auto;
     width: 100% !important;
@@ -132,10 +133,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5px 15px;
+    pointer-events: auto;
   }
 
   .submenuItem {
     margin-bottom: 5px;
+    pointer-events: auto;
   }
 
   .aboutTextInline {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './App.module.css'
 import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
@@ -13,6 +13,15 @@ function App() {
   const [selectedSubmenu, setSelectedSubmenu] = useState(null)
   const [selectedThirdMenu, setSelectedThirdMenu] = useState(null)
   const [showAbout, setShowAbout] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog'
     ? getThirdMenuItems(selectedMenu, selectedSubmenu)
@@ -79,7 +88,7 @@ function App() {
       />
       <main 
         className={styles.main}
-        style={{ marginLeft: selectedMenu === 'magazines' ? '600px' : '300px' }}
+        style={!isMobile ? { marginLeft: selectedMenu === 'magazines' ? '600px' : '300px' } : {}}
       >
         <ThirdMenu 
           items={thirdMenuItems}
