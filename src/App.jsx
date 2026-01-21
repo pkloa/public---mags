@@ -36,11 +36,19 @@ function App() {
       setSelectedMenu(menu)
       setSelectedSubmenu(null)
       setSelectedThirdMenu(null)
+      // Only close about when selecting blog
+      if (showAbout && menu === 'blog') {
+        setShowAbout(false)
+      }
     }
   }
 
   const handleAboutToggle = () => {
     setShowAbout(!showAbout)
+    // Close blog when opening about
+    if (!showAbout && selectedMenu === 'blog') {
+      setSelectedMenu(null)
+    }
   }
 
   const handleSubmenuSelect = (submenu) => {
@@ -69,7 +77,10 @@ function App() {
         onSubmenuSelect={handleSubmenuSelect}
         onAboutToggle={handleAboutToggle}
       />
-      <main className={styles.main}>
+      <main 
+        className={styles.main}
+        style={{ marginLeft: selectedMenu === 'magazines' ? '600px' : '300px' }}
+      >
         <ThirdMenu 
           items={thirdMenuItems}
           selectedItem={selectedThirdMenu}

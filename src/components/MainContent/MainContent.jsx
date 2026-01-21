@@ -1,9 +1,72 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useMemo, useRef, useEffect } from 'react'
 import styles from './MainContent.module.css'
 import ImageGallery from '../ImageGallery/ImageGallery'
 
 function MainContent({ content, isBlog = false }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const scrollRef = useRef(null)
+
+  // Convert vertical scroll to horizontal scroll
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el || !isBlog) return
+
+    const handleWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault()
+        el.scrollLeft += e.deltaY
+      }
+    }
+
+    el.addEventListener('wheel', handleWheel, { passive: false })
+    return () => el.removeEventListener('wheel', handleWheel)
+  }, [isBlog])
+
+  // Mute videos when scrolled out of view
+  useEffect(() => {
+    if (!isBlog) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target
+          if (!entry.isIntersecting) {
+            video.muted = true
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    const videos = document.querySelectorAll(`.${styles.blogDisplayVideo}`)
+    videos.forEach((video) => observer.observe(video))
+
+    return () => {
+      videos.forEach((video) => observer.unobserve(video))
+    }
+  }, [isBlog])
+
+  // Fade in assets as they scroll into view
+  useEffect(() => {
+    if (!isBlog) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const items = document.querySelectorAll(`.${styles.blogItemDisplay}`)
+    items.forEach((item) => observer.observe(item))
+
+    return () => {
+      items.forEach((item) => observer.unobserve(item))
+    }
+  }, [isBlog])
 
   // Combine all blog items into a single array
   const allBlogItems = useMemo(() => {
@@ -29,103 +92,58 @@ function MainContent({ content, isBlog = false }) {
     return items
   }, [isBlog, content])
 
-  // Reset index when content changes
-  useEffect(() => {
-    setCurrentIndex(0)
-  }, [content])
-
-  const goToNext = useCallback(() => {
-    if (currentIndex < allBlogItems.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-    } else {
-      setCurrentIndex(0) // Loop back to first
-    }
-  }, [currentIndex, allBlogItems.length])
-
-  const goToPrev = useCallback(() => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    } else {
-      setCurrentIndex(allBlogItems.length - 1) // Loop to last
-    }
-  }, [currentIndex, allBlogItems.length])
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (!isBlog) return
-
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') {
-        goToNext()
-      } else if (e.key === 'ArrowLeft') {
-        goToPrev()
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isBlog, goToNext, goToPrev])
-
   if (!content) {
     return null
   }
 
-  // Blog gallery view - one item at a time
+  // Blog gallery view - horizontal scroll
   if (isBlog && allBlogItems.length > 0) {
-    const currentItem = allBlogItems[currentIndex]
-    const isLeftSide = currentIndex % 2 === 0
-
     return (
-      <div className={styles.blogGallery}>
-        {/* Navigation tap zones */}
-        <div 
-          className={styles.tapZoneLeft}
-          onClick={goToPrev}
-        />
-        <div 
-          className={styles.tapZoneRight}
-          onClick={goToNext}
-        />
-
-        {/* Current item */}
-        <div 
-          className={styles.blogItemDisplay}
-          style={{ 
-            left: isLeftSide ? '5vw' : 'auto',
-            right: isLeftSide ? 'auto' : '5vw'
-          }}
-        >
-          {currentItem.date && (
-            <div className={styles.blogDate}>{currentItem.date}</div>
-          )}
-          
-          {currentItem.type === 'image' && (
-            <img 
-              src={currentItem.src} 
-              alt={currentItem.alt || ''} 
-              className={styles.blogDisplayImage}
-            />
-          )}
-          
-          {currentItem.type === 'video' && (
-            <video 
-              className={styles.blogDisplayVideo}
-              controls
-              playsInline
-              key={currentItem.src}
-            >
-              <source src={currentItem.src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-          
-          {currentItem.caption && (
-            <div className={styles.blogCaption}>
-              {currentItem.caption.split('\n').map((line, i) => (
-                <span key={i}>{line}</span>
-              ))}
+      <div className={styles.blogGallery} ref={scrollRef}>
+        <div className={styles.blogScrollContainer}>
+          {allBlogItems.map((item, index) => (
+            <div key={index} className={styles.blogItemDisplay}>
+              <div className={styles.blogDate}>{item.date || ''}</div>
+              
+              <div className={styles.blogMediaWrapper}>
+                {item.type === 'image' && (
+                  <img 
+                    src={item.src} 
+                    alt={item.alt || ''} 
+                    className={styles.blogDisplayImage}
+                  />
+                )}
+                
+                {item.type === 'video' && (
+                  <video 
+                    className={styles.blogDisplayVideo}
+                    playsInline
+                    autoPlay
+                    loop
+                    muted
+                    onClick={(e) => {
+                      e.target.muted = !e.target.muted
+                    }}
+                  >
+                    <source src={item.src} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
+                
+                {item.type === 'text' && (
+                  <div className={styles.blogTextItem}>
+                    {item.text}
+                  </div>
+                )}
+              </div>
+              
+              <div className={styles.blogCaption}>
+                {item.caption ? item.caption.split('\n').map((line, i) => (
+                  <span key={i}>{line}</span>
+                )) : ''}
+              </div>
             </div>
-          )}
+          ))}
         </div>
       </div>
     )

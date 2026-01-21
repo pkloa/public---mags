@@ -306,10 +306,30 @@ export const contentData = {
       }
     },
     'NME Magazine': {
-      thirdMenuItems: [],
+      thirdMenuItems: ['March 2001', 'April 2001', 'June 2001', 'August 2001'],
       default: {
         title: 'NME Magazine',
         text: ['Select an issue to view content from NME Magazine.'],
+        images: []
+      },
+      'March 2001': {
+        title: 'NME Magazine - March 2001',
+        text: ['Content for NME Magazine March 2001.'],
+        images: []
+      },
+      'April 2001': {
+        title: 'NME Magazine - April 2001',
+        text: ['Content for NME Magazine April 2001.'],
+        images: []
+      },
+      'June 2001': {
+        title: 'NME Magazine - June 2001',
+        text: ['Content for NME Magazine June 2001.'],
+        images: []
+      },
+      'August 2001': {
+        title: 'NME Magazine - August 2001',
+        text: ['Content for NME Magazine August 2001.'],
         images: []
       }
     },
@@ -366,20 +386,41 @@ export const contentData = {
         src: '/blog/IMG_918.jpeg',
         alt: 'Magazine scan',
         small: true,
-        date: '10.05.25'
+        date: '10.05.25',
+        caption: 'silkk the shocker'
       },
       {
         type: 'image',
         src: '/blog/IMG_966.jpeg',
         alt: 'Magazine scan',
         small: true,
-        date: '12.04.25'
+        date: '12.04.25',
+        caption: 'why get gold fronts?'
+      },
+      {
+        type: 'image',
+        src: '/paper draft.JPG',
+        alt: 'Paper draft',
+        date: '11.19.25'
       },
       {
         type: 'video',
         src: '/blog/first draft.mp4',
         date: '12.14.25',
         caption: 'public---mags[dot]com        first draft'
+      },
+      {
+        type: 'image',
+        src: '/nas true cover.png',
+        alt: 'Nas True Magazine Cover',
+        date: '1.19.26',
+        caption: 'grails'
+      },
+      {
+        type: 'image',
+        src: '/method man true cover.png',
+        alt: 'Method Man True Magazine Cover',
+        date: '1.19.26'
       }
     ]
   }
