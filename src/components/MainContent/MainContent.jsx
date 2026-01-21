@@ -5,7 +5,9 @@ import ImageGallery from '../ImageGallery/ImageGallery'
 function MainContent({ content, isBlog = false, isCollection = false }) {
   const scrollRef = useRef(null)
 
-  // Convert vertical scroll to horizontal scroll
+  const collectionRef = useRef(null)
+
+  // Convert vertical scroll to horizontal scroll for blog
   useEffect(() => {
     const el = scrollRef.current
     if (!el || !isBlog) return
@@ -20,6 +22,26 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
     el.addEventListener('wheel', handleWheel, { passive: false })
     return () => el.removeEventListener('wheel', handleWheel)
   }, [isBlog])
+
+  // Convert vertical scroll to horizontal scroll for collection (desktop only)
+  useEffect(() => {
+    const el = collectionRef.current
+    if (!el || !isCollection) return
+    
+    // Don't add wheel handler on mobile - let it scroll naturally
+    if (window.innerWidth <= 768) return
+
+    const handleWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault()
+        el.scrollLeft += e.deltaY
+      }
+    }
+
+    el.addEventListener('wheel', handleWheel, { passive: false })
+    return () => el.removeEventListener('wheel', handleWheel)
+  }, [isCollection])
+
 
   // Mute videos when scrolled out of view
   useEffect(() => {
@@ -159,7 +181,22 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
 
   // Regular content view (non-blog)
   return (
-    <div className={styles.mainContent}>
+    <div className={isCollection ? styles.mainContentCollection : styles.mainContent}>
+      {isCollection && content.text && (
+        <div className={styles.collectionText} ref={collectionRef}>
+          {content.text.filter(line => line !== '').map((line, index) => {
+            const isTitle = line.toLowerCase().includes('magazine')
+            const randomLineHeight = (Math.random() * 8 + 14).toFixed(2) + 'px'
+            return (
+              <p key={index} className={isTitle ? styles.collectionTitle : styles.collectionIndent} style={{ lineHeight: randomLineHeight }}>
+                {line.split('').map((char, charIndex) => (
+                  <span key={charIndex} style={{ letterSpacing: (Math.random() * 2 - 0.5).toFixed(2) + 'px' }}>{char}</span>
+                ))}
+              </p>
+            )
+          })}
+        </div>
+      )}
       <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} />
     </div>
   )
