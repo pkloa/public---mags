@@ -17,7 +17,7 @@ function generateRandomStyles(index) {
   }
 }
 
-function ImageGallery({ images, randomLayout = false }) {
+function ImageGallery({ images, randomLayout = false, isCollection = false }) {
   const galleryRef = useRef(null)
   const [currentSpread, setCurrentSpread] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(null)
@@ -200,8 +200,8 @@ function ImageGallery({ images, randomLayout = false }) {
   }, [images])
 
   if (!images || images.length === 0) {
-    // Show "coming soon..." for magazine scans, nothing for blog
-    if (!randomLayout) {
+    // Show "coming soon..." for magazine scans, nothing for blog or collection
+    if (!randomLayout && !isCollection) {
       return <div className={styles.comingSoon}>coming soon...</div>
     }
     return null

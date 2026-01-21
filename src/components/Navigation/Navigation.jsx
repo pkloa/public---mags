@@ -5,6 +5,7 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, on
   const menuItems = [
     { key: 'home', label: 'public---mags' },
     { key: 'magazines', label: 'magazine scans' },
+    { key: 'collection', label: 'collection' },
     { key: 'blog', label: 'blog' },
     { key: 'about', label: 'about' }
   ]

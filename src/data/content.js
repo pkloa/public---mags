@@ -363,6 +363,12 @@ export const contentData = {
       { label: 'Tumblr', url: 'https://www.tumblr.com/public---mags' }
     ]
   },
+  'collection': {
+    title: 'Collection',
+    text: [
+      'Browse the full collection.'
+    ]
+  },
   'blog': {
     title: 'Blog',
     text: [
@@ -378,8 +384,16 @@ export const contentData = {
         type: 'image',
         src: oneYearImg,
         alt: '1 year of public---mags',
-        caption: '1 year of public---mags',
-        date: '08.14.25'
+        date: '08.14.25',
+        sideText: `one year of public---mags
+
+crazy it's been a year! i was having so much fun, time flew by so fast. i never imagined i'd be where i am now, but i'm so grateful for it.
+
+all of the support has been unreal! it's been so cool to see how the scans have brought back memories for people, while also sharing rare scans some of you haven't seen before.
+
+thank you again for all the love and support. more scans to come!
+
+-e`
       },
       {
         type: 'image',
@@ -413,7 +427,6 @@ export const contentData = {
         type: 'image',
         src: '/nas true cover.png',
         alt: 'Nas True Magazine Cover',
-        date: '1.19.26',
         caption: 'grails'
       },
       {
@@ -430,8 +443,8 @@ export const contentData = {
 // Only returns content when an issue (thirdMenuItem) is selected
 // For blog and about, returns content directly without submenu/third menu
 export const getContent = (menuItem, submenuItem, thirdMenuItem = null) => {
-  // Handle blog and about - return content directly
-  if ((menuItem === 'blog' || menuItem === 'about') && contentData[menuItem]) {
+  // Handle blog, about, and collection - return content directly
+  if ((menuItem === 'blog' || menuItem === 'about' || menuItem === 'collection') && contentData[menuItem]) {
     return contentData[menuItem]
   }
   

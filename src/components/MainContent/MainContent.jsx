@@ -2,7 +2,7 @@ import { useMemo, useRef, useEffect } from 'react'
 import styles from './MainContent.module.css'
 import ImageGallery from '../ImageGallery/ImageGallery'
 
-function MainContent({ content, isBlog = false }) {
+function MainContent({ content, isBlog = false, isCollection = false }) {
   const scrollRef = useRef(null)
 
   // Convert vertical scroll to horizontal scroll
@@ -135,6 +135,14 @@ function MainContent({ content, isBlog = false }) {
                     {item.text}
                   </div>
                 )}
+                
+                {item.sideText && (
+                  <div className={styles.blogSideText}>
+                    {item.sideText.split('\n\n').map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                )}
               </div>
               
               <div className={styles.blogCaption}>
@@ -152,7 +160,7 @@ function MainContent({ content, isBlog = false }) {
   // Regular content view (non-blog)
   return (
     <div className={styles.mainContent}>
-      <ImageGallery images={content.images} randomLayout={false} />
+      <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} />
     </div>
   )
 }

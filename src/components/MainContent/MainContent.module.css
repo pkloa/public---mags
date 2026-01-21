@@ -85,18 +85,34 @@
 .blogMediaWrapper {
   display: flex;
   align-items: center;
+  gap: 30px;
+}
+
+.blogSideText {
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.blogSideText p {
+  margin: 0 0 1em 0;
+}
+
+.blogSideText p:last-child {
+  margin-bottom: 0;
 }
 
 .blogDisplayImage {
   width: auto;
-  height: 70vh;
+  height: 65vh;
   display: block;
   object-fit: contain;
 }
 
 .blogDisplayVideo {
   width: auto;
-  height: 70vh;
+  height: 65vh;
   display: block;
   object-fit: contain;
   background-color: #000;

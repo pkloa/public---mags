@@ -23,14 +23,16 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog'
+  const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog' && selectedMenu !== 'collection'
     ? getThirdMenuItems(selectedMenu, selectedSubmenu)
     : []
 
-  // Show content for blog directly, or for magazines when issue is selected
+  // Show content for blog and collection directly, or for magazines when issue is selected
   // About content is shown in navigation, not main content
   const content = selectedMenu === 'blog'
     ? getContent('blog')
+    : selectedMenu === 'collection'
+    ? getContent('collection')
     : selectedMenu && selectedSubmenu && selectedThirdMenu
     ? getContent(selectedMenu, selectedSubmenu, selectedThirdMenu)
     : null
@@ -95,7 +97,7 @@ function App() {
           selectedItem={selectedThirdMenu}
           onItemSelect={setSelectedThirdMenu}
         />
-        <MainContent content={content} isBlog={selectedMenu === 'blog'} />
+        <MainContent content={content} isBlog={selectedMenu === 'blog'} isCollection={selectedMenu === 'collection'} />
       </main>
       <img 
         src={import.meta.env.BASE_URL + 'shipping-label.png'} 
