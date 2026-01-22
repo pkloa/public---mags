@@ -699,6 +699,16 @@ thank you again for all the love and support. more scans to come!
         src: '/method man true cover.png',
         alt: 'Method Man True Magazine Cover',
         date: '1.19.26'
+      },
+      {
+        type: 'video',
+        src: '/blog/scannin.mp4',
+        date: '01.22.26',
+        sideText: `public mags has become therapy for me
+
+burn incense, spin a record, scan mags
+
+this is all i need`
       }
     ]
   }

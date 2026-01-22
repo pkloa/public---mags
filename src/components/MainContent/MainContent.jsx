@@ -47,25 +47,35 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
   useEffect(() => {
     if (!isBlog) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target
-          if (!entry.isIntersecting) {
-            video.muted = true
-          }
-        })
-      },
-      { threshold: 0.5 }
-    )
+    // Small delay to ensure all videos are rendered
+    const timeoutId = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target
+            if (!entry.isIntersecting) {
+              video.muted = true
+            }
+          })
+        },
+        { threshold: 0.5 }
+      )
 
-    const videos = document.querySelectorAll(`.${styles.blogDisplayVideo}`)
-    videos.forEach((video) => observer.observe(video))
+      const videos = document.querySelectorAll(`.${styles.blogDisplayVideo}`)
+      videos.forEach((video) => observer.observe(video))
+
+      // Store observer reference for cleanup
+      window._videoObserver = observer
+    }, 100)
 
     return () => {
-      videos.forEach((video) => observer.unobserve(video))
+      clearTimeout(timeoutId)
+      if (window._videoObserver) {
+        const videos = document.querySelectorAll(`.${styles.blogDisplayVideo}`)
+        videos.forEach((video) => window._videoObserver.unobserve(video))
+      }
     }
-  }, [isBlog])
+  }, [isBlog, content])
 
   // Fade in assets as they scroll into view
   useEffect(() => {
