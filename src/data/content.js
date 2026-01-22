@@ -106,19 +106,29 @@ export const contentData = {
         images: []
       }
     },
-    'XXL Magazine': {
-      thirdMenuItems: ['June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004', 'November 2005', 'October 2007'],
+    'XXL Magazine*': {
+      thirdMenuItems: ['June 1999*', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004', 'November 2005', 'October 2007'],
       default: {
-        title: 'XXL Magazine',
+        title: 'XXL Magazine*',
         text: [
           'Select an issue to view content from XXL Magazine.'
         ],
         images: []
       },
-      'June 1999': {
-        title: 'XXL Magazine - June 1999',
+      'June 1999*': {
+        title: 'XXL Magazine* - June 1999*',
         text: ['Content for XXL Magazine June 1999.'],
-        images: []
+        images: [
+          { src: '/murder inc xxl 1.jpg', alt: 'Murder Inc XXL June 1999 Cover', layout: 'full-width' },
+          { src: '/murder inc xxl 2.jpg', alt: 'Murder Inc XXL June 1999 Page 2', layout: 'two-column' },
+          { src: '/murder inc xxl 3.jpg', alt: 'Murder Inc XXL June 1999 Page 3', layout: 'two-column' },
+          { src: '/murder inc xxl 4.jpg', alt: 'Murder Inc XXL June 1999 Page 4', layout: 'two-column' },
+          { src: '/murder inc xxl 5.jpg', alt: 'Murder Inc XXL June 1999 Page 5', layout: 'two-column' },
+          { src: '/murder inc xxl 6.jpg', alt: 'Murder Inc XXL June 1999 Page 6', layout: 'two-column' },
+          { src: '/murder inc xxl 7.jpg', alt: 'Murder Inc XXL June 1999 Page 7', layout: 'two-column' },
+          { src: '/murder inc xxl 8.jpg', alt: 'Murder Inc XXL June 1999 Page 8', layout: 'full-width' },
+          { src: '/murder inc xxl 9.jpg', alt: 'Murder Inc XXL June 1999 Page 9', layout: 'full-width' }
+        ]
       },
       'February 2000': {
         title: 'XXL Magazine - February 2000',
@@ -305,10 +315,10 @@ export const contentData = {
         images: []
       }
     },
-    'NME Magazine': {
-      thirdMenuItems: ['March 2001', 'April 2001', 'June 2001', 'August 2001'],
+    'NME Magazine*': {
+      thirdMenuItems: ['March 2001', 'April 2001', 'June 2001*', 'August 2001'],
       default: {
-        title: 'NME Magazine',
+        title: 'NME Magazine*',
         text: ['Select an issue to view content from NME Magazine.'],
         images: []
       },
@@ -322,14 +332,19 @@ export const contentData = {
         text: ['Content for NME Magazine April 2001.'],
         images: []
       },
-      'June 2001': {
-        title: 'NME Magazine - June 2001',
+      'June 2001*': {
+        title: 'NME Magazine* - June 2001*',
         text: ['Content for NME Magazine June 2001.'],
-        images: []
+        images: [
+          { src: '/outkast nme 1.jpg', alt: 'OutKast NME June 2001 Cover', layout: 'full-width' },
+          { src: '/outkast nme 2.jpg', alt: 'OutKast NME June 2001 Page 2', layout: 'two-column' },
+          { src: '/outkast nme 3.jpg', alt: 'OutKast NME June 2001 Page 3', layout: 'two-column' },
+          { src: '/outkast nme 4.jpg', alt: 'OutKast NME June 2001 Page 4', layout: 'full-width' }
+        ]
       },
       'August 2001': {
         title: 'NME Magazine - August 2001',
-        text: ['Content for NME Magazine August 2001.'],
+        text: [],
         images: []
       }
     },

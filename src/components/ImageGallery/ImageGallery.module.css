@@ -46,6 +46,12 @@
   margin-bottom: 20px;
 }
 
+.twoColumnContainerSpread {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
 .twoColumnItem {
   flex: 1;
   min-width: 0;
@@ -246,6 +252,7 @@
 
 /* Desktop full-screen tap zones */
 .desktopTapZoneFull,
+.desktopTapZoneFullPrev,
 .desktopTapZoneLeft,
 .desktopTapZoneRight {
   position: absolute;
@@ -259,6 +266,13 @@
   right: 0;
   width: 100%;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Enext%3C/text%3E%3C/svg%3E") 20 8, pointer;
+}
+
+.desktopTapZoneFullPrev {
+  left: 0;
+  right: 0;
+  width: 100%;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='16'%3E%3Ctext x='0' y='12' font-family='Arial' font-size='12' fill='black'%3Eprevious%3C/text%3E%3C/svg%3E") 35 8, pointer;
 }
 
 .desktopTapZoneLeft,

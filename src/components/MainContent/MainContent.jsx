@@ -197,7 +197,7 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
           })}
         </div>
       )}
-      <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} />
+      <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} spreadOnly={content.spreadOnly} />
     </div>
   )
 }

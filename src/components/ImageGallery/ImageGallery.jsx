@@ -17,7 +17,7 @@ function generateRandomStyles(index) {
   }
 }
 
-function ImageGallery({ images, randomLayout = false, isCollection = false }) {
+function ImageGallery({ images, randomLayout = false, isCollection = false, spreadOnly = false }) {
   const galleryRef = useRef(null)
   const [currentSpread, setCurrentSpread] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(null)
@@ -40,20 +40,31 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
     return images.map((_, index) => generateRandomStyles(index))
   }, [images])
 
-  // Check if last image should be full-width
-  const hasFullWidthLast = useMemo(() => {
-    if (!images || images.length <= 1) return false
-    return images[images.length - 1]?.layout === 'full-width'
+  // Count consecutive full-width images at the end
+  const fullWidthEndCount = useMemo(() => {
+    if (!images || images.length <= 1) return 0
+    let count = 0
+    for (let i = images.length - 1; i >= 1; i--) {
+      if (images[i]?.layout === 'full-width') {
+        count++
+      } else {
+        break
+      }
+    }
+    return count
   }, [images])
 
-  // Calculate total spreads: cover (1) + pairs of middle images + optional back cover (1)
+  // Check if last image should be full-width (for backwards compatibility)
+  const hasFullWidthLast = fullWidthEndCount > 0
+
+  // Calculate total spreads: cover (1) + pairs of middle images + full-width end images
   const totalSpreads = useMemo(() => {
     if (!images || images.length === 0) return 0
     if (images.length === 1) return 1
-    const middleCount = hasFullWidthLast ? images.length - 2 : images.length - 1
+    const middleCount = images.length - 1 - fullWidthEndCount
     const middleSpreads = Math.ceil(middleCount / 2)
-    return 1 + middleSpreads + (hasFullWidthLast ? 1 : 0)
-  }, [images, hasFullWidthLast])
+    return 1 + middleSpreads + fullWidthEndCount
+  }, [images, fullWidthEndCount])
 
   // Get images for a spread
   const getSpreadImages = useCallback((spreadIndex) => {
@@ -64,9 +75,15 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
       return { left: null, right: images[0], isCover: true }
     }
     
-    // Check if this is the last spread and it should be full-width (back cover)
-    if (hasFullWidthLast && spreadIndex === totalSpreads - 1) {
-      return { left: null, right: images[images.length - 1], isCover: true, isBackCover: true }
+    // Calculate number of two-page spreads (excluding cover and full-width end images)
+    const middleCount = images.length - 1 - fullWidthEndCount
+    const middleSpreads = Math.ceil(middleCount / 2)
+    
+    // Check if this spread is one of the full-width end images
+    if (fullWidthEndCount > 0 && spreadIndex > middleSpreads) {
+      const endImageIndex = images.length - fullWidthEndCount + (spreadIndex - middleSpreads - 1)
+      const isLastSpread = spreadIndex === totalSpreads - 1
+      return { left: null, right: images[endImageIndex], isCover: true, isBackCover: isLastSpread }
     }
     
     // For spreads after cover: spread 1 = images 1,2; spread 2 = images 3,4; etc.
@@ -78,7 +95,7 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
       right: images[rightIndex] || null,
       isCover: false
     }
-  }, [images, hasFullWidthLast, totalSpreads])
+  }, [images, fullWidthEndCount, totalSpreads])
 
   const goToNext = useCallback(() => {
     if (isMobile) {
@@ -133,8 +150,18 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
   // Convert image index to spread index
   const getSpreadForImage = useCallback((imageIndex) => {
     if (imageIndex === 0) return 0
+    
+    // Check if this image is one of the full-width end images
+    const firstFullWidthEndIndex = images.length - fullWidthEndCount
+    if (fullWidthEndCount > 0 && imageIndex >= firstFullWidthEndIndex) {
+      const middleCount = images.length - 1 - fullWidthEndCount
+      const middleSpreads = Math.ceil(middleCount / 2)
+      return 1 + middleSpreads + (imageIndex - firstFullWidthEndIndex)
+    }
+    
+    // For two-column images
     return Math.ceil(imageIndex / 2)
-  }, [])
+  }, [images, fullWidthEndCount])
 
   const openLightbox = (imageIndex) => {
     if (isMobile) {
@@ -152,10 +179,14 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
       scrollToIndex = currentImageIndex
     } else if (!isMobile && currentSpread !== null) {
       // For desktop, get the first image of the current spread
+      const middleCount = images.length - 1 - fullWidthEndCount
+      const middleSpreads = Math.ceil(middleCount / 2)
+      
       if (currentSpread === 0) {
         scrollToIndex = 0
-      } else if (hasFullWidthLast && currentSpread === totalSpreads - 1) {
-        scrollToIndex = images.length - 1
+      } else if (fullWidthEndCount > 0 && currentSpread > middleSpreads) {
+        // One of the full-width end images
+        scrollToIndex = images.length - fullWidthEndCount + (currentSpread - middleSpreads - 1)
       } else {
         scrollToIndex = (currentSpread - 1) * 2 + 1
       }
@@ -173,7 +204,7 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
     
     setCurrentSpread(null)
     setCurrentImageIndex(null)
-  }, [isMobile, currentImageIndex, currentSpread, hasFullWidthLast, totalSpreads, images])
+  }, [isMobile, currentImageIndex, currentSpread, fullWidthEndCount, images])
 
   const currentSpreadImages = getSpreadImages(currentSpread)
   const currentImage = currentImageIndex !== null && images ? images[currentImageIndex] : null
@@ -235,23 +266,29 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
     )
   }
 
-  // Group images: first image alone, last image alone if full-width, rest in pairs
-  const firstImage = images[0]
-  const lastImage = images[images.length - 1]
+  // Group images based on spreadOnly mode
+  const firstImage = spreadOnly ? null : images[0]
   
-  // Get middle images (excluding first and optionally last)
-  const middleImages = hasFullWidthLast ? images.slice(1, -1) : images.slice(1)
+  // Get full-width end images
+  const fullWidthEndImages = fullWidthEndCount > 0 
+    ? images.slice(images.length - fullWidthEndCount) 
+    : []
+  
+  // Get images for pairing (exclude cover and full-width end images)
+  const imagesToPair = spreadOnly 
+    ? images 
+    : (fullWidthEndCount > 0 ? images.slice(1, images.length - fullWidthEndCount) : images.slice(1))
   const imagePairs = []
-  for (let i = 0; i < middleImages.length; i += 2) {
-    imagePairs.push(middleImages.slice(i, i + 2))
+  for (let i = 0; i < imagesToPair.length; i += 2) {
+    imagePairs.push(imagesToPair.slice(i, i + 2))
   }
 
   // Structured layout for magazine scans
   return (
     <>
       <div className={styles.gallery} ref={galleryRef}>
-        {/* First image (cover) - displayed alone */}
-        {firstImage && (
+        {/* First image (cover) - displayed alone, skip if spreadOnly */}
+        {!spreadOnly && firstImage && (
           <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
             <img
               ref={el => imageRefs.current[0] = el}
@@ -263,11 +300,13 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
           </div>
         )}
         
-        {/* Remaining images in two-page pairs */}
+        {/* Images in two-page pairs */}
         {imagePairs.map((pair, pairIndex) => (
-          <div key={`pair-${pairIndex}`} className={`${styles.twoColumnContainer} ${styles.fadeIn}`}>
+          <div key={`pair-${pairIndex}`} className={`${spreadOnly ? styles.twoColumnContainerSpread : styles.twoColumnContainer} ${styles.fadeIn}`}>
             {pair.map((image, imgIndex) => {
-              const actualIndex = 1 + pairIndex * 2 + imgIndex
+              const actualIndex = spreadOnly 
+                ? pairIndex * 2 + imgIndex 
+                : 1 + pairIndex * 2 + imgIndex
               return (
                 <div key={`img-${actualIndex}`} className={styles.twoColumnItem}>
                   <img
@@ -285,18 +324,21 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
           </div>
         ))}
 
-        {/* Last image (back cover) - displayed alone if full-width */}
-        {hasFullWidthLast && lastImage && (
-          <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
-            <img
-              ref={el => imageRefs.current[images.length - 1] = el}
-              src={lastImage.src}
-              alt={lastImage.alt}
-              className={`${styles.fullWidthImage} ${styles.clickable}`}
-              onClick={() => openLightbox(images.length - 1)}
-            />
-          </div>
-        )}
+        {/* Full-width end images - displayed alone */}
+        {!spreadOnly && fullWidthEndImages.map((image, idx) => {
+          const actualIndex = images.length - fullWidthEndCount + idx
+          return (
+            <div key={`fullwidth-end-${idx}`} className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
+              <img
+                ref={el => imageRefs.current[actualIndex] = el}
+                src={image.src}
+                alt={image.alt}
+                className={`${styles.fullWidthImage} ${styles.clickable}`}
+                onClick={() => openLightbox(actualIndex)}
+              />
+            </div>
+          )
+        })}
       </div>
 
       {/* Lightbox Modal */}
@@ -348,12 +390,36 @@ function ImageGallery({ images, randomLayout = false, isCollection = false }) {
           {/* Desktop: Magazine spread container */}
           {!isMobile && currentSpreadImages && (
             <>
-              {/* Full screen tap zone for cover (first page) - click anywhere to go next */}
-              {currentSpreadImages.isCover && (
+              {/* Full screen tap zone for front cover (first page only) - click anywhere to go next */}
+              {currentSpreadImages.isCover && currentSpread === 0 && (
                 <div 
                   className={styles.desktopTapZoneFull}
                   onClick={() => currentSpread < totalSpreads - 1 && goToNext()}
                 />
+              )}
+
+              {/* Full screen tap zones for full-width end images (not first cover) */}
+              {currentSpreadImages.isCover && currentSpread > 0 && (
+                <>
+                  {/* On the last page, show full screen tap zone for previous */}
+                  {currentSpread === totalSpreads - 1 ? (
+                    <div 
+                      className={styles.desktopTapZoneFullPrev}
+                      onClick={() => goToPrev()}
+                    />
+                  ) : (
+                    <>
+                      <div 
+                        className={styles.desktopTapZoneLeft}
+                        onClick={() => goToPrev()}
+                      />
+                      <div 
+                        className={styles.desktopTapZoneRight}
+                        onClick={() => goToNext()}
+                      />
+                    </>
+                  )}
+                </>
               )}
 
               {/* Full screen tap zones for two-page format */}
