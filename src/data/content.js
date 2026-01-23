@@ -490,6 +490,11 @@ export const contentData = {
       'murder dog vol 12 issue #2/ slim thug',
       'murder dog vol 20 issue #2/ freddie gibbs',
       '',
+      'Rap Sheet Magazine',
+      '',
+      'rap sheet jan \'99/ master p',
+      'rap sheet mar \'99/ nonchalant',
+      '',
       'Scratch Magazine',
       '',
       'scratch fall \'04/ kanye',
@@ -643,7 +648,7 @@ export const contentData = {
     ],
     images: [],
     video: '/blog/process 4 3 S.mp4',
-    videoDate: '01.23.26',
+    videoDate: '1.31.26',
     videoCaption: 'process',
     blogItems: [
       {
@@ -658,13 +663,13 @@ this is all i need`
       },
       {
         type: 'image',
-        src: '/nas true cover.png',
+        src: '/nas true cover.jpg',
         alt: 'Nas True Magazine Cover',
         caption: 'grails'
       },
       {
         type: 'image',
-        src: '/method man true cover.png',
+        src: '/method man true cover.jpg',
         alt: 'Method Man True Magazine Cover',
         date: '1.19.26'
       },
