@@ -193,6 +193,13 @@
   text-align: left;
 }
 
+.blogCaptionCenter {
+  left: 0;
+  right: 0;
+  text-align: center;
+  align-items: center;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .mainContent {

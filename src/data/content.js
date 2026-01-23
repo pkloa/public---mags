@@ -642,9 +642,61 @@ export const contentData = {
       'Check back regularly for new posts and updates.'
     ],
     images: [],
-    video: crunkVideo,
-    videoDate: '06.28.25',
+    video: '/blog/process 4 3.mp4',
+    videoDate: '01.23.26',
+    videoCaption: 'process',
     blogItems: [
+      {
+        type: 'video',
+        src: '/blog/scannin.mp4',
+        date: '01.22.26',
+        sideText: `public mags has become therapy for me
+
+burn incense, spin a record, scan mags
+
+this is all i need`
+      },
+      {
+        type: 'image',
+        src: '/nas true cover.png',
+        alt: 'Nas True Magazine Cover',
+        caption: 'grails'
+      },
+      {
+        type: 'image',
+        src: '/method man true cover.png',
+        alt: 'Method Man True Magazine Cover',
+        date: '1.19.26'
+      },
+      {
+        type: 'video',
+        src: '/blog/first draft.mp4',
+        date: '12.14.25',
+        caption: 'public---mags[dot]com        first draft'
+      },
+      {
+        type: 'image',
+        src: '/blog/IMG_966.jpeg',
+        alt: 'Magazine scan',
+        small: true,
+        date: '12.04.25',
+        caption: 'why get gold fronts?'
+      },
+      {
+        type: 'image',
+        src: '/paper draft.JPG',
+        alt: 'Paper draft',
+        date: '11.19.25',
+        caption: 'rough draft'
+      },
+      {
+        type: 'image',
+        src: '/blog/IMG_918.jpeg',
+        alt: 'Magazine scan',
+        small: true,
+        date: '10.05.25',
+        caption: 'silkk the shocker'
+      },
       {
         type: 'image',
         src: oneYearImg,
@@ -661,54 +713,10 @@ thank you again for all the love and support. more scans to come!
 -e`
       },
       {
-        type: 'image',
-        src: '/blog/IMG_918.jpeg',
-        alt: 'Magazine scan',
-        small: true,
-        date: '10.05.25',
-        caption: 'silkk the shocker'
-      },
-      {
-        type: 'image',
-        src: '/blog/IMG_966.jpeg',
-        alt: 'Magazine scan',
-        small: true,
-        date: '12.04.25',
-        caption: 'why get gold fronts?'
-      },
-      {
-        type: 'image',
-        src: '/paper draft.JPG',
-        alt: 'Paper draft',
-        date: '11.19.25'
-      },
-      {
         type: 'video',
-        src: '/blog/first draft.mp4',
-        date: '12.14.25',
-        caption: 'public---mags[dot]com        first draft'
-      },
-      {
-        type: 'image',
-        src: '/nas true cover.png',
-        alt: 'Nas True Magazine Cover',
-        caption: 'grails'
-      },
-      {
-        type: 'image',
-        src: '/method man true cover.png',
-        alt: 'Method Man True Magazine Cover',
-        date: '1.19.26'
-      },
-      {
-        type: 'video',
-        src: '/blog/scannin.mp4',
-        date: '01.22.26',
-        sideText: `public mags has become therapy for me
-
-burn incense, spin a record, scan mags
-
-this is all i need`
+        src: crunkVideo,
+        date: '06.28.25',
+        caption: 'crunk\nshot n edited by me'
       }
     ]
   }

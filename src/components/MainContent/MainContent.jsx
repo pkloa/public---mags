@@ -112,7 +112,8 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
         type: 'video',
         src: content.video,
         date: content.videoDate,
-        caption: 'crunk\nshot n edited by me'
+        caption: content.videoCaption,
+        centerCaption: true
       })
     }
     
@@ -177,7 +178,7 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
                 )}
               </div>
               
-              <div className={styles.blogCaption}>
+              <div className={`${styles.blogCaption} ${item.centerCaption ? styles.blogCaptionCenter : ''}`}>
                 {item.caption ? item.caption.split('\n').map((line, i) => (
                   <span key={i}>{line}</span>
                 )) : ''}
