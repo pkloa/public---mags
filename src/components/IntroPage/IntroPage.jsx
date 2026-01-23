@@ -36,6 +36,7 @@ function IntroPage({ onEnter, fading }) {
             playsInline
             webkit-playsinline="true"
             preload="auto"
+            disableRemotePlayback
           />
         </div>
       </div>

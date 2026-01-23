@@ -642,7 +642,7 @@ export const contentData = {
       'Check back regularly for new posts and updates.'
     ],
     images: [],
-    video: '/blog/process 4 3.mp4',
+    video: '/blog/process 4 3 S.mp4',
     videoDate: '01.23.26',
     videoCaption: 'process',
     blogItems: [

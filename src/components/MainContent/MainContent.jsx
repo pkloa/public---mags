@@ -154,6 +154,7 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
                     autoPlay
                     loop
                     muted
+                    disableRemotePlayback
                     onClick={(e) => {
                       e.target.muted = !e.target.muted
                     }}
