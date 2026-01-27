@@ -647,9 +647,9 @@ export const contentData = {
       'Check back regularly for new posts and updates.'
     ],
     images: [],
-    video: '/blog/process 4 3 S.mp4',
-    videoDate: '1.31.26',
-    videoCaption: 'process',
+    video: null,
+    videoDate: null,
+    videoCaption: null,
     blogItems: [
       {
         type: 'image',
