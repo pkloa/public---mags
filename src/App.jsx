@@ -4,11 +4,9 @@ import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
 import MainContent from './components/MainContent/MainContent'
 import IntroPage from './components/IntroPage/IntroPage'
-import PasswordLock from './components/PasswordLock/PasswordLock'
 import { getContent, getThirdMenuItems } from './data/content'
 
 function App() {
-  const [isLocked, setIsLocked] = useState(true)
   const [showIntro, setShowIntro] = useState(true)
   const [introFading, setIntroFading] = useState(false)
   const [selectedMenu, setSelectedMenu] = useState(null)
@@ -74,10 +72,6 @@ function App() {
     setTimeout(() => {
       setShowIntro(false)
     }, 800)
-  }
-
-  if (isLocked) {
-    return <PasswordLock onUnlock={() => setIsLocked(false)} />
   }
 
   return (
