@@ -26,80 +26,91 @@ import oneYearImg from '../assets/1year.jpg'
 export const contentData = {
   'home': {},
   'magazines': {
-    'The Source Magazine': {
-      thirdMenuItems: ['December 1993', 'September 1998', 'October 1999', 'November 1999', 'June 2000', 'January 2001', 'April 2001', 'April 2003', 'June 2003', 'April 2004'],
+    'The Source Magazine*': {
+      thirdMenuItems: ['December 1993*', 'September 1998', 'October 1999', 'November 1999', 'June 2000', 'January 2001', 'April 2001', 'April 2003', 'June 2003', 'April 2004'],
       default: {
-        title: 'The Source Magazine',
+        title: 'The Source Magazine*',
         text: [
-          'Select an issue to view content from The Source Magazine.'
+          'Select an issue to view content from The Source Magazine*.'
         ],
         images: []
       },
-      'December 1993': {
-        title: 'The Source Magazine - December 1993',
+      'December 1993*': {
+        title: 'The Source Magazine* - December 1993*',
         text: [
           'Content for The Source Magazine December 1993.'
         ],
-        images: []
+        images: [
+          // First image (cover) - full width
+          { src: '/source-dec-1993/source dec 93-01.jpg', alt: 'The Source December 1993 Cover', layout: 'full-width' },
+          // Middle pages - two column
+          ...Array.from({ length: 96 }, (_, i) => ({
+            src: `/source-dec-1993/source dec 93-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `The Source December 1993 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          // Last image - full width
+          { src: '/source-dec-1993/source dec 93-98.jpg', alt: 'The Source December 1993 Back Cover', layout: 'full-width' }
+        ]
       },
       'September 1998': {
-        title: 'The Source Magazine - September 1998',
+        title: 'The Source Magazine* - September 1998',
         text: [
           'Content for The Source Magazine September 1998.'
         ],
         images: []
       },
       'October 1999': {
-        title: 'The Source Magazine - October 1999',
+        title: 'The Source Magazine* - October 1999',
         text: [
           'Content for The Source Magazine October 1999.'
         ],
         images: []
       },
       'November 1999': {
-        title: 'The Source Magazine - November 1999',
+        title: 'The Source Magazine* - November 1999',
         text: [
           'Content for The Source Magazine November 1999.'
         ],
         images: []
       },
       'June 2000': {
-        title: 'The Source Magazine - June 2000',
+        title: 'The Source Magazine* - June 2000',
         text: [
           'Content for The Source Magazine June 2000.'
         ],
         images: []
       },
       'January 2001': {
-        title: 'The Source Magazine - January 2001',
+        title: 'The Source Magazine* - January 2001',
         text: [
           'Content for The Source Magazine January 2001.'
         ],
         images: []
       },
       'April 2001': {
-        title: 'The Source Magazine - April 2001',
+        title: 'The Source Magazine* - April 2001',
         text: [
           'Content for The Source Magazine April 2001.'
         ],
         images: []
       },
       'April 2003': {
-        title: 'The Source Magazine - April 2003',
+        title: 'The Source Magazine* - April 2003',
         text: [
           'Content for The Source Magazine April 2003.'
         ],
         images: []
       },
       'June 2003': {
-        title: 'The Source Magazine - June 2003',
+        title: 'The Source Magazine* - June 2003',
         text: [
           'Content for The Source Magazine June 2003.'
         ],
         images: []
       },
       'April 2004': {
-        title: 'The Source Magazine - April 2004',
+        title: 'The Source Magazine* - April 2004',
         text: [
           'Content for The Source Magazine April 2004.'
         ],

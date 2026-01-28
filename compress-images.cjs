@@ -2,8 +2,8 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const inputDir = './dist/Vibe September 2001';
-const outputDir = './public/vibe-sept-2001';
+const inputDir = './public/Source December 1993';
+const outputDir = './public/source-dec-1993';
 
 // Create output directory if it doesn't exist
 if (!fs.existsSync(outputDir)) {
