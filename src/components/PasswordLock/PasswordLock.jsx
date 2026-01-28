@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import styles from './PasswordLock.module.css'
 
-// Target date: January 28, 2026 at 12:00 PM EST
-const TARGET_DATE = new Date('2026-01-28T12:00:00-05:00').getTime()
+// Target date: January 28, 2026 at 3:00 PM EST
+const TARGET_DATE = new Date('2026-01-28T15:00:00-05:00').getTime()
 
 function PasswordLock({ onUnlock }) {
   const [password, setPassword] = useState('')
