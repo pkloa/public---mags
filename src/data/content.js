@@ -663,6 +663,12 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'video',
+        src: '/process_2 (1).mp4',
+        date: '1.30.26',
+        caption: 'process'
+      },
+      {
         type: 'image',
         src: '/IMG_9700.PNG',
         alt: 'Eddie Plein',
