@@ -666,7 +666,8 @@ export const contentData = {
         type: 'video',
         src: '/process_2 (1).mp4',
         date: '1.30.26',
-        caption: 'process'
+        caption: 'process',
+        centerCaption: true
       },
       {
         type: 'image',
