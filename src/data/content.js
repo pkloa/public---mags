@@ -663,17 +663,32 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
-        type: 'video',
-        src: '/process_2 (1).mp4',
-        date: '1.30.26',
-        caption: 'process',
-        centerCaption: true
+        type: 'image',
+        src: '/blog/receipt shot scanned.jpg',
+        alt: 'Receipt shot scanned',
+        date: '02.04.26',
+        caption: 'shot, edited & scanned by me'
       },
       {
         type: 'image',
-        src: '/IMG_9700.PNG',
+        src: '/blog/three 6 mafia.jpg',
+        alt: 'Three Six Mafia',
+        date: '02.01.26',
+        caption: 'three six mafia'
+      },
+      {
+        type: 'video',
+        src: '/process_2 (1).mp4',
+        date: '01.30.26',
+        caption: 'process',
+        centerCaption: true,
+        pinned: true
+      },
+      {
+        type: 'image',
+        src: '/blog/IMG_9700.PNG',
         alt: 'Eddie Plein',
-        date: '1.24.26',
+        date: '01.24.26',
         caption: 'eddie plein'
       },
       {
@@ -688,15 +703,15 @@ this is all i need`
       },
       {
         type: 'image',
-        src: '/nas true cover.jpg',
+        src: '/blog/nas true cover.jpg',
         alt: 'Nas True Magazine Cover',
         caption: 'grails'
       },
       {
         type: 'image',
-        src: '/method man true cover.jpg',
+        src: '/blog/method man true cover.jpg',
         alt: 'Method Man True Magazine Cover',
-        date: '1.19.26'
+        date: '01.19.26'
       },
       {
         type: 'video',

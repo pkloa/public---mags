@@ -122,6 +122,13 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
       items.push(...content.blogItems)
     }
     
+    // Sort so pinned items always appear first
+    items.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1
+      if (!a.pinned && b.pinned) return 1
+      return 0
+    })
+    
     return items
   }, [isBlog, content])
 
