@@ -667,7 +667,7 @@ export const contentData = {
         src: '/blog/receipt shot scanned.jpg',
         alt: 'Receipt shot scanned',
         date: '02.04.26',
-        caption: 'shot, edited & scanned by me'
+        caption: '.--. ..- -... .-.. .. -.-. -- .- --. ...'
       },
       {
         type: 'image',
