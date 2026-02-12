@@ -271,6 +271,28 @@ export const contentData = {
       'February 1999': { title: 'Rap Pages Magazine - February 1999', text: ['Content for Rap Pages Magazine February 1999.'], images: [] },
       'June 1999': { title: 'Rap Pages Magazine - June 1999', text: ['Content for Rap Pages Magazine June 1999.'], images: [] }
     },
+    'Rap Sheet Magazine*': {
+      thirdMenuItems: ['January 1999*', 'March 1999'],
+      default: {
+        title: 'Rap Sheet Magazine*',
+        text: ['Select an issue to view content from Rap Sheet Magazine*.'],
+        images: []
+      },
+      'January 1999*': {
+        title: 'Rap Sheet Magazine* - January 1999*',
+        text: ['Content for Rap Sheet Magazine January 1999.'],
+        images: [
+          { src: '/rap-sheet-jan-1999/rap sheet jan 99-01.jpg', alt: 'Rap Sheet January 1999 Cover', layout: 'full-width' },
+          ...Array.from({ length: 10 }, (_, i) => ({
+            src: `/rap-sheet-jan-1999/rap sheet jan 99-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Rap Sheet January 1999 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: '/rap-sheet-jan-1999/rap sheet jan 99-12.jpg', alt: 'Rap Sheet January 1999 Back Cover', layout: 'full-width' }
+        ]
+      },
+      'March 1999': { title: 'Rap Sheet Magazine* - March 1999', text: ['Content for Rap Sheet Magazine March 1999.'], images: [] }
+    },
     'Scratch Magazine': {
       thirdMenuItems: ['Fall 2004', 'Winter 2005'],
       default: {
@@ -469,6 +491,7 @@ export const contentData = {
       'Rap Pages Magazine',
       '',
       'rap pages oct \'95/ krs one',
+      'rap pages dec \'95/ lauryn hill',
       'rap pages feb \'98/ nwa',
       'rap pages apr \'98/ organized noize',
       'rap pages aug \'98/ jermaine dupri',
