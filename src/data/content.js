@@ -697,7 +697,14 @@ export const contentData = {
       {
         type: 'video',
         src: '/blog/dave chappelle block party dvd.mp4',
-        date: '03.09.26'
+        date: '03.08.26'
+      },
+      {
+        type: 'image',
+        src: '/blog/sho nuff.jpg',
+        alt: 'Sho Nuff',
+        date: '02.24.26',
+        caption: 'sho nuff'
       },
       {
         type: 'image',
