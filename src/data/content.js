@@ -118,7 +118,7 @@ export const contentData = {
       }
     },
     'XXL Magazine*': {
-      thirdMenuItems: ['June 1999*', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004', 'November 2005', 'October 2007'],
+      thirdMenuItems: ['June 1999*', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004*', 'November 2005', 'October 2007'],
       default: {
         title: 'XXL Magazine*',
         text: [
@@ -161,10 +161,18 @@ export const contentData = {
         text: ['Content for XXL Magazine September 2001.'],
         images: []
       },
-      'October 2004': {
-        title: 'XXL Magazine - October 2004',
+      'October 2004*': {
+        title: 'XXL Magazine* - October 2004*',
         text: ['Content for XXL Magazine October 2004.'],
-        images: []
+        images: [
+          { src: '/xxl-oct-2004/xxl oct 04-01.jpg', alt: 'XXL October 2004 Cover', layout: 'full-width' },
+          ...Array.from({ length: 198 }, (_, i) => ({
+            src: `/xxl-oct-2004/xxl oct 04-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `XXL October 2004 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: '/xxl-oct-2004/xxl oct 04-200.jpg', alt: 'XXL October 2004 Back Cover', layout: 'full-width' }
+        ]
       },
       'November 2005': {
         title: 'XXL Magazine - November 2005',
