@@ -687,6 +687,11 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'video',
+        src: '/blog/dave chappelle block party dvd.mp4',
+        date: '03.09.26'
+      },
+      {
         type: 'image',
         src: '/blog/receipt shot scanned.jpg',
         alt: 'Receipt shot scanned',

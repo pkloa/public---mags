@@ -193,8 +193,7 @@
   width: auto;
   height: 65vh;
   display: block;
-  object-fit: contain;
-  background-color: #000;
+  object-fit: cover;
 }
 
 .blogTextItem {
