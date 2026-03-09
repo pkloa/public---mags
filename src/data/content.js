@@ -535,6 +535,7 @@ export const contentData = {
       '',
       'Rap Sheet Magazine',
       '',
+      'rap sheet jul \'93/ dr dre',
       'rap sheet jan \'99/ master p',
       'rap sheet mar \'99/ nonchalant',
       '',
@@ -697,7 +698,12 @@ export const contentData = {
       {
         type: 'video',
         src: '/blog/dave chappelle block party dvd.mp4',
-        date: '03.08.26'
+        date: '03.08.26',
+        sideText: `dave chappelle's block party
+
+I love to play the extended cut while I edit scans. Shout out bmv books!
+
+this movie just has everything! kanye fresh outta college dropout, fugees reunion, badu & jill performing you got me together. appearances from mos, common, talib, roots, dead prez. and chappelle should've brought j cole up on stage to freestyle, he was right there with both his hands up bro cmon.`
       },
       {
         type: 'image',
