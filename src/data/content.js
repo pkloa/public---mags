@@ -701,16 +701,9 @@ export const contentData = {
         date: '03.08.26',
         sideText: `dave chappelle's block party
 
-I love to play the extended cut while I edit scans. Shout out bmv books!
+i love to play the extended cut while i edit scans. shout out bmv books!
 
-this movie just has everything! kanye fresh outta college dropout, fugees reunion, badu & jill performing you got me together. appearances from mos, common, talib, roots, dead prez. and chappelle should've brought j cole up on stage to freestyle, he was right there with both his hands up bro cmon.`
-      },
-      {
-        type: 'image',
-        src: '/blog/sho nuff.jpg',
-        alt: 'Sho Nuff',
-        date: '02.24.26',
-        caption: 'sho nuff'
+this movie has everything! kanye fresh outta college dropout, fugees reunion, badu & jill performing you got me together. appearances from mos, common, talib, roots, dead prez. and chappelle should've brought j cole up on stage to freestyle, he was right there with both his hands up bro cmon.`
       },
       {
         type: 'image',
