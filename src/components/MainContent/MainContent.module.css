@@ -124,6 +124,12 @@
   z-index: 10;
   overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.blogGallery::-webkit-scrollbar {
+  display: none;
 }
 
 .blogScrollContainer {
