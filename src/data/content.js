@@ -700,6 +700,13 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'image',
+        src: '/blog/public---mags long sleeve draft-01.jpg',
+        alt: 'Public Mags Long Sleeve',
+        date: '03.21.26',
+        caption: 'public---mags uniform'
+      },
+      {
         type: 'video',
         src: '/blog/dave chappelle block party dvd.mp4',
         date: '03.08.26',
@@ -742,7 +749,7 @@ this movie has everything! kanye fresh outta college dropout, fugees reunion, ba
         type: 'video',
         src: '/blog/scannin.mp4',
         date: '01.22.26',
-        sideText: `public mags has become therapy for me
+        sideText: `public---mags has become therapy for me
 
 burn incense, spin a record, scan mags
 
