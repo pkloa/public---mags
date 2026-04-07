@@ -7,20 +7,14 @@ import outkast05 from '../assets/img/outkast common ground-05.png'
 import outkast06 from '../assets/img/outkast common ground-06.png'
 import dmxTraceCover from '../assets/img/dmx trace cover.png'
 
-// Dungeon Family images
-import dungeonFamily01 from '../assets/img/dungeonfamilyyy-01.jpeg'
-import dungeonFamily02 from '../assets/img/dungeonfamilyyy-02.jpeg'
-import dungeonFamily03 from '../assets/img/dungeonfamilyyy-03.jpeg'
-import dungeonFamily04 from '../assets/img/dungeonfamilyyy-04.jpeg'
-import dungeonFamily05 from '../assets/img/dungeonfamilyyy-05.jpeg'
-import dungeonFamily06 from '../assets/img/dungeonfamilyyy-06.jpeg'
-import dungeonFamily07 from '../assets/img/dungeonfamilyyy-07.jpeg'
-
 // Import videos
 import crunkVideo from '../assets/crunk.mp4'
 
 // Import blog images
 import oneYearImg from '../assets/1year.jpg'
+
+// Cloudflare R2 CDN URL
+const R2_URL = 'https://pub-5c65f1cb70b948d98ef1e3e010224843.r2.dev'
 
 // Content data structure: menu → magazine (submenu) → issue (third menu) → content
 export const contentData = {
@@ -42,15 +36,15 @@ export const contentData = {
         ],
         images: [
           // First image (cover) - full width
-          { src: '/source-dec-1993/source dec 93-01.jpg', alt: 'The Source December 1993 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/Source December 1993/source dec 93-01.jpg`, alt: 'The Source December 1993 Cover', layout: 'full-width' },
           // Middle pages - two column
           ...Array.from({ length: 96 }, (_, i) => ({
-            src: `/source-dec-1993/source dec 93-${String(i + 2).padStart(2, '0')}.jpg`,
+            src: `${R2_URL}/Source December 1993/source dec 93-${String(i + 2).padStart(2, '0')}.jpg`,
             alt: `The Source December 1993 Page ${i + 2}`,
             layout: 'two-column'
           })),
           // Last image - full width
-          { src: '/source-dec-1993/source dec 93-98.jpg', alt: 'The Source December 1993 Back Cover', layout: 'full-width' }
+          { src: `${R2_URL}/Source December 1993/source dec 93-98.jpg`, alt: 'The Source December 1993 Back Cover', layout: 'full-width' }
         ]
       },
       'September 1998': {
@@ -118,7 +112,7 @@ export const contentData = {
       }
     },
     'XXL Magazine*': {
-      thirdMenuItems: ['June 1999*', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004*', 'November 2005', 'October 2007'],
+      thirdMenuItems: ['June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004*', 'November 2005', 'October 2007'],
       default: {
         title: 'XXL Magazine*',
         text: [
@@ -126,20 +120,10 @@ export const contentData = {
         ],
         images: []
       },
-      'June 1999*': {
-        title: 'XXL Magazine* - June 1999*',
+      'June 1999': {
+        title: 'XXL Magazine* - June 1999',
         text: ['Content for XXL Magazine June 1999.'],
-        images: [
-          { src: '/murder inc xxl 1.jpg', alt: 'Murder Inc XXL June 1999 Cover', layout: 'full-width' },
-          { src: '/murder inc xxl 2.jpg', alt: 'Murder Inc XXL June 1999 Page 2', layout: 'two-column' },
-          { src: '/murder inc xxl 3.jpg', alt: 'Murder Inc XXL June 1999 Page 3', layout: 'two-column' },
-          { src: '/murder inc xxl 4.jpg', alt: 'Murder Inc XXL June 1999 Page 4', layout: 'two-column' },
-          { src: '/murder inc xxl 5.jpg', alt: 'Murder Inc XXL June 1999 Page 5', layout: 'two-column' },
-          { src: '/murder inc xxl 6.jpg', alt: 'Murder Inc XXL June 1999 Page 6', layout: 'two-column' },
-          { src: '/murder inc xxl 7.jpg', alt: 'Murder Inc XXL June 1999 Page 7', layout: 'two-column' },
-          { src: '/murder inc xxl 8.jpg', alt: 'Murder Inc XXL June 1999 Page 8', layout: 'full-width' },
-          { src: '/murder inc xxl 9.jpg', alt: 'Murder Inc XXL June 1999 Page 9', layout: 'full-width' }
-        ]
+        images: []
       },
       'February 2000': {
         title: 'XXL Magazine - February 2000',
@@ -165,13 +149,13 @@ export const contentData = {
         title: 'XXL Magazine* - October 2004*',
         text: ['Content for XXL Magazine October 2004.'],
         images: [
-          { src: '/xxl-oct-2004/xxl oct 04-01.jpg', alt: 'XXL October 2004 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/XXL October 2004/xxl oct 04-01.jpg`, alt: 'XXL October 2004 Cover', layout: 'full-width' },
           ...Array.from({ length: 198 }, (_, i) => ({
-            src: `/xxl-oct-2004/xxl oct 04-${String(i + 2).padStart(2, '0')}.jpg`,
+            src: `${R2_URL}/XXL October 2004/xxl oct 04-${String(i + 2).padStart(2, '0')}.jpg`,
             alt: `XXL October 2004 Page ${i + 2}`,
             layout: 'two-column'
           })),
-          { src: '/xxl-oct-2004/xxl oct 04-200.jpg', alt: 'XXL October 2004 Back Cover', layout: 'full-width' }
+          { src: `${R2_URL}/XXL October 2004/xxl oct 04-200.jpg`, alt: 'XXL October 2004 Back Cover', layout: 'full-width' }
         ]
       },
       'November 2005': {
@@ -203,15 +187,15 @@ export const contentData = {
         text: ['Content for Vibe Magazine September 2001.'], 
         images: [
           // First image (cover) - full width
-          { src: '/vibe-sept-2001/vibe sept 01-01.jpg', alt: 'Vibe September 2001 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-01.jpg`, alt: 'Vibe September 2001 Cover', layout: 'full-width' },
           // Middle pages - two column
           ...Array.from({ length: 266 }, (_, i) => ({
-            src: `/vibe-sept-2001/vibe sept 01-${String(i + 2).padStart(2, '0')}.jpg`,
+            src: `${R2_URL}/Vibe September 2001/vibe sept 01-${String(i + 2).padStart(2, '0')}.jpg`,
             alt: `Vibe September 2001 Page ${i + 2}`,
             layout: 'two-column'
           })),
           // Last image - full width
-          { src: '/vibe-sept-2001/vibe sept 01-268.jpg', alt: 'Vibe September 2001 Back Cover', layout: 'full-width' }
+          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-268.jpg`, alt: 'Vibe September 2001 Back Cover', layout: 'full-width' }
         ]
       },
       'October 2003': { title: 'Vibe Magazine* - October 2003', text: ['Content for Vibe Magazine October 2003.'], images: [] },
@@ -219,7 +203,7 @@ export const contentData = {
       'July 2005': { title: 'Vibe Magazine* - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
     },
     'Murder Dog Magazine*': {
-      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1*', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
+      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1*', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
       default: {
         title: 'Murder Dog Magazine*',
         text: ['Select an issue to view content from Murder Dog Magazine.'],
@@ -228,22 +212,26 @@ export const contentData = {
       'Volume 6 Issue #5': { title: 'Murder Dog Magazine* - Volume 6 Issue #5', text: ['Content for Murder Dog Magazine Volume 6 Issue #5.'], images: [] },
       'Volume 7 Issue #1': { title: 'Murder Dog Magazine* - Volume 7 Issue #1', text: ['Content for Murder Dog Magazine Volume 7 Issue #1.'], images: [] },
       'Volume 8 Issue #5': { title: 'Murder Dog Magazine* - Volume 8 Issue #5', text: ['Content for Murder Dog Magazine Volume 8 Issue #5.'], images: [] },
-      'Volume 9 Issue #1*': {
-        title: 'Murder Dog Magazine* - Volume 9 Issue #1*',
+      'Volume 9 Issue #1': {
+        title: 'Murder Dog Magazine* - Volume 9 Issue #1',
         text: ['Content for Murder Dog Magazine Volume 9 Issue #1.'],
-        images: [
-          { src: dungeonFamily01, alt: 'Dungeon Family Cover', layout: 'full-width' },
-          { src: dungeonFamily02, alt: 'Dungeon Family Page 2', layout: 'two-column' },
-          { src: dungeonFamily03, alt: 'Dungeon Family Page 3', layout: 'two-column' },
-          { src: dungeonFamily04, alt: 'Dungeon Family Page 4', layout: 'two-column' },
-          { src: dungeonFamily05, alt: 'Dungeon Family Page 5', layout: 'two-column' },
-          { src: dungeonFamily06, alt: 'Dungeon Family Page 6', layout: 'two-column' },
-          { src: dungeonFamily07, alt: 'Dungeon Family Page 7', layout: 'two-column' }
-        ]
+        images: []
       },
       'Volume 9 Issue #2': { title: 'Murder Dog Magazine* - Volume 9 Issue #2', text: ['Content for Murder Dog Magazine Volume 9 Issue #2.'], images: [] },
       'Volume 10 Issue #3': { title: 'Murder Dog Magazine* - Volume 10 Issue #3', text: ['Content for Murder Dog Magazine Volume 10 Issue #3.'], images: [] },
-      'Volume 11 Issue #1': { title: 'Murder Dog Magazine* - Volume 11 Issue #1', text: ['Content for Murder Dog Magazine Volume 11 Issue #1.'], images: [] },
+      'Volume 11 Issue #1*': { 
+        title: 'Murder Dog Magazine* - Volume 11 Issue #1*', 
+        text: ['Content for Murder Dog Magazine Volume 11 Issue #1.'], 
+        images: [
+          { src: `${R2_URL}/Murder Dog Volume 11 Issue 1/murder dog vol 11 issue 1-01.jpg`, alt: 'Murder Dog Volume 11 Issue 1 Cover', layout: 'full-width' },
+          ...Array.from({ length: 138 }, (_, i) => ({
+            src: `${R2_URL}/Murder Dog Volume 11 Issue 1/murder dog vol 11 issue 1-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Murder Dog Volume 11 Issue 1 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Murder Dog Volume 11 Issue 1/murder dog vol 11 issue 1-140.jpg`, alt: 'Murder Dog Volume 11 Issue 1 Back Cover', layout: 'full-width' }
+        ]
+      },
       'Volume 12 Issue #2': { title: 'Murder Dog Magazine* - Volume 12 Issue #2', text: ['Content for Murder Dog Magazine Volume 12 Issue #2.'], images: [] },
       'Volume 20 Issue #2': { title: 'Murder Dog Magazine* - Volume 20 Issue #2', text: ['Content for Murder Dog Magazine Volume 20 Issue #2.'], images: [] }
     },
@@ -290,13 +278,13 @@ export const contentData = {
         title: 'Rap Sheet Magazine* - January 1999*',
         text: ['Content for Rap Sheet Magazine January 1999.'],
         images: [
-          { src: '/rap-sheet-jan-1999/rap sheet jan 99-01.jpg', alt: 'Rap Sheet January 1999 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/Rap Sheet January 1999/rap sheet jan 99-01.jpg`, alt: 'Rap Sheet January 1999 Cover', layout: 'full-width' },
           ...Array.from({ length: 10 }, (_, i) => ({
-            src: `/rap-sheet-jan-1999/rap sheet jan 99-${String(i + 2).padStart(2, '0')}.jpg`,
+            src: `${R2_URL}/Rap Sheet January 1999/rap sheet jan 99-${String(i + 2).padStart(2, '0')}.jpg`,
             alt: `Rap Sheet January 1999 Page ${i + 2}`,
             layout: 'two-column'
           })),
-          { src: '/rap-sheet-jan-1999/rap sheet jan 99-12.jpg', alt: 'Rap Sheet January 1999 Back Cover', layout: 'full-width' }
+          { src: `${R2_URL}/Rap Sheet January 1999/rap sheet jan 99-12.jpg`, alt: 'Rap Sheet January 1999 Back Cover', layout: 'full-width' }
         ]
       },
       'March 1999': { title: 'Rap Sheet Magazine* - March 1999', text: ['Content for Rap Sheet Magazine March 1999.'], images: [] }
@@ -377,10 +365,10 @@ export const contentData = {
         title: 'NME Magazine* - June 2001*',
         text: ['Content for NME Magazine June 2001.'],
         images: [
-          { src: '/outkast nme 1.jpg', alt: 'OutKast NME June 2001 Cover', layout: 'full-width' },
-          { src: '/outkast nme 2.jpg', alt: 'OutKast NME June 2001 Page 2', layout: 'two-column' },
-          { src: '/outkast nme 3.jpg', alt: 'OutKast NME June 2001 Page 3', layout: 'two-column' },
-          { src: '/outkast nme 4.jpg', alt: 'OutKast NME June 2001 Page 4', layout: 'full-width' }
+          { src: `${R2_URL}/NME June 2001/outkast nme 1.jpg`, alt: 'OutKast NME June 2001 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/NME June 2001/outkast nme 2.jpg`, alt: 'OutKast NME June 2001 Page 2', layout: 'two-column' },
+          { src: `${R2_URL}/NME June 2001/outkast nme 3.jpg`, alt: 'OutKast NME June 2001 Page 3', layout: 'two-column' },
+          { src: `${R2_URL}/NME June 2001/outkast nme 4.jpg`, alt: 'OutKast NME June 2001 Page 4', layout: 'full-width' }
         ]
       },
       'August 2001': {
@@ -456,7 +444,7 @@ export const contentData = {
       'xxl \'98/ goodie mob',
       'xxl \'98/ c murder',
       'xxl apr \'99/ cash money',
-      'xxl jun \'99/ ja rule, jay z & dmx*',
+      'xxl jun \'99/ ja rule, jay z & dmx',
       'xxl feb \'00/ dmx',
       'xxl jul \'00/ snoop dogg',
       'xxl nov \'00/ mystikal',
@@ -530,10 +518,10 @@ export const contentData = {
       'murder dog vol 6 issue #5/ juvenile',
       'murder dog vol 7 issue #1/ big tymers',
       'murder dog vol 8 issue #5/ warren g',
-      'murder dog vol 9 issue #1/ dungeon family*',
+      'murder dog vol 9 issue #1/ dungeon family',
       'murder dog vol 9 issue #2/ nelly',
       'murder dog vol 10 issue #3/ soulja slim',
-      'murder dog vol 11 issue #1/ lil jon',
+      'murder dog vol 11 issue #1/ lil jon*',
       'murder dog vol 12 issue #2/ slim thug',
       'murder dog vol 20 issue #2/ freddie gibbs',
       '',
@@ -619,7 +607,7 @@ export const contentData = {
       'nme 12 may \'01/ basement jaxx',
       'nme 19 may \'01/ radiohead',
       'nme 26 may \'01/ air',
-      'nme 16 jun \'01/ outkast',
+      'nme 16 jun \'01/ outkast*',
       'nme 23 jun \'01/ travis',
       'nme 30 jun \'01/ super furry animals',
       'nme 21 jul \'01/ spiritualized',
@@ -701,14 +689,14 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
-        src: '/blog/public---mags long sleeve draft-01.jpg',
+        src: `${R2_URL}/blog/public---mags long sleeve draft-01.jpg`,
         alt: 'Public Mags Long Sleeve',
         date: '03.21.26',
         caption: 'public---mags uniform'
       },
       {
         type: 'video',
-        src: '/blog/dave chappelle block party dvd.mp4',
+        src: `${R2_URL}/blog/dave chappelle block party dvd.mp4`,
         date: '03.08.26',
         sideText: `dave chappelle's block party
 
@@ -718,21 +706,27 @@ this movie has everything! kanye fresh outta college dropout, fugees reunion, ba
       },
       {
         type: 'image',
-        src: '/blog/receipt shot scanned.jpg',
+        src: `${R2_URL}/blog/receipt shot scanned.jpg`,
         alt: 'Receipt shot scanned',
         date: '02.04.26',
         caption: '.--. ..- -... .-.. .. -.-. -- .- --. ...'
       },
       {
+        type: 'video',
+        src: `${R2_URL}/blog/incense__2.mp4`,
+        date: '02.02.26',
+        caption: 'incense'
+      },
+      {
         type: 'image',
-        src: '/blog/three 6 mafia.jpg',
+        src: `${R2_URL}/blog/three 6 mafia.jpg`,
         alt: 'Three Six Mafia',
         date: '02.01.26',
         caption: 'three six mafia'
       },
       {
         type: 'video',
-        src: '/process_2 (1).mp4',
+        src: `${R2_URL}/blog/process_2 (1).mp4`,
         date: '01.30.26',
         caption: 'process',
         centerCaption: true,
@@ -740,14 +734,14 @@ this movie has everything! kanye fresh outta college dropout, fugees reunion, ba
       },
       {
         type: 'image',
-        src: '/blog/IMG_9700.PNG',
+        src: `${R2_URL}/blog/IMG_9700.PNG`,
         alt: 'Eddie Plein',
         date: '01.24.26',
         caption: 'eddie plein'
       },
       {
         type: 'video',
-        src: '/blog/scannin.mp4',
+        src: `${R2_URL}/blog/scannin.mp4`,
         date: '01.22.26',
         sideText: `public---mags has become therapy for me
 
@@ -757,25 +751,25 @@ this is all i need`
       },
       {
         type: 'image',
-        src: '/blog/nas true cover.jpg',
+        src: `${R2_URL}/blog/nas true cover.jpg`,
         alt: 'Nas True Magazine Cover',
         caption: 'grails'
       },
       {
         type: 'image',
-        src: '/blog/method man true cover.jpg',
+        src: `${R2_URL}/blog/method man true cover.jpg`,
         alt: 'Method Man True Magazine Cover',
         date: '01.19.26'
       },
       {
         type: 'video',
-        src: '/blog/first draft.mp4',
+        src: `${R2_URL}/blog/first draft.mp4`,
         date: '12.14.25',
         caption: 'public---mags[dot]com        first draft'
       },
       {
         type: 'image',
-        src: '/blog/IMG_966.jpeg',
+        src: `${R2_URL}/blog/IMG_966.jpeg`,
         alt: 'Magazine scan',
         small: true,
         date: '12.04.25',
@@ -783,14 +777,14 @@ this is all i need`
       },
       {
         type: 'image',
-        src: '/paper draft.JPG',
+        src: `${R2_URL}/blog/paper draft.JPG`,
         alt: 'Paper draft',
         date: '11.19.25',
         caption: 'rough draft'
       },
       {
         type: 'image',
-        src: '/blog/IMG_918.jpeg',
+        src: `${R2_URL}/blog/IMG_918.jpeg`,
         alt: 'Magazine scan',
         small: true,
         date: '10.05.25',
