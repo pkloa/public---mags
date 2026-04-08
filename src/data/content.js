@@ -7,12 +7,6 @@ import outkast05 from '../assets/img/outkast common ground-05.png'
 import outkast06 from '../assets/img/outkast common ground-06.png'
 import dmxTraceCover from '../assets/img/dmx trace cover.png'
 
-// Import videos
-import crunkVideo from '../assets/crunk.mp4'
-
-// Import blog images
-import oneYearImg from '../assets/1year.jpg'
-
 // Cloudflare R2 CDN URL
 const R2_URL = 'https://pub-5c65f1cb70b948d98ef1e3e010224843.r2.dev'
 
@@ -713,7 +707,7 @@ this movie has everything! kanye fresh outta college dropout, fugees reunion, ba
       },
       {
         type: 'video',
-        src: `${R2_URL}/blog/incense__2.mp4`,
+        src: `${R2_URL}/blog/incense-2.mp4`,
         date: '02.02.26',
         caption: 'incense'
       },
@@ -792,7 +786,7 @@ this is all i need`
       },
       {
         type: 'image',
-        src: oneYearImg,
+        src: `${R2_URL}/blog/1year.jpg`,
         alt: '1 year of public---mags',
         date: '08.14.25',
         sideText: `one year of public---mags
@@ -807,7 +801,7 @@ thank you again for all the love and support. more scans to come!
       },
       {
         type: 'video',
-        src: crunkVideo,
+        src: `${R2_URL}/blog/crunk.mp4`,
         date: '06.28.25',
         caption: 'crunk\nshot n edited by me'
       }
