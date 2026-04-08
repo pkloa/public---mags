@@ -22,3 +22,25 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Assets hosted on Cloudflare R2
+public/blog/
+public/Source December 1993/
+public/source-dec-1993/
+public/XXL October 2004/
+public/xxl-oct-2004/
+public/Vibe September 2001/
+public/vibe-sept-2001/
+public/Rap Sheet January 1999/
+public/rap-sheet-jan-1999/
+public/Murder Dog Volume 11 Issue 1/
+public/murder-dog-vol11-issue1/
+public/NME June 2001/
+public/murder inc xxl*
+public/outkast nme*
+public/process_2*
+public/paper draft*
+public/sticker*
+src/assets/crunk.mp4
+src/assets/1year.jpg
+src/assets/img/dungeonfamilyyy*
