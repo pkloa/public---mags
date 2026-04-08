@@ -1,12 +1,3 @@
-// Import images
-import outkast01 from '../assets/img/outkast common ground-01.png'
-import outkast02 from '../assets/img/outkast common ground-02.png'
-import outkast03 from '../assets/img/outkast common ground-03.png'
-import outkast04 from '../assets/img/outkast common ground-04.png'
-import outkast05 from '../assets/img/outkast common ground-05.png'
-import outkast06 from '../assets/img/outkast common ground-06.png'
-import dmxTraceCover from '../assets/img/dmx trace cover.png'
-
 // Cloudflare R2 CDN URL
 const R2_URL = 'https://pub-5c65f1cb70b948d98ef1e3e010224843.r2.dev'
 
