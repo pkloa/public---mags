@@ -97,7 +97,7 @@ export const contentData = {
       }
     },
     'XXL Magazine*': {
-      thirdMenuItems: ['June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'October 2004*', 'November 2005', 'October 2007'],
+      thirdMenuItems: ['June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'September 2003', 'October 2004*', 'November 2005', 'October 2007'],
       default: {
         title: 'XXL Magazine*',
         text: [
@@ -128,6 +128,11 @@ export const contentData = {
       'September 2001': {
         title: 'XXL Magazine - September 2001',
         text: ['Content for XXL Magazine September 2001.'],
+        images: []
+      },
+      'September 2003': {
+        title: 'XXL Magazine - September 2003',
+        text: ['Content for XXL Magazine September 2003.'],
         images: []
       },
       'October 2004*': {
@@ -188,7 +193,7 @@ export const contentData = {
       'July 2005': { title: 'Vibe Magazine* - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
     },
     'Murder Dog Magazine*': {
-      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1*', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
+      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 9 Issue #4', 'Volume 10 Issue #3', 'Volume 11 Issue #1*', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
       default: {
         title: 'Murder Dog Magazine*',
         text: ['Select an issue to view content from Murder Dog Magazine.'],
@@ -203,6 +208,7 @@ export const contentData = {
         images: []
       },
       'Volume 9 Issue #2': { title: 'Murder Dog Magazine* - Volume 9 Issue #2', text: ['Content for Murder Dog Magazine Volume 9 Issue #2.'], images: [] },
+      'Volume 9 Issue #4': { title: 'Murder Dog Magazine* - Volume 9 Issue #4', text: ['Content for Murder Dog Magazine Volume 9 Issue #4.'], images: [] },
       'Volume 10 Issue #3': { title: 'Murder Dog Magazine* - Volume 10 Issue #3', text: ['Content for Murder Dog Magazine Volume 10 Issue #3.'], images: [] },
       'Volume 11 Issue #1*': { 
         title: 'Murder Dog Magazine* - Volume 11 Issue #1*', 
@@ -424,7 +430,7 @@ export const contentData = {
       'source apr \'04/ kanye',
       'source apr \'06/ don\'t mess with texas',
       '',
-      'XXL Magazine²⁶',
+      'XXL Magazine²⁷',
       '',
       'xxl \'98/ goodie mob',
       'xxl \'98/ c murder',
@@ -439,6 +445,7 @@ export const contentData = {
       'xxl jul \'02/ foxy brown',
       'xxl sept \'02/ birdman',
       'xxl dec \'02/ jay z',
+      'xxl sep \'03/ nas',
       'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*',
       'xxl dec \'04/ chingy',
       'xxl nov \'05/ lil wayne',
@@ -498,13 +505,14 @@ export const contentData = {
       'blaze apr \'00/ beanie sigel',
       'blaze jun \'00/ swizz beatz & mannie fresh',
       '',
-      'Murder Dog Magazine⁹',
+      'Murder Dog Magazine¹⁰',
       '',
       'murder dog vol 6 issue #5/ juvenile',
       'murder dog vol 7 issue #1/ big tymers',
       'murder dog vol 8 issue #5/ warren g',
       'murder dog vol 9 issue #1/ dungeon family',
       'murder dog vol 9 issue #2/ nelly',
+      'murder dog vol 9 issue #4/ nas',
       'murder dog vol 10 issue #3/ soulja slim',
       'murder dog vol 11 issue #1/ lil jon*',
       'murder dog vol 12 issue #2/ slim thug',
@@ -541,6 +549,11 @@ export const contentData = {
       'Mean Magazine¹',
       '',
       'mean \'01/ outkast',
+      '',
+      'Peace Magazine²',
+      '',
+      'peace issue no. 51/ wyclef jean',
+      'peace issue no. 60/ allen iverson',
       '',
       'Rolling Stone Magazine¹',
       '',
@@ -794,7 +807,7 @@ thank you again for all the love and support. more scans to come!
         type: 'video',
         src: `${R2_URL}/blog/crunk.mp4`,
         date: '06.28.25',
-        caption: 'crunk\nshot n edited by me'
+        caption: 'crunk\nshot & edited by me'
       }
     ]
   }
