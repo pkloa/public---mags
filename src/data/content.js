@@ -244,19 +244,32 @@ export const contentData = {
       'April 2000': { title: 'Blaze Magazine - April 2000', text: ['Content for Blaze Magazine April 2000.'], images: [] },
       'June 2000': { title: 'Blaze Magazine - June 2000', text: ['Content for Blaze Magazine June 2000.'], images: [] }
     },
-    'Rap Pages Magazine': {
-      thirdMenuItems: ['October 1995', 'February 1998', 'August 1998', 'October 1998', 'February 1999', 'June 1999'],
+    'Rap Pages Magazine*': {
+      thirdMenuItems: ['October 1995', 'February 1998', 'August 1998', 'October 1998', 'February 1999', 'March 1999*', 'June 1999'],
       default: {
-        title: 'Rap Pages Magazine',
-        text: ['Select an issue to view content from Rap Pages Magazine.'],
+        title: 'Rap Pages Magazine*',
+        text: ['Select an issue to view content from Rap Pages Magazine*.'],
         images: []
       },
-      'October 1995': { title: 'Rap Pages Magazine - October 1995', text: ['Content for Rap Pages Magazine October 1995.'], images: [] },
-      'February 1998': { title: 'Rap Pages Magazine - February 1998', text: ['Content for Rap Pages Magazine February 1998.'], images: [] },
-      'August 1998': { title: 'Rap Pages Magazine - August 1998', text: ['Content for Rap Pages Magazine August 1998.'], images: [] },
-      'October 1998': { title: 'Rap Pages Magazine - October 1998', text: ['Content for Rap Pages Magazine October 1998.'], images: [] },
-      'February 1999': { title: 'Rap Pages Magazine - February 1999', text: ['Content for Rap Pages Magazine February 1999.'], images: [] },
-      'June 1999': { title: 'Rap Pages Magazine - June 1999', text: ['Content for Rap Pages Magazine June 1999.'], images: [] }
+      'October 1995': { title: 'Rap Pages Magazine* - October 1995', text: ['Content for Rap Pages Magazine* October 1995.'], images: [] },
+      'February 1998': { title: 'Rap Pages Magazine* - February 1998', text: ['Content for Rap Pages Magazine* February 1998.'], images: [] },
+      'August 1998': { title: 'Rap Pages Magazine* - August 1998', text: ['Content for Rap Pages Magazine* August 1998.'], images: [] },
+      'October 1998': { title: 'Rap Pages Magazine* - October 1998', text: ['Content for Rap Pages Magazine* October 1998.'], images: [] },
+      'February 1999': { title: 'Rap Pages Magazine* - February 1999', text: ['Content for Rap Pages Magazine* February 1999.'], images: [] },
+      'March 1999*': {
+        title: 'Rap Pages Magazine* - March 1999*',
+        text: ['Content for Rap Pages Magazine* March 1999*.'],
+        images: [
+          { src: `${R2_URL}/Rap Pages March 1999/rap pages mar 99-01.jpg`, alt: 'Rap Pages March 1999* Cover', layout: 'full-width' },
+          ...Array.from({ length: 162 }, (_, i) => ({
+            src: `${R2_URL}/Rap Pages March 1999/rap pages mar 99-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Rap Pages March 1999* Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Rap Pages March 1999/rap pages mar 99-164.jpg`, alt: 'Rap Pages March 1999* Back Cover', layout: 'full-width' }
+        ]
+      },
+      'June 1999': { title: 'Rap Pages Magazine* - June 1999', text: ['Content for Rap Pages Magazine* June 1999.'], images: [] }
     },
     'Rap Sheet Magazine*': {
       thirdMenuItems: ['January 1999*', 'March 1999'],
@@ -489,7 +502,7 @@ export const contentData = {
       'rap pages aug \'98/ jermaine dupri',
       'rap pages oct \'98/ ras kass',
       'rap pages feb \'99/ cash money',
-      'rap pages mar \'99/ method man',
+      'rap pages mar \'99/ method man*',
       'rap pages jun \'99/ dmx',
       '',
       'Blaze Magazine¹⁰',

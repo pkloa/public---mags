@@ -121,14 +121,14 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
     if (content.blogItems) {
       items.push(...content.blogItems)
     }
-    
-    // Sort so pinned items always appear first
+
+    // Sort so pinned items always appear first (no pin icon; order only)
     items.sort((a, b) => {
       if (a.pinned && !b.pinned) return -1
       if (!a.pinned && b.pinned) return 1
       return 0
     })
-    
+
     return items
   }, [isBlog, content])
 
@@ -143,11 +143,6 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
         <div className={styles.blogScrollContainer}>
           {allBlogItems.map((item, index) => (
             <div key={index} className={styles.blogItemDisplay}>
-              {item.pinned && (
-                <div style={{ position: 'absolute', top: '-22px', left: 0, fontSize: '12px', color: '#000' }}>
-                  {'\u{1F4CC}\uFE0E'}
-                </div>
-              )}
               <div className={styles.blogDate}>{item.date || ''}</div>
               
               <div className={styles.blogMediaWrapper}>
