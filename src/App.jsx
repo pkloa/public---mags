@@ -13,6 +13,7 @@ function App() {
   const [selectedSubmenu, setSelectedSubmenu] = useState(null)
   const [selectedThirdMenu, setSelectedThirdMenu] = useState(null)
   const [showAbout, setShowAbout] = useState(false)
+  const [showCopyrightPage, setShowCopyrightPage] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   // Detect mobile
@@ -38,6 +39,7 @@ function App() {
     : null
 
   const handleMenuSelect = (menu) => {
+    setShowCopyrightPage(false)
     if (menu === 'home') {
       setSelectedMenu(null)
       setSelectedSubmenu(null)
@@ -54,17 +56,34 @@ function App() {
     }
   }
 
+  const handleCopyrightOpen = () => {
+    setShowCopyrightPage(true)
+    setSelectedMenu(null)
+    setSelectedSubmenu(null)
+    setSelectedThirdMenu(null)
+  }
+
   const handleAboutToggle = () => {
+    const openingAbout = !showAbout
+    if (openingAbout) {
+      setShowCopyrightPage(false)
+    }
     setShowAbout(!showAbout)
     // Close blog when opening about
-    if (!showAbout && selectedMenu === 'blog') {
+    if (openingAbout && selectedMenu === 'blog') {
       setSelectedMenu(null)
     }
   }
 
   const handleSubmenuSelect = (submenu) => {
+    setShowCopyrightPage(false)
     setSelectedSubmenu(submenu)
     setSelectedThirdMenu(null) // Reset third menu when submenu changes
+  }
+
+  const handleThirdMenuSelect = (item) => {
+    setShowCopyrightPage(false)
+    setSelectedThirdMenu(item)
   }
 
   const handleEnter = () => {
@@ -87,17 +106,25 @@ function App() {
         onMenuSelect={handleMenuSelect}
         onSubmenuSelect={handleSubmenuSelect}
         onAboutToggle={handleAboutToggle}
+        onCopyrightOpen={handleCopyrightOpen}
       />
       <main 
-        className={styles.main}
+        className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''}`}
         style={!isMobile ? { marginLeft: selectedMenu === 'magazines' ? '600px' : '300px' } : {}}
       >
-        <ThirdMenu 
-          items={thirdMenuItems}
-          selectedItem={selectedThirdMenu}
-          onItemSelect={setSelectedThirdMenu}
+        {!showCopyrightPage && (
+          <ThirdMenu 
+            items={thirdMenuItems}
+            selectedItem={selectedThirdMenu}
+            onItemSelect={handleThirdMenuSelect}
+          />
+        )}
+        <MainContent 
+          content={content} 
+          isBlog={selectedMenu === 'blog'} 
+          isCollection={selectedMenu === 'collection'} 
+          copyrightPage={showCopyrightPage}
         />
-        <MainContent content={content} isBlog={selectedMenu === 'blog'} isCollection={selectedMenu === 'collection'} />
       </main>
       <img 
         src={import.meta.env.BASE_URL + 'shipping-label.png'} 

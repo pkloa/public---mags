@@ -408,7 +408,8 @@ export const contentData = {
     ],
     links: [
       { label: 'Instagram', url: 'https://www.instagram.com/public___mags/?hl=en' },
-      { label: 'Tumblr', url: 'https://www.tumblr.com/public---mags' }
+      { label: 'Tumblr', url: 'https://www.tumblr.com/public---mags' },
+      { label: 'Copyright Notice', internal: 'copyright' }
     ]
   },
   'collection': {
@@ -493,7 +494,7 @@ export const contentData = {
       'vibe apr \'06/ lil wayne',
       'vibe apr \'09/ t.i.',
       '',
-      'Rap Pages Magazine⁹',
+      'Rap Pages Magazine¹⁰',
       '',
       'rap pages oct \'95/ krs one',
       'rap pages dec \'95/ lauryn hill',
@@ -504,6 +505,7 @@ export const contentData = {
       'rap pages feb \'99/ cash money',
       'rap pages mar \'99/ method man*',
       'rap pages jun \'99/ dmx',
+      'rap pages dec \'99/ master p',
       '',
       'Blaze Magazine¹⁰',
       '',
@@ -538,10 +540,11 @@ export const contentData = {
       'rap sheet jan \'99/ master p*',
       'rap sheet mar \'99/ nonchalant',
       '',
-      'Scratch Magazine²',
+      'Scratch Magazine³',
       '',
       'scratch fall \'04/ kanye',
       'scratch winter \'05/ the neptunes',
+      'scratch spring \'05/ eminem',
       '',
       'King Magazine¹',
       '',

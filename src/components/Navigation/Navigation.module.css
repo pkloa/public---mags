@@ -113,6 +113,22 @@
   color: #fff;
 }
 
+.aboutLinkAsButton {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.aboutLinkCopyright {
+  margin-top: 12px;
+  width: fit-content;
+  max-width: 100%;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .navigation {

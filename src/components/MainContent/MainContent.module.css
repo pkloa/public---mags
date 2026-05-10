@@ -4,6 +4,45 @@
   margin: 0 auto;
 }
 
+.copyrightPage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.copyrightPageInner {
+  max-width: 32rem;
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+  line-height: 1.6;
+}
+
+.copyrightPageInner p {
+  margin: 0 0 1.25em;
+}
+
+.copyrightPageInner p:last-child {
+  margin-bottom: 0;
+}
+
+.copyrightEmail {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.copyrightEmail:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 .mainContentCollection {
   padding: 20px 0;
   max-width: none;

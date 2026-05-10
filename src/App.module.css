@@ -15,6 +15,14 @@
   margin-left: 300px;
 }
 
+.mainCopyright {
+  overflow: hidden;
+  scrollbar-gutter: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .fixedShippingLabel {
   position: fixed;
   bottom: 20px;

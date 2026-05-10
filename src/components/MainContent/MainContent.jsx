@@ -2,7 +2,7 @@ import { useMemo, useRef, useEffect } from 'react'
 import styles from './MainContent.module.css'
 import ImageGallery from '../ImageGallery/ImageGallery'
 
-function MainContent({ content, isBlog = false, isCollection = false }) {
+function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false }) {
   const scrollRef = useRef(null)
 
   const collectionRef = useRef(null)
@@ -131,6 +131,26 @@ function MainContent({ content, isBlog = false, isCollection = false }) {
 
     return items
   }, [isBlog, content])
+
+  if (copyrightPage) {
+    return (
+      <div className={styles.copyrightPage} aria-label="Copyright Notice">
+        <div className={styles.copyrightPageInner}>
+          <p>
+            All content remains the property of its respective copyright holders and is presented for
+            archival and research purposes. If you are a rights holder and would like material
+            removed, please contact me and it will be taken down promptly.
+          </p>
+          <p>
+            Contact:{' '}
+            <a className={styles.copyrightEmail} href="mailto:publicmags.to@gmail.com">
+              publicmags.to@gmail.com
+            </a>
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   if (!content) {
     return null

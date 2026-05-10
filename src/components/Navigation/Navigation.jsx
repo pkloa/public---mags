@@ -1,7 +1,7 @@
 import styles from './Navigation.module.css'
 import { getSubmenuItems, getContent } from '../../data/content'
 
-function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, onSubmenuSelect, onAboutToggle }) {
+function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, onSubmenuSelect, onAboutToggle, onCopyrightOpen }) {
   const menuItems = [
     { key: 'home', label: 'public---mags' },
     { key: 'magazines', label: 'magazine scans' },
@@ -49,17 +49,28 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, on
                 ) : (
                   <p>{aboutContent.text}</p>
                 )}
-                {aboutContent.links && aboutContent.links.map((link, lIndex) => (
-                  <a 
-                    key={lIndex} 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={styles.aboutLink}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {aboutContent.links && aboutContent.links.map((link, lIndex) =>
+                  link.internal === 'copyright' ? (
+                    <button
+                      key={lIndex}
+                      type="button"
+                      className={`${styles.aboutLink} ${styles.aboutLinkAsButton} ${styles.aboutLinkCopyright}`}
+                      onClick={() => onCopyrightOpen?.()}
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <a
+                      key={lIndex}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.aboutLink}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
               </div>
             )}
           </div>
