@@ -4,7 +4,7 @@ import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
 import MainContent from './components/MainContent/MainContent'
 import IntroPage from './components/IntroPage/IntroPage'
-import { getContent, getThirdMenuItems } from './data/content'
+import { getContent, getThirdMenuItems, getSubmenuItems } from './data/content'
 
 function App() {
   const [showIntro, setShowIntro] = useState(true)
@@ -34,6 +34,8 @@ function App() {
     ? getContent('blog')
     : selectedMenu === 'collection'
     ? getContent('collection')
+    : selectedMenu === 'menu1' && selectedSubmenu === 'playlist'
+    ? getContent('menu1', 'playlist', null)
     : selectedMenu && selectedSubmenu && selectedThirdMenu
     ? getContent(selectedMenu, selectedSubmenu, selectedThirdMenu)
     : null
@@ -93,6 +95,12 @@ function App() {
     }, 800)
   }
 
+  const navHasSubmenuColumn =
+    !isMobile &&
+    !!selectedMenu &&
+    selectedMenu === 'magazines' &&
+    getSubmenuItems(selectedMenu).length > 0
+
   return (
     <>
       {showIntro && (
@@ -109,10 +117,10 @@ function App() {
         onCopyrightOpen={handleCopyrightOpen}
       />
       <main 
-        className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''}`}
-        style={!isMobile ? { marginLeft: selectedMenu === 'magazines' ? '600px' : '300px' } : {}}
+        className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.mainPlaylist : ''}`}
+        style={!isMobile ? { marginLeft: navHasSubmenuColumn ? '600px' : '300px' } : {}}
       >
-        {!showCopyrightPage && (
+        {!showCopyrightPage && !(selectedMenu === 'menu1' && selectedSubmenu === 'playlist') && (
           <ThirdMenu 
             items={thirdMenuItems}
             selectedItem={selectedThirdMenu}

@@ -1,6 +1,18 @@
 // Cloudflare R2 CDN URL
 const R2_URL = 'https://pub-5c65f1cb70b948d98ef1e3e010224843.r2.dev'
 
+// Playlist audio: R2 objects like `playlist/01 THE NEW SUBLIME.mp3` (leading `NN ` + title + `.ext`)
+const PLAYLIST_AUDIO_EXT = 'mp3'
+
+/** If a track defines `audio` (full URL), it wins. Else `audioFile` = exact R2 object basename. Else `{NN Title.ext}`. */
+const playlistAudioSrcForTrack = (track) => {
+  if (track.audio) return track.audio
+  if (track.audioFile)
+    return `${R2_URL}/playlist/${encodeURIComponent(track.audioFile)}`
+  const fileName = `${String(track.n).padStart(2, '0')} ${track.title}.${PLAYLIST_AUDIO_EXT}`
+  return `${R2_URL}/playlist/${encodeURIComponent(fileName)}`
+}
+
 // Content data structure: menu → magazine (submenu) → issue (third menu) → content
 export const contentData = {
   'home': {},
@@ -827,6 +839,115 @@ thank you again for all the love and support. more scans to come!
         caption: 'crunk\nshot & edited by me'
       }
     ]
+  },
+  'menu1': {
+    playlist: {
+      thirdMenuItems: [],
+      default: {
+        title: 'Playlist',
+        layout: 'playlist',
+        text: [],
+        images: [],
+        tracks: [
+          { n: 1, duration: '5:46', title: 'Turn Your Lights Down Low', audioFile: '01 Turn Your Lights Down Low.mp3', artists: 'Bob Marley, Lauryn Hill' },
+          { n: 2, duration: '4:41', title: 'Modal Soul', audioFile: '02 Modal Soul.mp3', artists: 'Nujabes' },
+          { n: 3, duration: '3:02', title: 'DO I LOOK HIGH?', audioFile: '03 DO I LOOK HIGH.mp3', artists: 'Isaiah Rashad' },
+          { n: 4, duration: '3:06', title: '2b', audioFile: '04 2b.mp3', artists: 'reggie' },
+          { n: 5, duration: '1:36', title: 'The Fall', audioFile: '05 The Fall.mp3', artists: 'MIKE, SURF GANG' },
+          { n: 6, duration: '3:21', title: 'AOK', audioFile: '06 AOK.mp3', artists: 'Earl Sweatshirt, SURF GANG' },
+          { n: 7, duration: '3:49', title: 'Perfecto Miserable', audioFile: '07 Perfecto Miserable.mp3', artists: 'King Krule' },
+          { n: 8, duration: '3:30', title: 'In Love', audioFile: '08 In Love.mp3', artists: 'Alex G' },
+          { n: 9, duration: '3:28', title: 'Orange County', audioFile: '09 Orange County.mp3', artists: 'Gorillaz, Bizarrap, Kara Jackson, Anoushka Shankar' },
+          { n: 10, duration: '1:43', title: 'Itkanbe[sonice]', audioFile: '10 Itkanbe[sonice].mp3', artists: 'Knxwledge, NxWorries' },
+          { n: 11, duration: '3:00', title: 'WTHU.', audioFile: '11 WTHU..mp3', artists: 'Knxwledge' },
+          { n: 12, duration: '2:27', title: 'idk idk', audioFile: '12 idk idk.mp3', artists: 'Jim Legxacy' },
+          { n: 13, duration: '3:48', title: 'HOP OUT CHO FEELINS', audioFile: '13 HOP OUT CHO FEELINS.mp3', artists: 'Kal Banx, Smino, Buddy' },
+          { n: 14, duration: '2:18', title: 'ARE YOU WITH THAT?', audioFile: '14 ARE YOU WITH THAT.mp3', artists: 'Vince Staples' },
+          { n: 15, duration: '2:21', title: "The Ruler's Back", audioFile: "15 The Ruler's Back.mp3", artists: 'Joey Bada$$' },
+          { n: 16, duration: '3:55', title: 'Blueslides', audioFile: '16 Blueslides.mp3', artists: 'ScHoolboy Q' },
+          { n: 17, duration: '5:32', title: 'DUMP WORLD', audioFile: '17 DUMP WORLD.mp3', artists: 'Westside Gunn, Stove God Cooks' },
+          { n: 18, duration: '3:51', title: 'Under My Wings', audioFile: '18 Under My Wings.mp3', artists: 'The Smith Connection' },
+          { n: 19, duration: '2:22', title: 'OLYMPIC VINCE CARTER', audioFile: '19 OLYMPIC VINCE CARTER.mp3', artists: 'Action Bronson' },
+          {
+            n: 20,
+            duration: '1:44',
+            title: 'ALENA(ኣለና)PARADISE LOST',
+            audioFile: '20 ALENA(ኣለና)PARADISE LOST.mp3',
+            artists: 'Sideshow',
+          },
+          {
+            n: 21,
+            duration: '3:29',
+            title: 'Drive Alone',
+            audioFile: '21 Drive Alone.mp3',
+            artists: 'Larry June, Curren$y, The Alchemist',
+          },
+          {
+            n: 22,
+            duration: '4:44',
+            title: 'SUPAFICIAL',
+            audioFile: '22 SUPAFICIAL.mp3',
+            artists: 'Isaiah Rashad',
+          },
+          {
+            n: 23,
+            duration: '2:21',
+            title: 'should be!',
+            audioFile: '23 should be!.mp3',
+            artists: 'MIKE',
+          },
+          {
+            n: 24,
+            duration: '4:44',
+            title: 'Neighborhood Superstar',
+            audioFile: '24 Neighborhood Superstar.mp3',
+            artists: 'Hot Boys, Big Tymers',
+          },
+          {
+            n: 25,
+            duration: '4:50',
+            title: 'I Gotta Habit',
+            audioFile: '25 I Gotta Habit.mp3',
+            artists: 'Max B',
+          },
+          {
+            n: 26,
+            duration: '3:38',
+            title: 'The Look of Love',
+            audioFile: '26 The Look of Love.mp3',
+            artists: 'Slum Village',
+          },
+          {
+            n: 27,
+            duration: '3:51',
+            title: "Chompy's Paradise",
+            audioFile: "27 Chompy's Paradise.mp3",
+            artists: 'BADBADNOTGOOD',
+          },
+          {
+            n: 28,
+            duration: '5:44',
+            title: 'Really Love',
+            audioFile: '28 Really Love.mp3',
+            artists: "D'Angelo",
+          },
+          {
+            n: 29,
+            duration: '10:04',
+            title: 'Green Eyes',
+            audioFile: '29 Green Eyes.mp3',
+            artists: 'Erykah Badu',
+          },
+          {
+            n: 30,
+            duration: '3:41',
+            title: 'We Need Love',
+            audioFile: '30 We Need Love.mp3',
+            artists: 'Johnny Osbourne',
+          },
+        ].map((t) => ({ ...t, audio: playlistAudioSrcForTrack(t) }))
+      }
+    }
   }
 }
 
@@ -838,7 +959,16 @@ export const getContent = (menuItem, submenuItem, thirdMenuItem = null) => {
   if ((menuItem === 'blog' || menuItem === 'about' || menuItem === 'collection') && contentData[menuItem]) {
     return contentData[menuItem]
   }
-  
+
+  // menu1: playlist (column-one nav)
+  if (menuItem === 'menu1' && submenuItem === 'playlist' && contentData.menu1?.playlist) {
+    const sub = contentData.menu1.playlist
+    if (thirdMenuItem && sub[thirdMenuItem]) {
+      return sub[thirdMenuItem]
+    }
+    return sub.default ?? null
+  }
+
   // Handle magazines - only return content when an issue (thirdMenuItem) is selected
   if (contentData[menuItem] && contentData[menuItem][submenuItem] && thirdMenuItem) {
     const submenuData = contentData[menuItem][submenuItem]
