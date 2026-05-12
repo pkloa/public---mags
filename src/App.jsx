@@ -115,9 +115,7 @@ function App() {
 
   const handleAboutToggle = () => {
     const openingAbout = !showAbout
-    if (openingAbout) {
-      setShowCopyrightPage(false)
-    }
+    setShowCopyrightPage(false)
     setShowAbout(!showAbout)
     // Close blog when opening about
     if (openingAbout && selectedMenu === 'blog') {
@@ -159,6 +157,7 @@ function App() {
         selectedMenu={selectedMenu}
         selectedSubmenu={selectedSubmenu}
         showAbout={showAbout}
+        copyrightPage={showCopyrightPage}
         onMenuSelect={handleMenuSelect}
         onSubmenuSelect={handleSubmenuSelect}
         onAboutToggle={handleAboutToggle}

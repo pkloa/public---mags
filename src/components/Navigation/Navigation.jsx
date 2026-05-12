@@ -1,7 +1,7 @@
 import styles from './Navigation.module.css'
 import { getSubmenuItems, getContent } from '../../data/content'
 
-function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, onSubmenuSelect, onAboutToggle, onCopyrightOpen }) {
+function Navigation({ selectedMenu, selectedSubmenu, showAbout, copyrightPage = false, onMenuSelect, onSubmenuSelect, onAboutToggle, onCopyrightOpen }) {
   const menuItems = [
     { key: 'home', label: 'public---mags' },
     { key: 'magazines', label: 'magazine scans' },
@@ -74,7 +74,7 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, on
           restMenuItems.map((item) => (
             <div key={item.key}>
               <div
-                className={`${styles.menuItem} ${(item.key === 'about' ? showAbout : selectedMenu === item.key) ? styles.active : ''}`}
+                className={`${styles.menuItem} ${(item.key === 'about' ? showAbout || copyrightPage : selectedMenu === item.key) ? styles.active : ''}`}
                 onClick={() => handleMenuClick(item.key)}
               >
                 {item.label}
@@ -94,8 +94,9 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, onMenuSelect, on
                       <button
                         key={lIndex}
                         type="button"
-                        className={`${styles.aboutLink} ${styles.aboutLinkAsButton} ${styles.aboutLinkCopyright}`}
+                        className={`${styles.aboutLink} ${styles.aboutLinkAsButton} ${styles.aboutLinkCopyright} ${copyrightPage ? styles.aboutLinkActive : ''}`}
                         onClick={() => onCopyrightOpen?.()}
+                        aria-current={copyrightPage ? 'page' : undefined}
                       >
                         {link.label}
                       </button>

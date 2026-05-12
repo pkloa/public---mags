@@ -169,9 +169,15 @@
   pointer-events: auto;
 }
 
-.aboutLink:hover {
+.aboutLink:hover,
+.aboutLink.aboutLinkActive {
   background-color: #000;
   color: #fff;
+}
+
+.aboutLink.aboutLinkActive:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .aboutLinkAsButton {
