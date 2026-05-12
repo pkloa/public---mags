@@ -1,0 +1,219 @@
+.window {
+  position: fixed;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 290px;
+  height: 46px;
+  padding: 0 8px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  user-select: none;
+  cursor: grab;
+  animation: miniplayerIn 220ms ease-out;
+}
+
+.window:active {
+  cursor: grabbing;
+}
+
+.dragging {
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.18);
+  cursor: grabbing;
+}
+
+@keyframes miniplayerIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Close */
+.closeBtn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.closeBtn:hover,
+.closeBtn:focus-visible {
+  background: #000000;
+  color: #ffffff;
+  outline: none;
+}
+
+/* Meta (title above artist) */
+.meta {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.title {
+  min-width: 0;
+  font-size: 12px;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artists {
+  min-width: 0;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Time readout */
+.time {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+}
+
+.timeSep {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Controls */
+.controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controlBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 80ms linear, color 80ms linear;
+}
+
+.controlBtn:hover:not(:disabled),
+.controlBtn:focus-visible:not(:disabled) {
+  background: #000000;
+  color: #ffffff;
+  outline: none;
+}
+
+.controlBtn:hover:not(:disabled) .playTriangle,
+.controlBtn:focus-visible:not(:disabled) .playTriangle {
+  border-left-color: #ffffff;
+}
+
+.controlBtn:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.controlBtnPrimary {
+  width: 24px;
+  height: 24px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.controlBtnPrimary .playTriangle {
+  border-left-color: #ffffff;
+}
+
+.controlBtnPrimary:hover:not(:disabled),
+.controlBtnPrimary:focus-visible:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+}
+
+.controlBtnPrimary:hover:not(:disabled) .playTriangle,
+.controlBtnPrimary:focus-visible:not(:disabled) .playTriangle {
+  border-left-color: #000000;
+}
+
+/* Glyphs */
+.playTriangle {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+.pauseIcon {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    currentColor 0 2px,
+    transparent 2px 6px,
+    currentColor 6px 8px
+  );
+}
+
+.skipSvg {
+  display: block;
+  color: currentColor;
+}
+
+/* Mobile: pin to bottom as full-width strip, no drag */
+@media (max-width: 768px) {
+  .window {
+    width: 100%;
+    height: 50px;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: none;
+    cursor: default;
+    padding: 0 12px;
+  }
+
+  .window:active {
+    cursor: default;
+  }
+}

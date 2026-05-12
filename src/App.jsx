@@ -4,7 +4,55 @@ import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
 import MainContent from './components/MainContent/MainContent'
 import IntroPage from './components/IntroPage/IntroPage'
+import Miniplayer from './components/MusicPlayer/Miniplayer'
+import PlayerProvider from './components/MusicPlayer/PlayerProvider'
+import { usePlayer } from './components/MusicPlayer/playerContext'
 import { getContent, getThirdMenuItems, getSubmenuItems } from './data/content'
+
+function GlobalMiniplayer() {
+  const {
+    audioRef,
+    currentTrack,
+    isPlaying,
+    miniplayerOpen,
+    hasPrev,
+    hasNext,
+    togglePlay,
+    next,
+    prev,
+    close,
+  } = usePlayer()
+  if (!miniplayerOpen || !currentTrack) return null
+  return (
+    <Miniplayer
+      track={currentTrack}
+      audioRef={audioRef}
+      isPlaying={isPlaying}
+      hasPrev={hasPrev}
+      hasNext={hasNext}
+      onTogglePlay={togglePlay}
+      onPrev={prev}
+      onNext={next}
+      onClose={close}
+    />
+  )
+}
+
+// Decorative shipping label. Hidden on mobile while the miniplayer is open
+// so the bottom strip stays uncluttered; the modifier class is a no-op on
+// desktop where there's room for both.
+function ShippingLabel() {
+  const { miniplayerOpen } = usePlayer()
+  return (
+    <img
+      src={import.meta.env.BASE_URL + 'shipping-label.png'}
+      alt="shipping label"
+      className={`${styles.fixedShippingLabel} ${
+        miniplayerOpen ? styles.fixedShippingLabelHiddenOnMobile : ''
+      }`}
+    />
+  )
+}
 
 function App() {
   const [showIntro, setShowIntro] = useState(true)
@@ -102,7 +150,7 @@ function App() {
     getSubmenuItems(selectedMenu).length > 0
 
   return (
-    <>
+    <PlayerProvider>
       {showIntro && (
         <IntroPage onEnter={handleEnter} fading={introFading} />
       )}
@@ -134,13 +182,10 @@ function App() {
           copyrightPage={showCopyrightPage}
         />
       </main>
-      <img 
-        src={import.meta.env.BASE_URL + 'shipping-label.png'} 
-        alt="shipping label" 
-        className={styles.fixedShippingLabel}
-      />
+      <ShippingLabel />
       </div>
-    </>
+      <GlobalMiniplayer />
+    </PlayerProvider>
   )
 }
 

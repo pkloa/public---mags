@@ -54,6 +54,12 @@
   z-index: 101;
   pointer-events: none;
   transform: rotate(30deg);
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+/* No-op on desktop; activated only inside the mobile media query below. */
+.fixedShippingLabelHiddenOnMobile {
+  /* intentionally empty */
 }
 
 .hidden {
@@ -94,5 +100,29 @@
     width: 150px;
     bottom: 10px;
     left: 10px;
+  }
+
+  /* Mobile-only: while the miniplayer is open the bottom strip is taken,
+     so fade the decorative label out and back when it closes. */
+  .fixedShippingLabelHiddenOnMobile {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* On the playlist page, constrain the whole app to the dynamic viewport so
+     mobile layout stays bounded (no body-level scroll) and the fixed
+     miniplayer never overlaps content. Scoped via :has() so .app needs no
+     extra class plumbing. Both classes live in this CSS module, so the
+     hashed selectors line up. */
+  .app:has(.mainPlaylist) {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .app:has(.mainPlaylist) .mainPlaylist {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
   }
 }
