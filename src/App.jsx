@@ -154,7 +154,7 @@ function App() {
       {showIntro && (
         <IntroPage onEnter={handleEnter} fading={introFading} />
       )}
-      <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn}`}>
+      <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.appPlaylist : ''}`}>
       <Navigation 
         selectedMenu={selectedMenu}
         selectedSubmenu={selectedSubmenu}

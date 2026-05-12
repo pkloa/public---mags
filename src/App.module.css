@@ -111,16 +111,15 @@
 
   /* On the playlist page, constrain the whole app to the dynamic viewport so
      mobile layout stays bounded (no body-level scroll) and the fixed
-     miniplayer never overlaps content. Scoped via :has() so .app needs no
-     extra class plumbing. Both classes live in this CSS module, so the
-     hashed selectors line up. */
-  .app:has(.mainPlaylist) {
+     miniplayer never overlaps content. Modifier class is plumbed from
+     App.jsx so we don't rely on :has() through CSS modules. */
+  .appPlaylist {
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
   }
 
-  .app:has(.mainPlaylist) .mainPlaylist {
+  .appPlaylist .mainPlaylist {
     flex: 1;
     min-height: 0;
     overflow: hidden;
