@@ -715,6 +715,19 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'video',
+        src: `${R2_URL}/blog/home__2.mp4`,
+        date: '05.16.26',
+        caption: 'home'
+      },
+      {
+        type: 'image',
+        src: `${R2_URL}/blog/mf doom.png`,
+        alt: 'MF Doom',
+        date: '05.10.26',
+        caption: 'mm..food'
+      },
+      {
         type: 'image',
         src: `${R2_URL}/blog/public---mags long sleeve draft-01.jpg`,
         alt: 'Public Mags Long Sleeve',
