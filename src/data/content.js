@@ -716,9 +716,9 @@ export const contentData = {
     blogItems: [
       {
         type: 'video',
-        src: `${R2_URL}/blog/home__2.mp4`,
-        date: '05.16.26',
-        caption: 'home'
+        src: `${R2_URL}/blog/system___1.mp4`,
+        date: '05.22.26',
+        caption: 'system'
       },
       {
         type: 'image',
