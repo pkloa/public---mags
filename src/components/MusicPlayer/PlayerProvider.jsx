@@ -35,6 +35,22 @@ function takeShuffleNext(queueRef, allNs, currentN) {
   return queueRef.current.shift() ?? null
 }
 
+function trackListEqual(a, b) {
+  if (a.length !== b.length) return false
+  return a.every((t, i) => {
+    const n = b[i]
+    return (
+      t.n === n.n &&
+      t.title === n.title &&
+      t.duration === n.duration &&
+      t.artists === n.artists &&
+      t.feat === n.feat &&
+      t.audio === n.audio &&
+      t.audioFile === n.audioFile
+    )
+  })
+}
+
 export default function PlayerProvider({ children }) {
   const audioRef = useRef(null)
   /** Bumps on each new load+play so stale `play()` rejections (e.g. AbortError) can't clear UI. */
@@ -57,15 +73,14 @@ export default function PlayerProvider({ children }) {
   const setTracks = useCallback((nextTracks) => {
     setTracksState((prev) => {
       if (prev === nextTracks) return prev
-      if (
+      if (trackListEqual(prev, nextTracks)) return prev
+
+      const sameTrackNumbers =
         prev.length === nextTracks.length &&
         prev.every((t, i) => t.n === nextTracks[i].n)
-      ) {
-        return prev
+      if (!sameTrackNumbers) {
+        shuffleQueueRef.current = []
       }
-      // Track list changed identity → reset shuffle queue so the new cycle
-      // is built from the fresh list on the next `next()` call.
-      shuffleQueueRef.current = []
       return nextTracks
     })
   }, [])

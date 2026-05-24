@@ -205,11 +205,24 @@ export const contentData = {
       'July 2005': { title: 'Vibe Magazine* - July 2005', text: ['Content for Vibe Magazine July 2005.'], images: [] }
     },
     'Murder Dog Magazine*': {
-      thirdMenuItems: ['Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 9 Issue #4', 'Volume 10 Issue #3', 'Volume 11 Issue #1*', 'Volume 12 Issue #2', 'Volume 20 Issue #2'],
+      thirdMenuItems: ['Volume 3 Issue #4*', 'Volume 6 Issue #5', 'Volume 7 Issue #1', 'Volume 8 Issue #5', 'Volume 9 Issue #1', 'Volume 9 Issue #2', 'Volume 10 Issue #3', 'Volume 11 Issue #1*', 'Volume 20 Issue #2'],
       default: {
         title: 'Murder Dog Magazine*',
         text: ['Select an issue to view content from Murder Dog Magazine.'],
         images: []
+      },
+      'Volume 3 Issue #4*': {
+        title: 'Murder Dog Magazine* - Volume 3 Issue #4*',
+        text: ['Content for Murder Dog Magazine Volume 3 Issue #4.'],
+        images: [
+          { src: `${R2_URL}/Murder Dog Volume 3 Issue 4/murder dog vol 3 issue 4-01.jpg`, alt: 'Murder Dog Volume 3 Issue 4 Cover', layout: 'full-width' },
+          ...Array.from({ length: 12 }, (_, i) => ({
+            src: `${R2_URL}/Murder Dog Volume 3 Issue 4/murder dog vol 3 issue 4-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Murder Dog Volume 3 Issue 4 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Murder Dog Volume 3 Issue 4/murder dog vol 3 issue 4-14.jpg`, alt: 'Murder Dog Volume 3 Issue 4 Back Cover', layout: 'full-width' }
+        ]
       },
       'Volume 6 Issue #5': { title: 'Murder Dog Magazine* - Volume 6 Issue #5', text: ['Content for Murder Dog Magazine Volume 6 Issue #5.'], images: [] },
       'Volume 7 Issue #1': { title: 'Murder Dog Magazine* - Volume 7 Issue #1', text: ['Content for Murder Dog Magazine Volume 7 Issue #1.'], images: [] },
@@ -220,7 +233,6 @@ export const contentData = {
         images: []
       },
       'Volume 9 Issue #2': { title: 'Murder Dog Magazine* - Volume 9 Issue #2', text: ['Content for Murder Dog Magazine Volume 9 Issue #2.'], images: [] },
-      'Volume 9 Issue #4': { title: 'Murder Dog Magazine* - Volume 9 Issue #4', text: ['Content for Murder Dog Magazine Volume 9 Issue #4.'], images: [] },
       'Volume 10 Issue #3': { title: 'Murder Dog Magazine* - Volume 10 Issue #3', text: ['Content for Murder Dog Magazine Volume 10 Issue #3.'], images: [] },
       'Volume 11 Issue #1*': { 
         title: 'Murder Dog Magazine* - Volume 11 Issue #1*', 
@@ -235,7 +247,6 @@ export const contentData = {
           { src: `${R2_URL}/Murder Dog Volume 11 Issue 1/murder dog vol 11 issue 1-140.jpg`, alt: 'Murder Dog Volume 11 Issue 1 Back Cover', layout: 'full-width' }
         ]
       },
-      'Volume 12 Issue #2': { title: 'Murder Dog Magazine* - Volume 12 Issue #2', text: ['Content for Murder Dog Magazine Volume 12 Issue #2.'], images: [] },
       'Volume 20 Issue #2': { title: 'Murder Dog Magazine* - Volume 20 Issue #2', text: ['Content for Murder Dog Magazine Volume 20 Issue #2.'], images: [] }
     },
     'Blaze Magazine': {
@@ -534,7 +545,7 @@ export const contentData = {
       '',
       'Murder Dog Magazine¹¹',
       '',
-      'murder dog vol 3 issue #4/ x-raided',
+      'murder dog vol 3 issue #4/ x-raided*',
       'murder dog vol 6 issue #5/ juvenile',
       'murder dog vol 7 issue #1/ big tymers',
       'murder dog vol 8 issue #5/ warren g',
@@ -875,11 +886,11 @@ thank you again for all the love and support. more scans to come!
           { n: 11, duration: '3:00', title: 'WTHU.', audioFile: '11 WTHU..mp3', artists: 'Knxwledge' },
           { n: 12, duration: '2:27', title: 'idk idk', audioFile: '12 idk idk.mp3', artists: 'Jim Legxacy' },
           { n: 13, duration: '3:48', title: 'HOP OUT CHO FEELINS', audioFile: '13 HOP OUT CHO FEELINS.mp3', artists: 'Kal Banx, Smino, Buddy' },
-          { n: 14, duration: '2:18', title: 'ARE YOU WITH THAT?', audioFile: '14 ARE YOU WITH THAT.mp3', artists: 'Vince Staples' },
+          { n: 14, duration: '3:36', title: 'SCARED 2 LOOK DOWN', audioFile: '14 SCARED 2 LOOK DOWN.mp3', artists: 'Isaiah Rashad' },
           { n: 15, duration: '2:21', title: "The Ruler's Back", audioFile: "15 The Ruler's Back.mp3", artists: 'Joey Bada$$' },
           { n: 16, duration: '3:55', title: 'Blueslides', audioFile: '16 Blueslides.mp3', artists: 'ScHoolboy Q' },
           { n: 17, duration: '5:32', title: 'DUMP WORLD', audioFile: '17 DUMP WORLD.mp3', artists: 'Westside Gunn, Stove God Cooks' },
-          { n: 18, duration: '3:51', title: 'Under My Wings', audioFile: '18 Under My Wings.mp3', artists: 'The Smith Connection' },
+          { n: 18, duration: '2:34', title: 'White Flag', audioFile: '18 White Flag.mp3', artists: 'Vince Staples' },
           { n: 19, duration: '2:22', title: 'OLYMPIC VINCE CARTER', audioFile: '19 OLYMPIC VINCE CARTER.mp3', artists: 'Action Bronson' },
           {
             n: 20,
@@ -918,10 +929,10 @@ thank you again for all the love and support. more scans to come!
           },
           {
             n: 25,
-            duration: '4:50',
-            title: 'I Gotta Habit',
-            audioFile: '25 I Gotta Habit.mp3',
-            artists: 'Max B',
+            duration: '5:02',
+            title: 'Firm Friends',
+            audioFile: '25 Firm Friends.mp3',
+            artists: 'Drake',
           },
           {
             n: 26,
