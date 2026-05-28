@@ -733,6 +733,13 @@ export const contentData = {
       },
       {
         type: 'image',
+        src: `${R2_URL}/blog/MD__lauryn hill.png`,
+        alt: 'Lauryn Hill',
+        date: '05.20.26',
+        caption: 'fugees'
+      },
+      {
+        type: 'image',
         src: `${R2_URL}/blog/mf doom.png`,
         alt: 'MF Doom',
         date: '05.10.26',
