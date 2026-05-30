@@ -883,7 +883,7 @@ thank you again for all the love and support. more scans to come!
           { n: 1, duration: '5:46', title: 'Turn Your Lights Down Low', audioFile: '01 Turn Your Lights Down Low.mp3', artists: 'Bob Marley, Lauryn Hill' },
           { n: 2, duration: '4:41', title: 'Modal Soul', audioFile: '02 Modal Soul.mp3', artists: 'Nujabes' },
           { n: 3, duration: '3:02', title: 'DO I LOOK HIGH?', audioFile: '03 DO I LOOK HIGH.mp3', artists: 'Isaiah Rashad' },
-          { n: 4, duration: '3:06', title: '2b', audioFile: '04 2b.mp3', artists: 'reggie' },
+          { n: 4, duration: '2:56', title: 'Takin It There', audioFile: '04 Takin It There.mp3', artists: 'reggie' },
           { n: 5, duration: '1:36', title: 'The Fall', audioFile: '05 The Fall.mp3', artists: 'MIKE, SURF GANG' },
           { n: 6, duration: '3:21', title: 'AOK', audioFile: '06 AOK.mp3', artists: 'Earl Sweatshirt, SURF GANG' },
           { n: 7, duration: '3:49', title: 'Perfecto Miserable', audioFile: '07 Perfecto Miserable.mp3', artists: 'King Krule' },
