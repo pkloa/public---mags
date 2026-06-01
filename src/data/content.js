@@ -446,7 +446,7 @@ export const contentData = {
   'collection': {
     title: 'Collection',
     text: [
-      'The Source Magazine²⁶',
+      'The Source Magazine²⁷',
       '',
       'source dec \'93/ tribe called quest*',
       'source jan \'94/ das efx',
@@ -464,6 +464,7 @@ export const contentData = {
       'source jul \'00/ eminem',
       'source aug \'00/ wyclef jean',
       'source jan \'01/ wu tang',
+      'source feb \'01/ dmx',
       'source apr \'01/ trick daddy',
       'source jan \'02/ outkast',
       'source may \'02/ eminem',
