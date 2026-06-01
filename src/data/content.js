@@ -336,12 +336,12 @@ export const contentData = {
       'March 2000': { title: 'Honey Magazine - March 2000', text: ['Content for Honey Magazine March 2000.'], images: [] },
       'June 2002': { title: 'Honey Magazine - June 2002', text: ['Content for Honey Magazine June 2002.'], images: [] }
     },
-    'True/Trace Magazine': {
-      thirdMenuItems: ['July 1995', 'June 1996', 'June 1997', 'November 1997', 'October 1998'],
+    'True/Trace Magazine*': {
+      thirdMenuItems: ['July 1995', 'June 1996*', 'June 1997', 'November 1997', 'October 1998'],
       default: {
-        title: 'True/Trace Magazine',
+        title: 'True/Trace Magazine*',
         text: [
-          'Select an issue to view content from True/Trace Magazine.'
+          'Select an issue to view content from True/Trace Magazine*.'
         ],
         images: []
       },
@@ -350,10 +350,18 @@ export const contentData = {
         text: ['Content for True/Trace Magazine July 1995.'],
         images: []
       },
-      'June 1996': {
-        title: 'True/Trace Magazine - June 1996',
+      'June 1996*': {
+        title: 'True/Trace Magazine* - June 1996*',
         text: ['Content for True/Trace Magazine June 1996.'],
-        images: []
+        images: [
+          { src: `${R2_URL}/True June 1996/true jun 96-01.jpg`, alt: 'True June 1996 Cover', layout: 'full-width' },
+          ...Array.from({ length: 94 }, (_, i) => ({
+            src: `${R2_URL}/True June 1996/true jun 96-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `True June 1996 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/True June 1996/true jun 96-96.jpg`, alt: 'True June 1996 Back Cover', layout: 'full-width' }
+        ]
       },
       'June 1997': {
         title: 'True/Trace Magazine - June 1997',
@@ -619,7 +627,7 @@ export const contentData = {
       'True/Trace Magazine⁶',
       '',
       'true jul \'95/ method man',
-      'true jun \'96/ nas',
+      'true jun \'96/ nas*',
       'trace jun \'97/ goldie',
       'trace nov \'97/ method man',
       'trace oct \'98/ dmx',
