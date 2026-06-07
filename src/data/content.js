@@ -446,13 +446,14 @@ export const contentData = {
   'collection': {
     title: 'Collection',
     text: [
-      'The Source Magazine²⁷',
+      'The Source Magazine²⁹',
       '',
       'source dec \'93/ tribe called quest*',
       'source jan \'94/ das efx',
       'source feb \'94/ ice cube',
       'source oct \'96/ da brat',
       'source jul \'97/ fugues',
+      'source oct \'97/ master p',
       'source sep \'98/ lauryn hill',
       'source oct \'98/ tribe called quest',
       'source jun \'99/ snoop dogg',
@@ -461,6 +462,7 @@ export const contentData = {
       'source dec \'99/ lil kim',
       'source jan \'00/ jay z',
       'source mar \'00/ rza & ghostface killah',
+      'source may \'00/ big pun',
       'source jul \'00/ eminem',
       'source aug \'00/ wyclef jean',
       'source jan \'01/ wu tang',
@@ -907,7 +909,7 @@ thank you again for all the love and support. more scans to come!
           { n: 16, duration: '3:55', title: 'Blueslides', audioFile: '16 Blueslides.mp3', artists: 'ScHoolboy Q' },
           { n: 17, duration: '5:32', title: 'DUMP WORLD', audioFile: '17 DUMP WORLD.mp3', artists: 'Westside Gunn, Stove God Cooks' },
           { n: 18, duration: '2:34', title: 'White Flag', audioFile: '18 White Flag.mp3', artists: 'Vince Staples' },
-          { n: 19, duration: '2:22', title: 'OLYMPIC VINCE CARTER', audioFile: '19 OLYMPIC VINCE CARTER.mp3', artists: 'Action Bronson' },
+          { n: 19, duration: '3:47', title: 'La Noche', audioFile: '19 La Noche.mp3', artists: 'Navy Blue' },
           {
             n: 20,
             duration: '1:44',
