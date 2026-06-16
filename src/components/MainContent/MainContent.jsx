@@ -1,11 +1,13 @@
-import { useMemo, useRef, useEffect } from 'react'
+import { useMemo, useRef, useEffect, useState } from 'react'
 import styles from './MainContent.module.css'
 import ImageGallery from '../ImageGallery/ImageGallery'
 import { usePlayer } from '../MusicPlayer/playerContext'
+import { getCollectionScanLink } from '../../data/content'
 
-function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false }) {
+function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false, isMobile = false, onCollectionScanNavigate }) {
   const scrollRef = useRef(null)
   const collectionRef = useRef(null)
+  const [hoveredCover, setHoveredCover] = useState(null)
   const { playingN, isPlaying, setTracks, playTrack } = usePlayer()
 
   // Convert vertical scroll to horizontal scroll for blog
@@ -26,8 +28,13 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
 
   // Convert vertical scroll to horizontal scroll for collection (desktop only)
   useEffect(() => {
+    if (!isCollection || isMobile) {
+      setHoveredCover(null)
+      return
+    }
+
     const el = collectionRef.current
-    if (!el || !isCollection) return
+    if (!el) return
     
     // Don't add wheel handler on mobile - let it scroll naturally
     if (window.innerWidth <= 768) return
@@ -41,7 +48,7 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
 
     el.addEventListener('wheel', handleWheel, { passive: false })
     return () => el.removeEventListener('wheel', handleWheel)
-  }, [isCollection])
+  }, [isCollection, isMobile])
 
 
   // Mute videos when scrolled out of view
@@ -142,6 +149,22 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
     const sorted = [...content.tracks].sort((a, b) => a.n - b.n)
     setTracks(sorted)
   }, [content, setTracks])
+
+  const collectionLines = useMemo(() => {
+    if (!isCollection || !content?.text) return []
+    return content.text
+      .filter((line) => line !== '')
+      .map((line) => {
+        const isTitle = line.toLowerCase().includes('magazine')
+        const scanLink = getCollectionScanLink(line)
+        const lineHeight = (Math.random() * 8 + 14).toFixed(2) + 'px'
+        const chars = line.split('').map((char) => ({
+          char,
+          letterSpacing: (Math.random() * 2 - 0.5).toFixed(2) + 'px',
+        }))
+        return { line, isTitle, scanLink, lineHeight, chars }
+      })
+  }, [isCollection, content?.text])
 
   if (copyrightPage) {
     return (
@@ -292,19 +315,49 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
   return (
     <div className={isCollection ? styles.mainContentCollection : styles.mainContent}>
       {isCollection && content.text && (
-        <div className={styles.collectionText} ref={collectionRef}>
-          {content.text.filter(line => line !== '').map((line, index) => {
-            const isTitle = line.toLowerCase().includes('magazine')
-            const randomLineHeight = (Math.random() * 8 + 14).toFixed(2) + 'px'
+        <>
+          {hoveredCover && !isMobile && (
+            <div className={styles.collectionCoverOverlay} aria-hidden="true">
+              <img src={hoveredCover} alt="" className={styles.collectionCoverPreview} />
+            </div>
+          )}
+          <div className={styles.collectionText} ref={collectionRef}>
+          {collectionLines.map(({ line, isTitle, scanLink, lineHeight, chars }, index) => {
+            const lineContent = chars.map((item, charIndex) => (
+              <span key={charIndex} style={{ letterSpacing: item.letterSpacing }}>{item.char}</span>
+            ))
+
+            if (scanLink) {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  className={styles.collectionIssueBtn}
+                  onClick={() => onCollectionScanNavigate?.(scanLink)}
+                  onMouseEnter={!isMobile ? () => scanLink.cover && setHoveredCover(scanLink.cover) : undefined}
+                  onMouseLeave={!isMobile ? () => setHoveredCover(null) : undefined}
+                  onFocus={!isMobile ? () => scanLink.cover && setHoveredCover(scanLink.cover) : undefined}
+                  onBlur={!isMobile ? () => setHoveredCover(null) : undefined}
+                  aria-label={`View scans for ${line.replace(/\*$/, '').trim()}`}
+                  style={{ lineHeight }}
+                >
+                  {lineContent}
+                </button>
+              )
+            }
+
             return (
-              <p key={index} className={isTitle ? styles.collectionTitle : styles.collectionIndent} style={{ lineHeight: randomLineHeight }}>
-                {line.split('').map((char, charIndex) => (
-                  <span key={charIndex} style={{ letterSpacing: (Math.random() * 2 - 0.5).toFixed(2) + 'px' }}>{char}</span>
-                ))}
+              <p
+                key={index}
+                className={isTitle ? styles.collectionTitle : styles.collectionIndent}
+                style={{ lineHeight }}
+              >
+                {lineContent}
               </p>
             )
           })}
-        </div>
+          </div>
+        </>
       )}
       <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} spreadOnly={content.spreadOnly} />
     </div>

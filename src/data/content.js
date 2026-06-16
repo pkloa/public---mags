@@ -588,6 +588,10 @@ export const contentData = {
       '',
       'elemental #67 \'03/ madlib',
       '',
+      'Huck Magazine¹',
+      '',
+      'huck issue 83/ rza',
+      '',
       'Honey Magazine²',
       '',
       'honey mar \'00/ jennifer lopez',
@@ -1035,4 +1039,25 @@ export const getThirdMenuItems = (menuItem, submenuItem) => {
     return contentData[menuItem][submenuItem].thirdMenuItems || []
   }
   return []
+}
+
+/** Collection lines ending in * → magazine scans navigation targets */
+export const collectionScanLinks = {
+  'source dec \'93/ tribe called quest*': { submenu: 'The Source Magazine*', issue: 'December 1993*' },
+  'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*': { submenu: 'XXL Magazine*', issue: 'October 2004*' },
+  'vibe sept \'01/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2001*' },
+  'rap pages mar \'99/ method man*': { submenu: 'Rap Pages Magazine*', issue: 'March 1999*' },
+  'murder dog vol 3 issue #4/ x-raided*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 3 Issue #4*' },
+  'murder dog vol 11 issue #1/ lil jon*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 11 Issue #1*' },
+  'rap sheet jan \'99/ master p*': { submenu: 'Rap Sheet Magazine*', issue: 'January 1999*' },
+  'true jun \'96/ nas*': { submenu: 'True/Trace Magazine*', issue: 'June 1996*' },
+  'nme 16 jun \'01/ outkast*': { submenu: 'NME Magazine*', issue: 'June 2001*' },
+}
+
+export const getCollectionScanLink = (line) => {
+  const link = collectionScanLinks[line]
+  if (!link) return null
+  const issueContent = contentData.magazines?.[link.submenu]?.[link.issue]
+  const cover = issueContent?.images?.[0]?.src ?? null
+  return { menu: 'magazines', submenu: link.submenu, thirdMenu: link.issue, cover }
 }

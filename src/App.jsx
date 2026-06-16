@@ -134,6 +134,14 @@ function App() {
     setSelectedThirdMenu(item)
   }
 
+  const handleCollectionScanNavigate = ({ submenu, thirdMenu }) => {
+    setShowCopyrightPage(false)
+    setShowAbout(false)
+    setSelectedMenu('magazines')
+    setSelectedSubmenu(submenu)
+    setSelectedThirdMenu(thirdMenu)
+  }
+
   const handleEnter = () => {
     setIntroFading(true)
     setTimeout(() => {
@@ -179,6 +187,8 @@ function App() {
           isBlog={selectedMenu === 'blog'} 
           isCollection={selectedMenu === 'collection'} 
           copyrightPage={showCopyrightPage}
+          isMobile={isMobile}
+          onCollectionScanNavigate={handleCollectionScanNavigate}
         />
       </main>
       <ShippingLabel />
