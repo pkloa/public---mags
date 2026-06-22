@@ -140,6 +140,16 @@ function App() {
     setSelectedMenu('magazines')
     setSelectedSubmenu(submenu)
     setSelectedThirdMenu(thirdMenu)
+
+    if (isMobile) {
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      }
+      scrollToTop()
+      requestAnimationFrame(scrollToTop)
+    }
   }
 
   const handleEnter = () => {

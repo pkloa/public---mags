@@ -344,6 +344,17 @@
     display: none;
   }
 
+  .collectionIssueBtn {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .collectionText p {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .blogScrollContainer {
     padding-left: 20px;
     padding-right: 20px;
