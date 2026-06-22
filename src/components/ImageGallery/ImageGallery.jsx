@@ -208,6 +208,13 @@ function ImageGallery({ images, randomLayout = false, isCollection = false, spre
 
   const currentSpreadImages = getSpreadImages(currentSpread)
   const currentImage = currentImageIndex !== null && images ? images[currentImageIndex] : null
+  const galleryId = images?.[0]?.src ?? 'gallery'
+
+  // Reset lightbox when switching issues
+  useEffect(() => {
+    setCurrentSpread(null)
+    setCurrentImageIndex(null)
+  }, [galleryId])
 
   // Intersection Observer for fade-in effect
   useEffect(() => {
@@ -225,10 +232,17 @@ function ImageGallery({ images, randomLayout = false, isCollection = false, spre
     )
 
     const fadeElements = galleryRef.current.querySelectorAll(`.${styles.fadeIn}`)
-    fadeElements.forEach((el) => observer.observe(el))
+    fadeElements.forEach((el) => el.classList.remove(styles.visible))
 
-    return () => observer.disconnect()
-  }, [images])
+    const observeFrame = requestAnimationFrame(() => {
+      fadeElements.forEach((el) => observer.observe(el))
+    })
+
+    return () => {
+      cancelAnimationFrame(observeFrame)
+      observer.disconnect()
+    }
+  }, [galleryId])
 
   if (!images || images.length === 0) {
     // Show "coming soon..." for magazine scans, nothing for blog or collection
@@ -286,7 +300,7 @@ function ImageGallery({ images, randomLayout = false, isCollection = false, spre
   // Structured layout for magazine scans
   return (
     <>
-      <div className={styles.gallery} ref={galleryRef}>
+      <div className={styles.gallery} ref={galleryRef} key={galleryId}>
         {/* First image (cover) - displayed alone, skip if spreadOnly */}
         {!spreadOnly && firstImage && (
           <div className={`${styles.fullWidthContainer} ${styles.fadeIn}`}>
