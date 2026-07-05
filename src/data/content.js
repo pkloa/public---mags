@@ -172,7 +172,7 @@ export const contentData = {
       }
     },
     'Vibe Magazine*': {
-      thirdMenuItems: ['March 1999', 'March 2000', 'May 2000', 'March 2001', 'April 2001', 'June 2001', 'September 2001*', 'October 2003', 'March 2004', 'July 2005'],
+      thirdMenuItems: ['March 1999', 'March 2000', 'May 2000', 'September 2000*', 'March 2001', 'April 2001', 'June 2001', 'October 2003', 'March 2004', 'July 2005'],
       default: {
         title: 'Vibe Magazine*',
         text: ['Select an issue to view content from Vibe Magazine.'],
@@ -184,20 +184,20 @@ export const contentData = {
       'March 2001': { title: 'Vibe Magazine* - March 2001', text: ['Content for Vibe Magazine March 2001.'], images: [] },
       'April 2001': { title: 'Vibe Magazine* - April 2001', text: ['Content for Vibe Magazine April 2001.'], images: [] },
       'June 2001': { title: 'Vibe Magazine* - June 2001', text: ['Content for Vibe Magazine June 2001.'], images: [] },
-      'September 2001*': { 
-        title: 'Vibe Magazine* - September 2001*', 
-        text: ['Content for Vibe Magazine September 2001.'], 
+      'September 2000*': { 
+        title: 'Vibe Magazine* - September 2000*', 
+        text: ['Content for Vibe Magazine September 2000.'], 
         images: [
           // First image (cover) - full width
-          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-01.jpg`, alt: 'Vibe September 2001 Cover', layout: 'full-width' },
+          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-01.jpg`, alt: 'Vibe September 2000 Cover', layout: 'full-width' },
           // Middle pages - two column
           ...Array.from({ length: 266 }, (_, i) => ({
             src: `${R2_URL}/Vibe September 2001/vibe sept 01-${String(i + 2).padStart(2, '0')}.jpg`,
-            alt: `Vibe September 2001 Page ${i + 2}`,
+            alt: `Vibe September 2000 Page ${i + 2}`,
             layout: 'two-column'
           })),
           // Last image - full width
-          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-268.jpg`, alt: 'Vibe September 2001 Back Cover', layout: 'full-width' }
+          { src: `${R2_URL}/Vibe September 2001/vibe sept 01-268.jpg`, alt: 'Vibe September 2000 Back Cover', layout: 'full-width' }
         ]
       },
       'October 2003': { title: 'Vibe Magazine* - October 2003', text: ['Content for Vibe Magazine October 2003.'], images: [] },
@@ -519,10 +519,10 @@ export const contentData = {
       'vibe nov \'99/ chris rock',
       'vibe mar \'00/ q tip',
       'vibe may \'00/ juvenile',
+      'vibe sept \'00/ dre & eminem*',
       'vibe mar \'01/ eve',
       'vibe apr \'01/ maxwell',
       'vibe jun \'01/ missy elliott',
-      'vibe sept \'01/ dre & eminem*',
       'vibe jun \'02/ master p, mystikal & luda',
       'vibe aug \'02/ nelly',
       'vibe oct \'03/ outkast',
@@ -751,17 +751,24 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
-        type: 'video',
-        src: `${R2_URL}/blog/system___1.mp4`,
-        date: '05.22.26',
-        caption: 'system'
+        type: 'image',
+        src: `${R2_URL}/blog/'98 '99 '00.png`,
+        alt: "'98 '99 '00",
+        date: '07.05.26',
+        caption: "'98  '99  '00"
       },
       {
         type: 'image',
         src: `${R2_URL}/blog/MD__lauryn hill.png`,
         alt: 'Lauryn Hill',
-        date: '05.20.26',
+        date: '05.28.26',
         caption: 'fugees'
+      },
+      {
+        type: 'video',
+        src: `${R2_URL}/blog/system___1.mp4`,
+        date: '05.22.26',
+        caption: 'system'
       },
       {
         type: 'image',
@@ -1055,7 +1062,7 @@ export const getThirdMenuItems = (menuItem, submenuItem) => {
 export const collectionScanLinks = {
   'source dec \'93/ tribe called quest*': { submenu: 'The Source Magazine*', issue: 'December 1993*' },
   'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*': { submenu: 'XXL Magazine*', issue: 'October 2004*' },
-  'vibe sept \'01/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2001*' },
+  'vibe sept \'00/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2000*' },
   'rap pages mar \'99/ method man*': { submenu: 'Rap Pages Magazine*', issue: 'March 1999*' },
   'murder dog vol 3 issue #4/ x-raided*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 3 Issue #4*' },
   'murder dog vol 11 issue #1/ lil jon*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 11 Issue #1*' },
