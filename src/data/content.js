@@ -249,23 +249,35 @@ export const contentData = {
       },
       'Volume 20 Issue #2': { title: 'Murder Dog Magazine* - Volume 20 Issue #2', text: ['Content for Murder Dog Magazine Volume 20 Issue #2.'], images: [] }
     },
-    'Blaze Magazine': {
-      thirdMenuItems: ['Fall 1998', 'January 1999', 'April 1999', 'June 1999', 'September 1999', 'October 1999', 'November 1999', 'February 2000', 'April 2000', 'June 2000'],
+    'Blaze Magazine*': {
+      thirdMenuItems: ['Fall 1998', 'January 1999*', 'April 1999', 'June 1999', 'September 1999', 'October 1999', 'November 1999', 'February 2000', 'April 2000', 'June 2000'],
       default: {
-        title: 'Blaze Magazine',
-        text: ['Select an issue to view content from Blaze Magazine.'],
+        title: 'Blaze Magazine*',
+        text: ['Select an issue to view content from Blaze Magazine*.'],
         images: []
       },
-      'Fall 1998': { title: 'Blaze Magazine - Fall 1998', text: ['Content for Blaze Magazine Fall 1998.'], images: [] },
-      'January 1999': { title: 'Blaze Magazine - January 1999', text: ['Content for Blaze Magazine January 1999.'], images: [] },
-      'April 1999': { title: 'Blaze Magazine - April 1999', text: ['Content for Blaze Magazine April 1999.'], images: [] },
-      'June 1999': { title: 'Blaze Magazine - June 1999', text: ['Content for Blaze Magazine June 1999.'], images: [] },
-      'September 1999': { title: 'Blaze Magazine - September 1999', text: ['Content for Blaze Magazine September 1999.'], images: [] },
-      'October 1999': { title: 'Blaze Magazine - October 1999', text: ['Content for Blaze Magazine October 1999.'], images: [] },
-      'November 1999': { title: 'Blaze Magazine - November 1999', text: ['Content for Blaze Magazine November 1999.'], images: [] },
-      'February 2000': { title: 'Blaze Magazine - February 2000', text: ['Content for Blaze Magazine February 2000.'], images: [] },
-      'April 2000': { title: 'Blaze Magazine - April 2000', text: ['Content for Blaze Magazine April 2000.'], images: [] },
-      'June 2000': { title: 'Blaze Magazine - June 2000', text: ['Content for Blaze Magazine June 2000.'], images: [] }
+      'Fall 1998': { title: 'Blaze Magazine* - Fall 1998', text: ['Content for Blaze Magazine Fall 1998.'], images: [] },
+      'January 1999*': {
+        title: 'Blaze Magazine* - January 1999*',
+        text: ['Content for Blaze Magazine January 1999.'],
+        images: [
+          { src: `${R2_URL}/Blaze January 1999/blaze jan 99-01.jpg`, alt: 'Blaze January 1999* Cover', layout: 'full-width' },
+          ...Array.from({ length: 186 }, (_, i) => ({
+            src: `${R2_URL}/Blaze January 1999/blaze jan 99-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Blaze January 1999* Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Blaze January 1999/blaze jan 99-188.jpg`, alt: 'Blaze January 1999* Back Cover', layout: 'full-width' }
+        ]
+      },
+      'April 1999': { title: 'Blaze Magazine* - April 1999', text: ['Content for Blaze Magazine April 1999.'], images: [] },
+      'June 1999': { title: 'Blaze Magazine* - June 1999', text: ['Content for Blaze Magazine June 1999.'], images: [] },
+      'September 1999': { title: 'Blaze Magazine* - September 1999', text: ['Content for Blaze Magazine September 1999.'], images: [] },
+      'October 1999': { title: 'Blaze Magazine* - October 1999', text: ['Content for Blaze Magazine October 1999.'], images: [] },
+      'November 1999': { title: 'Blaze Magazine* - November 1999', text: ['Content for Blaze Magazine November 1999.'], images: [] },
+      'February 2000': { title: 'Blaze Magazine* - February 2000', text: ['Content for Blaze Magazine February 2000.'], images: [] },
+      'April 2000': { title: 'Blaze Magazine* - April 2000', text: ['Content for Blaze Magazine April 2000.'], images: [] },
+      'June 2000': { title: 'Blaze Magazine* - June 2000', text: ['Content for Blaze Magazine June 2000.'], images: [] }
     },
     'Rap Pages Magazine*': {
       thirdMenuItems: ['October 1995', 'February 1998', 'August 1998', 'October 1998', 'February 1999', 'March 1999*', 'June 1999'],
@@ -548,7 +560,7 @@ export const contentData = {
       'Blaze Magazine¹⁰',
       '',
       'blaze fall \'98/ method man',
-      'blaze jan \'99/ jay z',
+      'blaze jan \'99/ jay z*',
       'blaze apr \'99/ juvenile',
       'blaze jun \'99/ nas',
       'blaze sep \'99/ mobb deep',
@@ -1067,6 +1079,7 @@ export const collectionScanLinks = {
   'murder dog vol 3 issue #4/ x-raided*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 3 Issue #4*' },
   'murder dog vol 11 issue #1/ lil jon*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 11 Issue #1*' },
   'rap sheet jan \'99/ master p*': { submenu: 'Rap Sheet Magazine*', issue: 'January 1999*' },
+  'blaze jan \'99/ jay z*': { submenu: 'Blaze Magazine*', issue: 'January 1999*' },
   'true jun \'96/ nas*': { submenu: 'True/Trace Magazine*', issue: 'June 1996*' },
   'nme 16 jun \'01/ outkast*': { submenu: 'NME Magazine*', issue: 'June 2001*' },
 }
