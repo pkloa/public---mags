@@ -4,6 +4,44 @@ import ImageGallery from '../ImageGallery/ImageGallery'
 import { usePlayer } from '../MusicPlayer/playerContext'
 import { getCollectionScanLink } from '../../data/content'
 
+function BlogImageSwap({ src, hoverSrc, alt, isMobile }) {
+  const [showHover, setShowHover] = useState(false)
+
+  const toggleHover = () => {
+    if (isMobile) {
+      setShowHover((prev) => !prev)
+    }
+  }
+
+  return (
+    <div
+      className={`${styles.blogImageSwap} ${isMobile && showHover ? styles.blogImageSwapActive : ''}`}
+      onClick={isMobile ? toggleHover : undefined}
+      onKeyDown={
+        isMobile
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                toggleHover()
+              }
+            }
+          : undefined
+      }
+      role={isMobile ? 'button' : undefined}
+      tabIndex={isMobile ? 0 : undefined}
+      aria-pressed={isMobile ? showHover : undefined}
+    >
+      <img src={src} alt={alt || ''} className={styles.blogDisplayImage} />
+      <img
+        src={hoverSrc}
+        alt=""
+        aria-hidden="true"
+        className={`${styles.blogDisplayImage} ${styles.blogDisplayImageHover}`}
+      />
+    </div>
+  )
+}
+
 function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false, isMobile = false, onCollectionScanNavigate }) {
   const scrollRef = useRef(null)
   const collectionRef = useRef(null)
@@ -259,7 +297,14 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
               <div className={styles.blogDate}>{item.date || ''}</div>
               
               <div className={styles.blogMediaWrapper}>
-                {item.type === 'image' && (
+                {item.type === 'image' && item.hoverSrc ? (
+                  <BlogImageSwap
+                    src={item.src}
+                    hoverSrc={item.hoverSrc}
+                    alt={item.alt}
+                    isMobile={isMobile}
+                  />
+                ) : item.type === 'image' && (
                   <img 
                     src={item.src} 
                     alt={item.alt || ''} 

@@ -278,6 +278,36 @@
   object-fit: contain;
 }
 
+.blogImageSwap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.blogImageSwap .blogDisplayImageHover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blogImageSwap:hover .blogDisplayImageHover {
+    opacity: 1;
+  }
+}
+
+.blogImageSwap.blogImageSwapActive .blogDisplayImageHover {
+  opacity: 1;
+}
+
+.blogImageSwap[role='button'] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .blogDisplayVideo {
   width: auto;
   height: 65vh;

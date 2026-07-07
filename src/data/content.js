@@ -524,8 +524,9 @@ export const contentData = {
       'xxl may \'10/ drake & nicki minaj',
       'xxl oct \'10/ kanye',
       '',
-      'Vibe Magazine¹⁷',
+      'Vibe Magazine¹⁸',
       '',
+      'vibe dec \'96/ snoop dogg',
       'vibe jun \'97/ toni braxton',
       'vibe mar \'99/ master p & silkk the shocker',
       'vibe nov \'99/ chris rock',
@@ -764,7 +765,8 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
-        src: `${R2_URL}/blog/'98 '99 '00.png`,
+        src: `${R2_URL}/blog/'98 '99 '00__1.png`,
+        hoverSrc: `${R2_URL}/blog/'98 '99 '00__2.png`,
         alt: "'98 '99 '00",
         date: '07.05.26',
         caption: "'98  '99  '00"
@@ -928,8 +930,8 @@ thank you again for all the love and support. more scans to come!
           { n: 2, duration: '4:41', title: 'Modal Soul', audioFile: '02 Modal Soul.mp3', artists: 'Nujabes' },
           { n: 3, duration: '3:02', title: 'DO I LOOK HIGH?', audioFile: '03 DO I LOOK HIGH.mp3', artists: 'Isaiah Rashad' },
           { n: 4, duration: '2:56', title: 'Takin It There', audioFile: '04 Takin It There.mp3', artists: 'reggie' },
-          { n: 5, duration: '1:36', title: 'The Fall', audioFile: '05 The Fall.mp3', artists: 'MIKE, SURF GANG' },
-          { n: 6, duration: '3:21', title: 'AOK', audioFile: '06 AOK.mp3', artists: 'Earl Sweatshirt, SURF GANG' },
+          { n: 5, duration: '1:32', title: 'Kirkland', audioFile: '05 Kirkland.mp3', artists: 'MIKE, Earl Sweatshirt, SURF GANG' },
+          { n: 6, duration: '2:29', title: 'exhaust', audioFile: '06 exhaust.mp3', artists: 'Earl Sweatshirt' },
           { n: 7, duration: '3:49', title: 'Perfecto Miserable', audioFile: '07 Perfecto Miserable.mp3', artists: 'King Krule' },
           { n: 8, duration: '3:30', title: 'In Love', audioFile: '08 In Love.mp3', artists: 'Alex G' },
           { n: 9, duration: '3:28', title: 'Orange County', audioFile: '09 Orange County.mp3', artists: 'Gorillaz, Bizarrap, Kara Jackson, Anoushka Shankar' },
