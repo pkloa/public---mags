@@ -458,8 +458,9 @@ export const contentData = {
   'collection': {
     title: 'Collection',
     text: [
-      'The Source Magazine³⁰',
+      'The Source Magazine³¹',
       '',
+      'source aug \'93/ biz markie',
       'source dec \'93/ tribe called quest*',
       'source jan \'94/ das efx',
       'source feb \'94/ ice cube',
@@ -558,10 +559,11 @@ export const contentData = {
       'rap pages jun \'99/ dmx',
       'rap pages dec \'99/ master p',
       '',
-      'Blaze Magazine¹⁰',
+      'Blaze Magazine¹¹',
       '',
       'blaze fall \'98/ method man',
       'blaze jan \'99/ jay z*',
+      'blaze mar \'99/ redman',
       'blaze apr \'99/ juvenile',
       'blaze jun \'99/ nas',
       'blaze sep \'99/ mobb deep',
