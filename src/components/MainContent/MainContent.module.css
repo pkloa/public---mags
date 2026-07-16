@@ -333,6 +333,7 @@
   flex-direction: column;
   gap: 2px;
   text-align: left;
+  white-space: pre;
 }
 
 .blogCaptionCenter {

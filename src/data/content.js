@@ -767,6 +767,20 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
+        src: `${R2_URL}/blog/snoop ya feel me.png`,
+        alt: 'Snoop Dawgs',
+        date: '07.15.26',
+        caption: 'snoop dawgs     —    "source dec \'96"     "hhc nov \'93"'
+      },
+      {
+        type: 'image',
+        src: `${R2_URL}/blog/mr serv-on__2.png`,
+        alt: 'Mr. Serv-On',
+        date: '07.14.26',
+        caption: 'mr. serv-on'
+      },
+      {
+        type: 'image',
         src: `${R2_URL}/blog/'98 '99 '00__1.png`,
         hoverSrc: `${R2_URL}/blog/'98 '99 '00__2.png`,
         alt: "'98 '99 '00",
@@ -785,13 +799,6 @@ export const contentData = {
         src: `${R2_URL}/blog/system___1.mp4`,
         date: '05.22.26',
         caption: 'system'
-      },
-      {
-        type: 'image',
-        src: `${R2_URL}/blog/mf doom.png`,
-        alt: 'MF Doom',
-        date: '05.10.26',
-        caption: 'mm..food'
       },
       {
         type: 'image',
