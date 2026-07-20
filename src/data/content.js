@@ -767,6 +767,13 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
+        src: `${R2_URL}/blog/magazine rack.png`,
+        alt: 'Magazine rack',
+        date: '07.18.26',
+        caption: 'magazine rack'
+      },
+      {
+        type: 'image',
         src: `${R2_URL}/blog/snoop ya feel me.png`,
         alt: 'Snoop Dawgs',
         date: '07.15.26',
