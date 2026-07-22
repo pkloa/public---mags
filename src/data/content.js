@@ -766,6 +766,12 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'video',
+        src: `${R2_URL}/blog/bob marley___bad man.mp4`,
+        date: '07.22.26',
+        caption: 'bad man'
+      },
+      {
         type: 'image',
         src: `${R2_URL}/blog/magazine rack.png`,
         alt: 'Magazine rack',
