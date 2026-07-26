@@ -458,8 +458,9 @@ export const contentData = {
   'collection': {
     title: 'Collection',
     text: [
-      'The Source Magazine³¹',
+      'The Source Magazine³²',
       '',
+      'source jun \'93/ onyx',
       'source aug \'93/ biz markie',
       'source dec \'93/ tribe called quest*',
       'source jan \'94/ das efx',
