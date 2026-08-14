@@ -404,7 +404,13 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
           </div>
         </>
       )}
-      <ImageGallery images={content.images} randomLayout={false} isCollection={isCollection} spreadOnly={content.spreadOnly} />
+      <ImageGallery
+        key={content.images?.[0]?.src ?? content.title ?? 'gallery'}
+        images={content.images}
+        randomLayout={false}
+        isCollection={isCollection}
+        spreadOnly={content.spreadOnly}
+      />
     </div>
   )
 }

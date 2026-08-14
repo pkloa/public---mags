@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './App.module.css'
 import Navigation from './components/Navigation/Navigation'
 import ThirdMenu from './components/ThirdMenu/ThirdMenu'
@@ -63,6 +63,7 @@ function App() {
   const [showAbout, setShowAbout] = useState(false)
   const [showCopyrightPage, setShowCopyrightPage] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const mainRef = useRef(null)
 
   // Detect mobile
   useEffect(() => {
@@ -129,9 +130,18 @@ function App() {
     setSelectedThirdMenu(null) // Reset third menu when submenu changes
   }
 
+  const scrollMainToTop = () => {
+    const main = mainRef.current
+    if (main) main.scrollTop = 0
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }
+
   const handleThirdMenuSelect = (item) => {
     setShowCopyrightPage(false)
     setSelectedThirdMenu(item)
+    scrollMainToTop()
   }
 
   const handleCollectionScanNavigate = ({ submenu, thirdMenu }) => {
@@ -140,15 +150,9 @@ function App() {
     setSelectedMenu('magazines')
     setSelectedSubmenu(submenu)
     setSelectedThirdMenu(thirdMenu)
-
+    scrollMainToTop()
     if (isMobile) {
-      const scrollToTop = () => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
-      }
-      scrollToTop()
-      requestAnimationFrame(scrollToTop)
+      requestAnimationFrame(scrollMainToTop)
     }
   }
 
@@ -182,6 +186,7 @@ function App() {
         onCopyrightOpen={handleCopyrightOpen}
       />
       <main 
+        ref={mainRef}
         className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.mainPlaylist : ''}`}
         style={!isMobile ? { marginLeft: navHasSubmenuColumn ? '600px' : '300px' } : {}}
       >
