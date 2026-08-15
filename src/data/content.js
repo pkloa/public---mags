@@ -800,10 +800,40 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
+        type: 'image',
+        src: `${R2_URL}/blog/public---mags 2 years.com.png`,
+        alt: 'Public Mags 2 years',
+        date: '08.14.26',
+        sideText: `two years of public---mags
+
+what a year it’s been for p---m! launched public---mags.com in january and have uploaded a full magazine every month since then. and collected a little over 100 mags and shared over 200 scans. 
+
+public---mags means the world to me and i won’t be stopping anytime soon. i am forever grateful for all the love, thank you!
+
+more scans to come, always!
+
+-e`
+      },
+      {
         type: 'video',
         src: `${R2_URL}/blog/bob marley___bad man.mp4`,
-        date: '07.22.26',
+        date: '08.10.26',
         caption: 'bad man'
+      },
+      {
+        type: 'video',
+        src: `${R2_URL}/blog/mag___rack.mp4`,
+        date: '08.08.26',
+        sideText: `mag___rack
+
+had an idea for a magazine rack on my wall to display some mags for a while now. put up some of my favourite covers. thank you k!`
+      },
+      {
+        type: 'image',
+        src: `${R2_URL}/blog/mag rack draft.png`,
+        alt: 'Mag rack draft',
+        date: '08.07.26',
+        caption: 'mag___rack draft'
       },
       {
         type: 'image',
