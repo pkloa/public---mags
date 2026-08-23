@@ -801,6 +801,13 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
+        src: `${R2_URL}/blog/hot boys___murder dog.png`,
+        alt: 'Hot Boys',
+        date: '08.22.26',
+        caption: 'hot boys     —    "murder dog vol 6  #4"'
+      },
+      {
+        type: 'image',
         src: `${R2_URL}/blog/public---mags 2 years.com.png`,
         alt: 'Public Mags 2 years',
         date: '08.14.26',
