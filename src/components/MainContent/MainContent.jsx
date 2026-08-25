@@ -312,6 +312,14 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
                   />
                 )}
                 
+                {item.sideSrc && (
+                  <img
+                    src={item.sideSrc}
+                    alt={item.sideAlt || ''}
+                    className={styles.blogDisplayImage}
+                  />
+                )}
+
                 {item.type === 'video' && (
                   <video 
                     className={styles.blogDisplayVideo}

@@ -831,6 +831,8 @@ more scans to come, always!
       {
         type: 'video',
         src: `${R2_URL}/blog/mag___rack.mp4`,
+        sideSrc: `${R2_URL}/blog/mag___rack-2.JPG`,
+        sideAlt: 'Mag rack',
         sideText: `mag___rack
 
 had an idea for a magazine rack on my wall to display some mags for a while now. put up some of my favourite covers. thank you k!`
