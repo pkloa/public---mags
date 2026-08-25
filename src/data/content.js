@@ -801,6 +801,13 @@ export const contentData = {
     blogItems: [
       {
         type: 'image',
+        src: `${R2_URL}/blog/aaliyah.png`,
+        alt: 'Aaliyah',
+        date: '08.25.26',
+        caption: 'aaliyah'
+      },
+      {
+        type: 'image',
         src: `${R2_URL}/blog/hot boys___murder dog.png`,
         alt: 'Hot Boys',
         date: '08.22.26',
