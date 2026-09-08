@@ -792,7 +792,12 @@ export const contentData = {
       '',
       'Amoeba Magazine¹',
       '',
-      'amoeba jan \'99/ tony leung'
+      'amoeba jan \'99/ tony leung',
+      '',
+      'Books²',
+      '',
+      'Mouth Full Of Golds/ Lyle Lindgren & Eddie Plein',
+      'Dirty South: Southern Rap Record & Artist Logo Compilation/ Den Publishing'
     ]
   },
   'blog': {

@@ -193,7 +193,8 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
     return content.text
       .filter((line) => line !== '')
       .map((line) => {
-        const isTitle = line.toLowerCase().includes('magazine')
+        const lower = line.toLowerCase()
+        const isTitle = lower.includes('magazine') || lower.startsWith('books')
         const scanLink = getCollectionScanLink(line)
         const lineHeight = (Math.random() * 8 + 14).toFixed(2) + 'px'
         const chars = line.split('').map((char) => ({
