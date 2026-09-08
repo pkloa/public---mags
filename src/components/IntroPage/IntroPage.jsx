@@ -45,4 +45,3 @@ function IntroPage({ onEnter, fading }) {
 }
 
 export default IntroPage
-
