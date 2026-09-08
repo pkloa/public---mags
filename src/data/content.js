@@ -18,7 +18,7 @@ export const contentData = {
   'home': {},
   'magazines': {
     'The Source Magazine*': {
-      thirdMenuItems: ['December 1993*', 'September 1998', 'October 1999', 'November 1999', 'June 2000', 'January 2001', 'April 2001', 'April 2003', 'June 2003', 'April 2004'],
+      thirdMenuItems: ['December 1993*', 'September 1998', 'October 1999*', 'November 1999', 'June 2000', 'January 2001', 'April 2001', 'April 2003', 'June 2003', 'April 2004'],
       default: {
         title: 'The Source Magazine*',
         text: [
@@ -51,12 +51,20 @@ export const contentData = {
         ],
         images: []
       },
-      'October 1999': {
-        title: 'The Source Magazine* - October 1999',
+      'October 1999*': {
+        title: 'The Source Magazine* - October 1999*',
         text: [
           'Content for The Source Magazine October 1999.'
         ],
-        images: []
+        images: [
+          { src: `${R2_URL}/Source October 1999/source oct 99-01.jpg`, alt: 'The Source October 1999 Cover', layout: 'full-width' },
+          ...Array.from({ length: 266 }, (_, i) => ({
+            src: `${R2_URL}/Source October 1999/source oct 99-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `The Source October 1999 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Source October 1999/source oct 99-268.jpg`, alt: 'The Source October 1999 Back Cover', layout: 'full-width' }
+        ]
       },
       'November 1999': {
         title: 'The Source Magazine* - November 1999',
@@ -486,7 +494,7 @@ export const contentData = {
       'source oct \'98/ tribe called quest',
       'source apr \'99/ c murder & silkk the shocker',
       'source jun \'99/ snoop dogg',
-      'source oct \'99/ hot boys',
+      'source oct \'99/ hot boys*',
       'source nov \'99/ q tip',
       'source dec \'99/ lil kim',
       'source jan \'00/ jay z',
@@ -1177,6 +1185,7 @@ export const getThirdMenuItems = (menuItem, submenuItem) => {
 /** Collection lines ending in * → magazine scans navigation targets */
 export const collectionScanLinks = {
   'source dec \'93/ tribe called quest*': { submenu: 'The Source Magazine*', issue: 'December 1993*' },
+  'source oct \'99/ hot boys*': { submenu: 'The Source Magazine*', issue: 'October 1999*' },
   'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*': { submenu: 'XXL Magazine*', issue: 'October 2004*' },
   'vibe sept \'00/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2000*' },
   'vibe jun \'01/ missy elliott*': { submenu: 'Vibe Magazine*', issue: 'June 2001*' },
