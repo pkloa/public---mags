@@ -837,12 +837,6 @@ export const contentData = {
     videoCaption: null,
     blogItems: [
       {
-        type: 'video',
-        src: `${R2_URL}/blog/high valley books.mp4`,
-        date: '09.10.26',
-        caption: 'high valley books'
-      },
-      {
         type: 'image',
         src: `${R2_URL}/blog/forbidden__love.png`,
         alt: 'Forbidden love',
@@ -892,7 +886,10 @@ more scans to come, always!
         sideAlt: 'Mag rack',
         sideText: `mag___rack
 
-had an idea for a magazine rack on my wall to display some mags for a while now. put up some of my favourite covers. thank you k!`
+had an idea for a magazine rack on my wall to display some mags for a while now. put up some of my favourite covers. thank you k!`,
+        sideTextLinks: [
+          { text: 'k', src: `${R2_URL}/blog/k.png`, alt: 'k' }
+        ]
       },
       {
         type: 'image',

@@ -42,11 +42,65 @@ function BlogImageSwap({ src, hoverSrc, alt, isMobile }) {
   )
 }
 
-function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false, isMobile = false, onCollectionScanNavigate }) {
+function renderSideTextWithLinks(paragraph, links, onOpen) {
+  if (!links?.length) return paragraph
+
+  const pattern = new RegExp(
+    `\\b(${links.map((link) => link.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`,
+    'g'
+  )
+  const parts = paragraph.split(pattern)
+
+  return parts.map((part, index) => {
+    const link = links.find((item) => item.text === part)
+    if (!link) return part
+
+    return (
+      <button
+        key={`${link.text}-${index}`}
+        type="button"
+        className={styles.blogSideTextLink}
+        onClick={(e) => {
+          e.stopPropagation()
+          onOpen({ src: link.src, alt: link.alt || link.text })
+        }}
+      >
+        {link.text}
+      </button>
+    )
+  })
+}
+
+function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false, isMobile = false, blogResetKey = 0, onBlogPreviewChange, onCollectionScanNavigate }) {
   const scrollRef = useRef(null)
   const collectionRef = useRef(null)
   const [hoveredCover, setHoveredCover] = useState(null)
+  const [blogPreview, setBlogPreview] = useState(null)
   const { playingN, isPlaying, setTracks, playTrack } = usePlayer()
+
+  useEffect(() => {
+    onBlogPreviewChange?.(!!blogPreview)
+  }, [blogPreview, onBlogPreviewChange])
+
+  useEffect(() => {
+    if (!blogPreview) return
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setBlogPreview(null)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [blogPreview])
+
+  useEffect(() => {
+    if (!isBlog) {
+      setBlogPreview(null)
+      return
+    }
+    setBlogPreview(null)
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = 0
+    }
+  }, [blogResetKey, isBlog])
 
   // Convert vertical scroll to horizontal scroll for blog
   useEffect(() => {
@@ -139,12 +193,20 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
     )
 
     const items = document.querySelectorAll(`.${styles.blogItemDisplay}`)
-    items.forEach((item) => observer.observe(item))
+    items.forEach((item) => item.classList.remove(styles.visible))
+
+    const observeFrame = requestAnimationFrame(() => {
+      items.forEach((item) => {
+        void item.offsetWidth
+        observer.observe(item)
+      })
+    })
 
     return () => {
-      items.forEach((item) => observer.unobserve(item))
+      cancelAnimationFrame(observeFrame)
+      observer.disconnect()
     }
-  }, [isBlog])
+  }, [isBlog, blogResetKey])
 
   // Combine all blog items into a single array
   const allBlogItems = useMemo(() => {
@@ -347,7 +409,9 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
                 {item.sideText && (
                   <div className={styles.blogSideText}>
                     {item.sideText.split('\n\n').map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
+                      <p key={i}>
+                        {renderSideTextWithLinks(paragraph, item.sideTextLinks, setBlogPreview)}
+                      </p>
                     ))}
                   </div>
                 )}
@@ -361,6 +425,28 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
             </div>
           ))}
         </div>
+        {blogPreview && (
+          <div
+            className={styles.blogPreviewOverlay}
+            role="dialog"
+            aria-modal="true"
+            aria-label={blogPreview.alt || 'Image preview'}
+          >
+            <button
+              type="button"
+              className={styles.blogPreviewClose}
+              onClick={() => setBlogPreview(null)}
+              aria-label="Close preview"
+            >
+              ×
+            </button>
+            <img
+              src={blogPreview.src}
+              alt={blogPreview.alt || ''}
+              className={styles.blogPreviewImage}
+            />
+          </div>
+        )}
       </div>
     )
   }

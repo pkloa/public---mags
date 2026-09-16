@@ -63,6 +63,8 @@ function App() {
   const [showAbout, setShowAbout] = useState(false)
   const [showCopyrightPage, setShowCopyrightPage] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [blogResetKey, setBlogResetKey] = useState(0)
+  const [blogPreviewOpen, setBlogPreviewOpen] = useState(false)
   const mainRef = useRef(null)
 
   // Detect mobile
@@ -103,6 +105,9 @@ function App() {
       // Only close about when selecting blog
       if (showAbout && menu === 'blog') {
         setShowAbout(false)
+      }
+      if (menu === 'blog') {
+        setBlogResetKey((key) => key + 1)
       }
     }
   }
@@ -175,20 +180,22 @@ function App() {
         <IntroPage onEnter={handleEnter} fading={introFading} />
       )}
       <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.appPlaylist : ''}`}>
-      <Navigation 
-        selectedMenu={selectedMenu}
-        selectedSubmenu={selectedSubmenu}
-        showAbout={showAbout}
-        copyrightPage={showCopyrightPage}
-        onMenuSelect={handleMenuSelect}
-        onSubmenuSelect={handleSubmenuSelect}
-        onAboutToggle={handleAboutToggle}
-        onCopyrightOpen={handleCopyrightOpen}
-      />
+      {!blogPreviewOpen && (
+        <Navigation 
+          selectedMenu={selectedMenu}
+          selectedSubmenu={selectedSubmenu}
+          showAbout={showAbout}
+          copyrightPage={showCopyrightPage}
+          onMenuSelect={handleMenuSelect}
+          onSubmenuSelect={handleSubmenuSelect}
+          onAboutToggle={handleAboutToggle}
+          onCopyrightOpen={handleCopyrightOpen}
+        />
+      )}
       <main 
         ref={mainRef}
         className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.mainPlaylist : ''}`}
-        style={!isMobile ? { marginLeft: navHasSubmenuColumn ? '600px' : '300px' } : {}}
+        style={!isMobile && !blogPreviewOpen ? { marginLeft: navHasSubmenuColumn ? '600px' : '300px' } : {}}
       >
         {!showCopyrightPage && !(selectedMenu === 'menu1' && selectedSubmenu === 'playlist') && (
           <ThirdMenu 
@@ -203,10 +210,12 @@ function App() {
           isCollection={selectedMenu === 'collection'} 
           copyrightPage={showCopyrightPage}
           isMobile={isMobile}
+          blogResetKey={blogResetKey}
+          onBlogPreviewChange={setBlogPreviewOpen}
           onCollectionScanNavigate={handleCollectionScanNavigate}
         />
       </main>
-      <ShippingLabel />
+      {!blogPreviewOpen && <ShippingLabel />}
       </div>
       <GlobalMiniplayer />
     </PlayerProvider>
