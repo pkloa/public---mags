@@ -75,17 +75,24 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog' && selectedMenu !== 'collection'
+  const thirdMenuItems = selectedMenu && selectedSubmenu && selectedMenu !== 'blog' && selectedMenu !== 'collection' && selectedMenu !== 'shop' && !(selectedMenu === 'menu1')
     ? getThirdMenuItems(selectedMenu, selectedSubmenu)
     : []
 
-  // Show content for blog and collection directly, or for magazines when issue is selected
+  const isBlog = selectedMenu === 'menu1' && selectedSubmenu === 'blog'
+  const isPlaylist = selectedMenu === 'menu1' && selectedSubmenu === 'playlist'
+  const isShop = selectedMenu === 'shop'
+  const isCollection = selectedMenu === 'collection'
+
+  // Show content for blog/playlist (secondary menu), collection, shop, or magazines when issue is selected
   // About content is shown in navigation, not main content
-  const content = selectedMenu === 'blog'
+  const content = isBlog
     ? getContent('blog')
-    : selectedMenu === 'collection'
+    : isCollection
     ? getContent('collection')
-    : selectedMenu === 'menu1' && selectedSubmenu === 'playlist'
+    : isShop
+    ? getContent('shop')
+    : isPlaylist
     ? getContent('menu1', 'playlist', null)
     : selectedMenu && selectedSubmenu && selectedThirdMenu
     ? getContent(selectedMenu, selectedSubmenu, selectedThirdMenu)
@@ -97,17 +104,13 @@ function App() {
       setSelectedMenu(null)
       setSelectedSubmenu(null)
       setSelectedThirdMenu(null)
-      setShowAbout(false) // Also close about
+      setShowAbout(false)
     } else if (menu !== 'about') {
       setSelectedMenu(menu)
       setSelectedSubmenu(null)
       setSelectedThirdMenu(null)
-      // Only close about when selecting blog
-      if (showAbout && menu === 'blog') {
+      if (showAbout) {
         setShowAbout(false)
-      }
-      if (menu === 'blog') {
-        setBlogResetKey((key) => key + 1)
       }
     }
   }
@@ -123,16 +126,19 @@ function App() {
     const openingAbout = !showAbout
     setShowCopyrightPage(false)
     setShowAbout(!showAbout)
-    // Close blog when opening about
-    if (openingAbout && selectedMenu === 'blog') {
+    if (openingAbout && (isBlog || isPlaylist || selectedMenu === 'menu1')) {
       setSelectedMenu(null)
+      setSelectedSubmenu(null)
     }
   }
 
   const handleSubmenuSelect = (submenu) => {
     setShowCopyrightPage(false)
     setSelectedSubmenu(submenu)
-    setSelectedThirdMenu(null) // Reset third menu when submenu changes
+    setSelectedThirdMenu(null)
+    if (submenu === 'blog') {
+      setBlogResetKey((key) => key + 1)
+    }
   }
 
   const scrollMainToTop = () => {
@@ -179,7 +185,7 @@ function App() {
       {showIntro && (
         <IntroPage onEnter={handleEnter} fading={introFading} />
       )}
-      <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.appPlaylist : ''}`}>
+      <div className={`${styles.app} ${showIntro ? styles.hidden : styles.fadeIn} ${isPlaylist ? styles.appPlaylist : ''}`}>
       {!blogPreviewOpen && (
         <Navigation 
           selectedMenu={selectedMenu}
@@ -194,10 +200,10 @@ function App() {
       )}
       <main 
         ref={mainRef}
-        className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''} ${selectedMenu === 'menu1' && selectedSubmenu === 'playlist' ? styles.mainPlaylist : ''}`}
+        className={`${styles.main} ${showCopyrightPage ? styles.mainCopyright : ''} ${isPlaylist ? styles.mainPlaylist : ''}`}
         style={!isMobile && !blogPreviewOpen ? { marginLeft: navHasSubmenuColumn ? '600px' : '300px' } : {}}
       >
-        {!showCopyrightPage && !(selectedMenu === 'menu1' && selectedSubmenu === 'playlist') && (
+        {!showCopyrightPage && !isPlaylist && (
           <ThirdMenu 
             items={thirdMenuItems}
             selectedItem={selectedThirdMenu}
@@ -206,8 +212,9 @@ function App() {
         )}
         <MainContent 
           content={content} 
-          isBlog={selectedMenu === 'blog'} 
-          isCollection={selectedMenu === 'collection'} 
+          isBlog={isBlog} 
+          isCollection={isCollection}
+          isShop={isShop}
           copyrightPage={showCopyrightPage}
           isMobile={isMobile}
           blogResetKey={blogResetKey}

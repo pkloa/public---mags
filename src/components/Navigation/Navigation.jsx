@@ -6,11 +6,11 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, copyrightPage = 
     { key: 'home', label: 'public---mags' },
     { key: 'magazines', label: 'magazine scans' },
     { key: 'collection', label: 'collection' },
-    { key: 'blog', label: 'blog' },
+    { key: 'shop', label: 'for sale' },
     { key: 'about', label: 'about' }
   ]
   const [homeItem, ...restMenuItems] = menuItems
-  const submenuItems = selectedMenu && selectedMenu !== 'home' && selectedMenu !== 'blog' && selectedMenu !== 'about' ? getSubmenuItems(selectedMenu) : []
+  const submenuItems = selectedMenu && selectedMenu !== 'home' && selectedMenu !== 'about' && selectedMenu !== 'shop' && selectedMenu !== 'collection' && selectedMenu !== 'menu1' ? getSubmenuItems(selectedMenu) : []
 
   const handleMenuClick = (menuItem) => {
     if (menuItem === 'about') {
@@ -54,7 +54,7 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, copyrightPage = 
               href="#menu1"
               className={styles.menuTriangleLink}
               onClick={handleTriangleClick}
-              aria-label={selectedMenu === 'menu1' ? 'Close playlist menu' : 'Open playlist menu'}
+              aria-label={selectedMenu === 'menu1' ? 'Close secondary menu' : 'Open secondary menu'}
             >
               <span
                 className={`${styles.menuTriangle} ${selectedMenu === 'menu1' ? styles.menuTriangleBackward : styles.menuTriangleForward}`}
@@ -64,12 +64,20 @@ function Navigation({ selectedMenu, selectedSubmenu, showAbout, copyrightPage = 
           </div>
         </div>
         {isMenu1Nav ? (
-          <div
-            className={`${styles.menuItem} ${selectedSubmenu === 'playlist' ? styles.active : ''}`}
-            onClick={() => onSubmenuSelect('playlist')}
-          >
-            playlist
-          </div>
+          <>
+            <div
+              className={`${styles.menuItem} ${selectedSubmenu === 'blog' ? styles.active : ''}`}
+              onClick={() => onSubmenuSelect('blog')}
+            >
+              blog
+            </div>
+            <div
+              className={`${styles.menuItem} ${selectedSubmenu === 'playlist' ? styles.active : ''}`}
+              onClick={() => onSubmenuSelect('playlist')}
+            >
+              playlist
+            </div>
+          </>
         ) : (
           restMenuItems.map((item) => (
             <div key={item.key}>

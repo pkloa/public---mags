@@ -71,7 +71,7 @@ function renderSideTextWithLinks(paragraph, links, onOpen) {
   })
 }
 
-function MainContent({ content, isBlog = false, isCollection = false, copyrightPage = false, isMobile = false, blogResetKey = 0, onBlogPreviewChange, onCollectionScanNavigate }) {
+function MainContent({ content, isBlog = false, isCollection = false, isShop = false, copyrightPage = false, isMobile = false, blogResetKey = 0, onBlogPreviewChange, onCollectionScanNavigate }) {
   const scrollRef = useRef(null)
   const collectionRef = useRef(null)
   const [hoveredCover, setHoveredCover] = useState(null)
@@ -447,6 +447,49 @@ function MainContent({ content, isBlog = false, isCollection = false, copyrightP
             />
           </div>
         )}
+      </div>
+    )
+  }
+
+  // Shop / for sale
+  if (isShop && content) {
+    const shopItems = Array.isArray(content.items) ? content.items : []
+    return (
+      <div className={styles.mainContent}>
+        <div className={styles.shopPage}>
+          {content.text?.map((paragraph, i) => (
+            <p key={i} className={styles.shopIntro}>{paragraph}</p>
+          ))}
+          {shopItems.length === 0 ? (
+            <p className={styles.shopEmpty}>coming soon...</p>
+          ) : (
+            <ul className={styles.shopList}>
+              {shopItems.map((item) => (
+                <li key={item.id || item.title} className={styles.shopItem}>
+                  {item.cover && (
+                    <img src={item.cover} alt={item.title || ''} className={styles.shopCover} />
+                  )}
+                  <div className={styles.shopItemMeta}>
+                    <div className={styles.shopItemTitle}>{item.title}</div>
+                    {item.price && <div className={styles.shopItemPrice}>{item.price}</div>}
+                    {item.soldOut ? (
+                      <span className={styles.shopSoldOut}>sold out</span>
+                    ) : item.buyUrl ? (
+                      <a
+                        href={item.buyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.shopBuyLink}
+                      >
+                        buy
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     )
   }

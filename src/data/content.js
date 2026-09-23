@@ -824,6 +824,11 @@ export const contentData = {
       'Dirty South: Southern Rap Record & Artist Logo Compilation/ Den Publishing'
     ]
   },
+  'shop': {
+    title: 'for sale',
+    text: [],
+    items: []
+  },
   'blog': {
     title: 'Blog',
     text: [
@@ -1181,8 +1186,8 @@ thank you again for all the love and support. more scans to come!
 // Only returns content when an issue (thirdMenuItem) is selected
 // For blog and about, returns content directly without submenu/third menu
 export const getContent = (menuItem, submenuItem, thirdMenuItem = null) => {
-  // Handle blog, about, and collection - return content directly
-  if ((menuItem === 'blog' || menuItem === 'about' || menuItem === 'collection') && contentData[menuItem]) {
+  // Handle blog, about, collection, and shop - return content directly
+  if ((menuItem === 'blog' || menuItem === 'about' || menuItem === 'collection' || menuItem === 'shop') && contentData[menuItem]) {
     return contentData[menuItem]
   }
 
@@ -1193,6 +1198,11 @@ export const getContent = (menuItem, submenuItem, thirdMenuItem = null) => {
       return sub[thirdMenuItem]
     }
     return sub.default ?? null
+  }
+
+  // menu1: blog is top-level content keyed as 'blog'
+  if (menuItem === 'menu1' && submenuItem === 'blog' && contentData.blog) {
+    return contentData.blog
   }
 
   // Handle magazines - only return content when an issue (thirdMenuItem) is selected
