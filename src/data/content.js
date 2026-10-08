@@ -117,13 +117,26 @@ export const contentData = {
       }
     },
     'XXL Magazine*': {
-      thirdMenuItems: ['June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'September 2003', 'October 2004*', 'November 2005', 'October 2007'],
+      thirdMenuItems: ['April 1998*', 'June 1999', 'February 2000', 'December 2000', 'January 2001', 'September 2001', 'September 2003', 'October 2004*', 'November 2005'],
       default: {
         title: 'XXL Magazine*',
         text: [
           'Select an issue to view content from XXL Magazine.'
         ],
         images: []
+      },
+      'April 1998*': {
+        title: 'XXL Magazine* - April 1998*',
+        text: ['Content for XXL Magazine April 1998.'],
+        images: [
+          { src: `${R2_URL}/XXL April 1998/xxl apr 98-01.jpg`, alt: 'XXL April 1998 Cover', layout: 'full-width' },
+          ...Array.from({ length: 196 }, (_, i) => ({
+            src: `${R2_URL}/XXL April 1998/xxl apr 98-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `XXL April 1998 Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/XXL April 1998/xxl apr 98-198.jpg`, alt: 'XXL April 1998 Back Cover', layout: 'full-width' }
+        ]
       },
       'June 1999': {
         title: 'XXL Magazine* - June 1999',
@@ -171,11 +184,6 @@ export const contentData = {
       'November 2005': {
         title: 'XXL Magazine - November 2005',
         text: ['Content for XXL Magazine November 2005.'],
-        images: []
-      },
-      'October 2007': {
-        title: 'XXL Magazine - October 2007',
-        text: ['Content for XXL Magazine October 2007.'],
         images: []
       }
     },
@@ -519,8 +527,8 @@ export const contentData = {
       '',
       'XXL Magazine³⁰',
       '',
-      'xxl \'98/ goodie mob',
-      'xxl \'98/ c murder',
+      'xxl mar \'98/ goodie mob',
+      'xxl apr \'98/ c murder*',
       'xxl apr \'99/ cash money',
       'xxl jun \'99/ ja rule, jay z & dmx',
       'xxl feb \'00/ dmx',
@@ -893,7 +901,7 @@ more scans to come, always!
 
 had an idea for a magazine rack on my wall to display some mags for a while now. put up some of my favourite covers. thank you k!`,
         sideTextLinks: [
-          { text: 'k', src: `${R2_URL}/blog/k.png`, alt: 'k' }
+          { text: 'k', src: `${R2_URL}/blog/k..png`, alt: 'k' }
         ]
       },
       {
@@ -1235,6 +1243,7 @@ export const getThirdMenuItems = (menuItem, submenuItem) => {
 export const collectionScanLinks = {
   'source dec \'93/ tribe called quest*': { submenu: 'The Source Magazine*', issue: 'December 1993*' },
   'source oct \'99/ hot boys*': { submenu: 'The Source Magazine*', issue: 'October 1999*' },
+  'xxl apr \'98/ c murder*': { submenu: 'XXL Magazine*', issue: 'April 1998*' },
   'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*': { submenu: 'XXL Magazine*', issue: 'October 2004*' },
   'vibe sept \'00/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2000*' },
   'vibe jun \'01/ missy elliott*': { submenu: 'Vibe Magazine*', issue: 'June 2001*' },
