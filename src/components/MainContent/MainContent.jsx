@@ -74,9 +74,26 @@ function renderSideTextWithLinks(paragraph, links, onOpen) {
 function MainContent({ content, isBlog = false, isCollection = false, isShop = false, copyrightPage = false, isMobile = false, blogResetKey = 0, onBlogPreviewChange, onCollectionScanNavigate }) {
   const scrollRef = useRef(null)
   const collectionRef = useRef(null)
+  const collectionScanEls = useRef(new WeakMap())
   const [hoveredCover, setHoveredCover] = useState(null)
+  const [activeScanLink, setActiveScanLink] = useState(null)
   const [blogPreview, setBlogPreview] = useState(null)
   const { playingN, isPlaying, setTracks, playTrack } = usePlayer()
+
+  const showCoverPreview = (scanLink) => {
+    if (scanLink?.cover) {
+      setHoveredCover(scanLink.cover)
+      setActiveScanLink(scanLink)
+    } else {
+      setHoveredCover(null)
+      setActiveScanLink(null)
+    }
+  }
+
+  const clearCoverPreview = () => {
+    setHoveredCover(null)
+    setActiveScanLink(null)
+  }
 
   useEffect(() => {
     onBlogPreviewChange?.(!!blogPreview)
@@ -121,7 +138,7 @@ function MainContent({ content, isBlog = false, isCollection = false, isShop = f
   // Convert vertical scroll to horizontal scroll for collection (desktop only)
   useEffect(() => {
     if (!isCollection || isMobile) {
-      setHoveredCover(null)
+      clearCoverPreview()
       return
     }
 
@@ -141,7 +158,6 @@ function MainContent({ content, isBlog = false, isCollection = false, isShop = f
     el.addEventListener('wheel', handleWheel, { passive: false })
     return () => el.removeEventListener('wheel', handleWheel)
   }, [isCollection, isMobile])
-
 
   // Mute videos when scrolled out of view
   useEffect(() => {
@@ -266,6 +282,81 @@ function MainContent({ content, isBlog = false, isCollection = false, isShop = f
         return { line, isTitle, scanLink, lineHeight, chars }
       })
   }, [isCollection, content?.text])
+
+  // Mobile: show starred cover while its line is in the focus band; hide when scrolled past.
+  // Wait until the user scrolls before showing any cover (avoids top-of-page flash).
+  useEffect(() => {
+    if (!isCollection || !isMobile || !collectionRef.current) {
+      return
+    }
+
+    const buttons = collectionRef.current.querySelectorAll(`.${styles.collectionIssueBtn}`)
+    if (!buttons.length) return
+
+    const visible = new Map()
+    let hasScrolled = false
+    const startY = window.scrollY
+    const targetY = () => window.innerHeight * 0.35
+
+    const pickActive = () => {
+      if (!hasScrolled) {
+        clearCoverPreview()
+        return
+      }
+      if (visible.size === 0) {
+        clearCoverPreview()
+        return
+      }
+      let bestEl = null
+      let bestDist = Infinity
+      visible.forEach((top, el) => {
+        const dist = Math.abs(top - targetY())
+        if (dist < bestDist) {
+          bestDist = dist
+          bestEl = el
+        }
+      })
+      const scanLink = bestEl ? collectionScanEls.current.get(bestEl) : null
+      showCoverPreview(scanLink)
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visible.set(entry.target, entry.boundingClientRect.top)
+          } else {
+            visible.delete(entry.target)
+          }
+        })
+        pickActive()
+      },
+      {
+        root: null,
+        rootMargin: '-28% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    )
+
+    const onScroll = () => {
+      if (!hasScrolled && Math.abs(window.scrollY - startY) > 2) {
+        hasScrolled = true
+      }
+      visible.forEach((_, el) => {
+        visible.set(el, el.getBoundingClientRect().top)
+      })
+      pickActive()
+    }
+
+    clearCoverPreview()
+    buttons.forEach((btn) => observer.observe(btn))
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      clearCoverPreview()
+    }
+  }, [isCollection, isMobile, collectionLines])
 
   if (copyrightPage) {
     return (
@@ -499,9 +590,23 @@ function MainContent({ content, isBlog = false, isCollection = false, isShop = f
     <div className={isCollection ? styles.mainContentCollection : styles.mainContent}>
       {isCollection && content.text && (
         <>
-          {hoveredCover && !isMobile && (
-            <div className={styles.collectionCoverOverlay} aria-hidden="true">
-              <img src={hoveredCover} alt="" className={styles.collectionCoverPreview} />
+          {hoveredCover && (
+            <div
+              className={styles.collectionCoverOverlay}
+              aria-hidden={isMobile ? undefined : true}
+            >
+              {isMobile && activeScanLink ? (
+                <button
+                  type="button"
+                  className={styles.collectionCoverPreviewBtn}
+                  onClick={() => onCollectionScanNavigate?.(activeScanLink)}
+                  aria-label={`View scans for ${activeScanLink.thirdMenu || 'issue'}`}
+                >
+                  <img src={hoveredCover} alt="" className={styles.collectionCoverPreview} />
+                </button>
+              ) : (
+                <img src={hoveredCover} alt="" className={styles.collectionCoverPreview} />
+              )}
             </div>
           )}
           <div className={styles.collectionText} ref={collectionRef}>
@@ -511,16 +616,31 @@ function MainContent({ content, isBlog = false, isCollection = false, isShop = f
             ))
 
             if (scanLink) {
+              if (isMobile) {
+                return (
+                  <p
+                    key={index}
+                    className={styles.collectionIssueBtn}
+                    ref={(el) => {
+                      if (el) collectionScanEls.current.set(el, scanLink)
+                    }}
+                    style={{ lineHeight }}
+                  >
+                    {lineContent}
+                  </p>
+                )
+              }
+
               return (
                 <button
                   key={index}
                   type="button"
                   className={styles.collectionIssueBtn}
                   onClick={() => onCollectionScanNavigate?.(scanLink)}
-                  onMouseEnter={!isMobile ? () => scanLink.cover && setHoveredCover(scanLink.cover) : undefined}
-                  onMouseLeave={!isMobile ? () => setHoveredCover(null) : undefined}
-                  onFocus={!isMobile ? () => scanLink.cover && setHoveredCover(scanLink.cover) : undefined}
-                  onBlur={!isMobile ? () => setHoveredCover(null) : undefined}
+                  onMouseEnter={() => showCoverPreview(scanLink)}
+                  onMouseLeave={clearCoverPreview}
+                  onFocus={() => showCoverPreview(scanLink)}
+                  onBlur={clearCoverPreview}
                   aria-label={`View scans for ${line.replace(/\*$/, '').trim()}`}
                   style={{ lineHeight }}
                 >
