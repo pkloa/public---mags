@@ -486,7 +486,7 @@ export const contentData = {
   'collection': {
     title: 'Collection',
     text: [
-      'The Source Magazine³⁸',
+      'The Source Magazine³⁹',
       '',
       'source jun \'93/ onyx',
       'source aug \'93/ biz markie',
@@ -502,6 +502,7 @@ export const contentData = {
       'source oct \'97/ master p',
       'source sep \'98/ lauryn hill',
       'source oct \'98/ tribe called quest',
+      'source dec \'98/ method man & redman',
       'source apr \'99/ c murder & silkk the shocker',
       'source jun \'99/ snoop dogg',
       'source aug \'99/ dr dre',
@@ -561,8 +562,9 @@ export const contentData = {
       'xxl may \'10/ drake & nicki minaj',
       'xxl oct \'10/ kanye',
       '',
-      'Vibe Magazine²²',
+      'Vibe Magazine²³',
       '',
+      'vibe jun \'96/ fugees',
       'vibe oct \'96/ dr dre',
       'vibe dec \'96/ snoop dogg',
       'vibe jun \'97/ toni braxton',
