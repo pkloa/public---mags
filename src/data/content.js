@@ -308,13 +308,26 @@ export const contentData = {
       'June 2000': { title: 'Blaze Magazine* - June 2000', text: ['Content for Blaze Magazine June 2000.'], images: [] }
     },
     'Rap Pages Magazine*': {
-      thirdMenuItems: ['October 1995', 'February 1998', 'August 1998', 'October 1998', 'February 1999', 'March 1999*', 'June 1999'],
+      thirdMenuItems: ['October 1995', 'January 1997*', 'February 1998', 'August 1998', 'October 1998', 'February 1999', 'March 1999*', 'June 1999'],
       default: {
         title: 'Rap Pages Magazine*',
         text: ['Select an issue to view content from Rap Pages Magazine*.'],
         images: []
       },
       'October 1995': { title: 'Rap Pages Magazine* - October 1995', text: ['Content for Rap Pages Magazine* October 1995.'], images: [] },
+      'January 1997*': {
+        title: 'Rap Pages Magazine* - January 1997*',
+        text: ['Content for Rap Pages Magazine* January 1997*.'],
+        images: [
+          { src: `${R2_URL}/Rap Pages January 1997/rap pages jan 97-01.jpg`, alt: 'Rap Pages January 1997* Cover', layout: 'full-width' },
+          ...Array.from({ length: 78 }, (_, i) => ({
+            src: `${R2_URL}/Rap Pages January 1997/rap pages jan 97-${String(i + 2).padStart(2, '0')}.jpg`,
+            alt: `Rap Pages January 1997* Page ${i + 2}`,
+            layout: 'two-column'
+          })),
+          { src: `${R2_URL}/Rap Pages January 1997/rap pages jan 97-80.jpg`, alt: 'Rap Pages January 1997* Back Cover', layout: 'full-width' }
+        ]
+      },
       'February 1998': { title: 'Rap Pages Magazine* - February 1998', text: ['Content for Rap Pages Magazine* February 1998.'], images: [] },
       'August 1998': { title: 'Rap Pages Magazine* - August 1998', text: ['Content for Rap Pages Magazine* August 1998.'], images: [] },
       'October 1998': { title: 'Rap Pages Magazine* - October 1998', text: ['Content for Rap Pages Magazine* October 1998.'], images: [] },
@@ -562,9 +575,8 @@ export const contentData = {
       'xxl may \'10/ drake & nicki minaj',
       'xxl oct \'10/ kanye',
       '',
-      'Vibe Magazine²³',
+      'Vibe Magazine²²',
       '',
-      'vibe jun \'96/ fugees',
       'vibe oct \'96/ dr dre',
       'vibe dec \'96/ snoop dogg',
       'vibe jun \'97/ toni braxton',
@@ -593,7 +605,7 @@ export const contentData = {
       'rap pages oct \'95/ krs one',
       'rap pages nov \'95/ goodie mob',
       'rap pages dec \'95/ lauryn hill',
-      'rap pages jan \'97/ the roots',
+      'rap pages jan \'97/ the roots*',
       'rap pages feb \'98/ nwa',
       'rap pages apr \'98/ organized noize',
       'rap pages jul \'98/ tribe called quest',
@@ -620,10 +632,11 @@ export const contentData = {
       'blaze apr \'00/ beanie sigel',
       'blaze jun \'00/ swizz beatz & mannie fresh',
       '',
-      'Murder Dog Magazine¹⁴',
+      'Murder Dog Magazine¹⁵',
       '',
       'murder dog vol 3 issue #4/ x-raided*',
       'murder dog vol 5 issue #2/ c murder',
+      'murder dog vol 5 issue #5/ snoop dogg',
       'murder dog vol 6 issue #4/ hot boys',
       'murder dog vol 6 issue #5/ juvenile',
       'murder dog vol 7 issue #1/ big tymers',
@@ -1260,6 +1273,7 @@ export const collectionScanLinks = {
   'xxl oct \'04/ dave chappelle w/ kanye, kweli, common & dead prez*': { submenu: 'XXL Magazine*', issue: 'October 2004*' },
   'vibe sept \'00/ dre & eminem*': { submenu: 'Vibe Magazine*', issue: 'September 2000*' },
   'vibe jun \'01/ missy elliott*': { submenu: 'Vibe Magazine*', issue: 'June 2001*' },
+  'rap pages jan \'97/ the roots*': { submenu: 'Rap Pages Magazine*', issue: 'January 1997*' },
   'rap pages mar \'99/ method man*': { submenu: 'Rap Pages Magazine*', issue: 'March 1999*' },
   'murder dog vol 3 issue #4/ x-raided*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 3 Issue #4*' },
   'murder dog vol 11 issue #1/ lil jon*': { submenu: 'Murder Dog Magazine*', issue: 'Volume 11 Issue #1*' },
